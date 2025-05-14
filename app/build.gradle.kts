@@ -74,6 +74,7 @@ dependencies {
     implementation(dependencyNotation = libs.androidx.ui.graphics)
     implementation(dependencyNotation = libs.androidx.ui.tooling.preview)
     implementation(dependencyNotation = libs.androidx.material3)
+    implementation(dependencyNotation = libs.google.fonts)
     implementation(dependencyNotation = libs.bundles.compose)
     implementation(dependencyNotation = libs.bundles.koin)
     implementation(dependencyNotation = libs.bundles.networking)
