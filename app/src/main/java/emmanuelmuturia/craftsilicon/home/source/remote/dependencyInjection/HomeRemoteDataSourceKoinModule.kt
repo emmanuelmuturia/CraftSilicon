@@ -25,7 +25,8 @@ val homeRemoteDataSourceKoinModule = module {
     single<HomeRemoteSource> {
         HomeRemoteSourceImplementation(
             openWeatherAPI = get(),
-            dispatcher = get()
+            dispatcher = get(),
+            craftSiliconDao = get()
         )
     }
 

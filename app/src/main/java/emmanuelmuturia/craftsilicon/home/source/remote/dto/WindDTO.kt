@@ -1,6 +1,7 @@
 package emmanuelmuturia.craftsilicon.home.source.remote.dto
 
 
+import emmanuelmuturia.craftsilicon.home.source.local.entity.WindEntity
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -12,4 +13,12 @@ data class WindDTO(
     val gust: Double,
     @SerialName("speed")
     val speed: Double
-)
+) {
+    fun toWindEntity(): WindEntity {
+        return WindEntity(
+            deg = deg,
+            gust = gust,
+            speed = speed
+        )
+    }
+}

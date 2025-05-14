@@ -1,6 +1,7 @@
 package emmanuelmuturia.craftsilicon.home.source.remote.dto
 
 
+import emmanuelmuturia.craftsilicon.home.source.local.entity.MainEntity
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -22,4 +23,17 @@ data class MainDTO(
     val tempMax: Double,
     @SerialName("temp_min")
     val tempMin: Double
-)
+) {
+    fun toMainEntity(): MainEntity {
+        return MainEntity(
+            feelsLike = feelsLike,
+            grndLevel = grndLevel,
+            humidity = humidity,
+            pressure = pressure,
+            seaLevel = seaLevel,
+            temp = temp,
+            tempMax = tempMax,
+            tempMin = tempMin
+        )
+    }
+}
