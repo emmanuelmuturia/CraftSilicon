@@ -38,7 +38,7 @@ class CraftSiliconApplication : Application() {
                         commonsKoinModule,
                         homeDataKoinModule,
                         homeRemoteDataSourceKoinModule,
-                        homeLocalSourceKoinModule
+                        homeLocalSourceKoinModule,
                     ),
             )
         }
