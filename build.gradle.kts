@@ -6,6 +6,7 @@ plugins {
     alias(notation = libs.plugins.kotlin.compose) apply false
     alias(notation = libs.plugins.ksp) apply false
     alias(notation = libs.plugins.kotlin.serialization) apply false
+    alias(notation = libs.plugins.secrets.gradle) apply false
     alias(notation = libs.plugins.ktlint)
     alias(notation = libs.plugins.detekt)
     alias(notation = libs.plugins.spotless)

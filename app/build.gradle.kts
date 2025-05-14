@@ -19,6 +19,7 @@ plugins {
     alias(notation = libs.plugins.kotlin.compose)
     alias(notation = libs.plugins.ksp)
     alias(notation = libs.plugins.kotlin.serialization)
+    alias(notation = libs.plugins.secrets.gradle)
 }
 
 android {
