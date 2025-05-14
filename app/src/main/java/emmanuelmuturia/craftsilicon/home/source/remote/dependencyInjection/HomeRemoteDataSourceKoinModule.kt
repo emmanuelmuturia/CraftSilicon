@@ -2,6 +2,8 @@ package emmanuelmuturia.craftsilicon.home.source.remote.dependencyInjection
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import emmanuelmuturia.craftsilicon.home.source.remote.api.OpenWeatherAPI
+import emmanuelmuturia.craftsilicon.home.source.remote.source.HomeRemoteSource
+import emmanuelmuturia.craftsilicon.home.source.remote.source.HomeRemoteSourceImplementation
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import org.koin.dsl.module
@@ -18,6 +20,13 @@ val homeRemoteDataSourceKoinModule = module {
 
     single<OpenWeatherAPI> {
         get<Retrofit>().create(OpenWeatherAPI::class.java)
+    }
+
+    single<HomeRemoteSource> {
+        HomeRemoteSourceImplementation(
+            openWeatherAPI = get(),
+            dispatcher = get()
+        )
     }
 
 }
