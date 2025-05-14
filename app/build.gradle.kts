@@ -30,7 +30,7 @@ android {
         minSdk = 24
         targetSdk = 35
         versionCode = 1
-        versionName = "1.0"
+        versionName = "1.0.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -38,10 +38,18 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = false
+            isShrinkResources = false
             proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro",
+                files = arrayOf(
+                    getDefaultProguardFile(name = "proguard-android-optimize.txt"),
+                    "proguard-rules.pro",
+                )
             )
+        }
+
+        debug {
+            isMinifyEnabled = false
+            isShrinkResources = false
         }
     }
     compileOptions {
@@ -58,14 +66,14 @@ android {
 
 dependencies {
 
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.androidx.activity.compose)
-    implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.ui)
-    implementation(libs.androidx.ui.graphics)
-    implementation(libs.androidx.ui.tooling.preview)
-    implementation(libs.androidx.material3)
+    implementation(dependencyNotation = libs.androidx.core.ktx)
+    implementation(dependencyNotation = libs.androidx.lifecycle.runtime.ktx)
+    implementation(dependencyNotation = libs.androidx.activity.compose)
+    implementation(dependencyNotation = platform(libs.androidx.compose.bom))
+    implementation(dependencyNotation = libs.androidx.ui)
+    implementation(dependencyNotation = libs.androidx.ui.graphics)
+    implementation(dependencyNotation = libs.androidx.ui.tooling.preview)
+    implementation(dependencyNotation = libs.androidx.material3)
     implementation(dependencyNotation = libs.bundles.compose)
     implementation(dependencyNotation = libs.bundles.koin)
     implementation(dependencyNotation = libs.bundles.networking)
@@ -74,16 +82,16 @@ dependencies {
     implementation(dependencyNotation = libs.room.ktx)
     ksp(dependencyNotation = libs.room.compiler)
 
-    testImplementation(libs.junit)
+    testImplementation(dependencyNotation = libs.junit)
     testImplementation(dependencyNotation = libs.bundles.test)
 
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-    androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.ui.test.junit4)
+    androidTestImplementation(dependencyNotation = libs.androidx.junit)
+    androidTestImplementation(dependencyNotation = libs.androidx.espresso.core)
+    androidTestImplementation(dependencyNotation = platform(libs.androidx.compose.bom))
+    androidTestImplementation(dependencyNotation = libs.androidx.ui.test.junit4)
 
-    debugImplementation(libs.androidx.ui.tooling)
-    debugImplementation(libs.androidx.ui.test.manifest)
+    debugImplementation(dependencyNotation = libs.androidx.ui.tooling)
+    debugImplementation(dependencyNotation = libs.androidx.ui.test.manifest)
     debugImplementation(dependencyNotation = libs.leakcanary.android)
     debugImplementation(dependencyNotation = libs.chucker)
 
