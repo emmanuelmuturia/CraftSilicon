@@ -1,7 +1,9 @@
 plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.compose)
+    alias(notation = libs.plugins.android.application)
+    alias(notation = libs.plugins.kotlin.android)
+    alias(notation = libs.plugins.kotlin.compose)
+    alias(notation = libs.plugins.ksp)
+    alias(notation = libs.plugins.kotlin.serialization)
 }
 
 android {
@@ -49,11 +51,26 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(dependencyNotation = libs.bundles.compose)
+    implementation(dependencyNotation = libs.bundles.koin)
+    implementation(dependencyNotation = libs.bundles.networking)
+    implementation(dependencyNotation = libs.splashscreen)
+    implementation(dependencyNotation = libs.room.runtime)
+    implementation(dependencyNotation = libs.room.ktx)
+    ksp(dependencyNotation = libs.room.compiler)
+
     testImplementation(libs.junit)
+    testImplementation(dependencyNotation = libs.bundles.test)
+
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
+
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+    debugImplementation(dependencyNotation = libs.leakcanary.android)
+    debugImplementation(dependencyNotation = libs.chucker)
+
+    releaseImplementation(dependencyNotation = libs.chucker.no.op)
 }
