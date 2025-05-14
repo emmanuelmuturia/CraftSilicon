@@ -16,6 +16,7 @@
 package emmanuelmuturia.craftsilicon.main.application
 
 import android.app.Application
+import emmanuelmuturia.craftsilicon.home.source.remote.dependencyInjection.homeRemoteDataSourceKoinModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
@@ -30,7 +31,9 @@ class CraftSiliconApplication : Application() {
             androidContext(androidContext = this@CraftSiliconApplication)
             modules(
                 modules =
-                    listOf(),
+                    listOf(
+                        homeRemoteDataSourceKoinModule
+                    ),
             )
         }
     }
