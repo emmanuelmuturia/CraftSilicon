@@ -13,7 +13,7 @@
  * See the Licence for the specific language governing permissions and
  * limitations under the Licence.
  */
-package emmanuelmuturia.craftsilicon.ui.theme
+package emmanuelmuturia.craftsilicon.commons.theme
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
