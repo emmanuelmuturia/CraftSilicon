@@ -1,6 +1,7 @@
 package emmanuelmuturia.craftsilicon.home.source.remote.dependencyInjection
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
+import emmanuelmuturia.craftsilicon.home.source.remote.api.OpenWeatherAPI
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import org.koin.dsl.module
@@ -13,6 +14,10 @@ val homeRemoteDataSourceKoinModule = module {
             .addConverterFactory(Json.asConverterFactory(contentType = "application/json".toMediaType()))
             .baseUrl("https://api.openweathermap.org/data/2.5/")
             .build()
+    }
+
+    single<OpenWeatherAPI> {
+        get<Retrofit>().create(OpenWeatherAPI::class.java)
     }
 
 }

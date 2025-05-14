@@ -5,7 +5,9 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Clouds(
-    @SerialName("all")
-    val all: Int
+data class CoordDTO(
+    @SerialName("lat")
+    val lat: Double,
+    @SerialName("lon")
+    val lon: Double
 )

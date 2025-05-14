@@ -9,27 +9,27 @@ data class CityWeatherDTO(
     @SerialName("base")
     val base: String,
     @SerialName("clouds")
-    val clouds: Clouds,
+    val cloudsDTO: CloudsDTO,
     @SerialName("cod")
     val cod: Int,
     @SerialName("coord")
-    val coord: Coord,
+    val coordDTO: CoordDTO,
     @SerialName("dt")
     val dt: Int,
     @SerialName("id")
     val id: Int,
     @SerialName("main")
-    val main: Main,
+    val mainDTO: MainDTO,
     @SerialName("name")
     val name: String,
     @SerialName("sys")
-    val sys: Sys,
+    val sysDTO: SysDTO,
     @SerialName("timezone")
     val timezone: Int,
     @SerialName("visibility")
     val visibility: Int,
     @SerialName("weather")
-    val weather: List<Weather>,
+    val weatherDTO: List<WeatherDTO>,
     @SerialName("wind")
-    val wind: Wind
+    val windDTO: WindDTO
 )
