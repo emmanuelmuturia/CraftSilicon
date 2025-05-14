@@ -1,7 +1,25 @@
+/*
+ * Copyright 2025 Craft Silicon
+ *
+ * Licenced under the Apache License, Version 2.0 (the "Licence");
+ * you may not use this file except in compliance with the Licence.
+ * You may obtain a copy of the Licence at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the Licence is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the Licence for the specific language governing permissions and
+ * limitations under the Licence.
+ */
 plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.compose)
+    alias(notation = libs.plugins.android.application)
+    alias(notation = libs.plugins.kotlin.android)
+    alias(notation = libs.plugins.kotlin.compose)
+    alias(notation = libs.plugins.ksp)
+    alias(notation = libs.plugins.kotlin.serialization)
+    alias(notation = libs.plugins.secrets.gradle)
 }
 
 android {
@@ -13,7 +31,7 @@ android {
         minSdk = 24
         targetSdk = 35
         versionCode = 1
-        versionName = "1.0"
+        versionName = "1.0.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -21,10 +39,19 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = false
+            isShrinkResources = false
             proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                files =
+                    arrayOf(
+                        getDefaultProguardFile(name = "proguard-android-optimize.txt"),
+                        "proguard-rules.pro",
+                    ),
             )
+        }
+
+        debug {
+            isMinifyEnabled = false
+            isShrinkResources = false
         }
     }
     compileOptions {
@@ -41,19 +68,35 @@ android {
 
 dependencies {
 
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.androidx.activity.compose)
-    implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.ui)
-    implementation(libs.androidx.ui.graphics)
-    implementation(libs.androidx.ui.tooling.preview)
-    implementation(libs.androidx.material3)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-    androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.ui.test.junit4)
-    debugImplementation(libs.androidx.ui.tooling)
-    debugImplementation(libs.androidx.ui.test.manifest)
+    implementation(dependencyNotation = libs.androidx.core.ktx)
+    implementation(dependencyNotation = libs.androidx.lifecycle.runtime.ktx)
+    implementation(dependencyNotation = libs.androidx.activity.compose)
+    implementation(dependencyNotation = platform(libs.androidx.compose.bom))
+    implementation(dependencyNotation = libs.androidx.ui)
+    implementation(dependencyNotation = libs.androidx.ui.graphics)
+    implementation(dependencyNotation = libs.androidx.ui.tooling.preview)
+    implementation(dependencyNotation = libs.androidx.material3)
+    implementation(dependencyNotation = libs.google.fonts)
+    implementation(dependencyNotation = libs.bundles.compose)
+    implementation(dependencyNotation = libs.bundles.koin)
+    implementation(dependencyNotation = libs.bundles.networking)
+    implementation(dependencyNotation = libs.splashscreen)
+    implementation(dependencyNotation = libs.room.runtime)
+    implementation(dependencyNotation = libs.room.ktx)
+    ksp(dependencyNotation = libs.room.compiler)
+
+    testImplementation(dependencyNotation = libs.junit)
+    testImplementation(dependencyNotation = libs.bundles.test)
+
+    androidTestImplementation(dependencyNotation = libs.androidx.junit)
+    androidTestImplementation(dependencyNotation = libs.androidx.espresso.core)
+    androidTestImplementation(dependencyNotation = platform(libs.androidx.compose.bom))
+    androidTestImplementation(dependencyNotation = libs.androidx.ui.test.junit4)
+
+    debugImplementation(dependencyNotation = libs.androidx.ui.tooling)
+    debugImplementation(dependencyNotation = libs.androidx.ui.test.manifest)
+    debugImplementation(dependencyNotation = libs.leakcanary.android)
+    debugImplementation(dependencyNotation = libs.chucker)
+
+    releaseImplementation(dependencyNotation = libs.chucker.no.op)
 }
