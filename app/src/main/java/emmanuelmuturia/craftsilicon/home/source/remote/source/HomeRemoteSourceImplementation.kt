@@ -28,7 +28,7 @@ class HomeRemoteSourceImplementation(
 ) : HomeRemoteSource {
     override suspend fun getCityWeather(city: String) {
         withContext(context = dispatcher) {
-            val response = openWeatherAPI.getWeather(city = city)
+            val response = openWeatherAPI.getCurrentWeather(city = city)
             if (response.isSuccessful) {
                 craftSiliconDao.insertCityWeather(
                     cityWeatherEntity =

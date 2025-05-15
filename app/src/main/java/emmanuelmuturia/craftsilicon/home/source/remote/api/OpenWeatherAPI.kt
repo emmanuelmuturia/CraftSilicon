@@ -16,13 +16,20 @@
 package emmanuelmuturia.craftsilicon.home.source.remote.api
 
 import emmanuelmuturia.craftsilicon.home.source.remote.dto.current.CurrentCityWeatherDTO
+import emmanuelmuturia.craftsilicon.home.source.remote.dto.forecast.ForecastCityWeatherDTO
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface OpenWeatherAPI {
     @GET("data/2.5/weather")
-    suspend fun getWeather(
+    suspend fun getCurrentWeather(
         @Query("q") city: String,
     ): Response<CurrentCityWeatherDTO>
+
+    @GET("data/2.5/forecast")
+    suspend fun getWeatherForecast(
+        @Query("q") city: String,
+        @Query("cnt") count: Int = 5,
+    ): Response<ForecastCityWeatherDTO>
 }
