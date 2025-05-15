@@ -17,17 +17,17 @@ package emmanuelmuturia.craftsilicon.home.data.model.current
 
 data class CurrentCityWeather(
     val base: String,
-    val clouds: Clouds,
+    val currentClouds: CurrentClouds,
     val cod: Int,
-    val coord: Coord,
+    val currentCoord: CurrentCoord,
     val dt: Int,
     val id: Int,
-    val main: Main,
+    val currentMain: CurrentMain,
     val name: String,
-    val sys: Sys,
+    val currentSys: CurrentSys,
     val timezone: Int,
     val visibility: Int,
-    val weather: List<Weather>,
-    val wind: Wind,
+    val currentWeather: List<CurrentWeather>,
+    val currentWind: CurrentWind,
     val lastUpdated: Long,
 )

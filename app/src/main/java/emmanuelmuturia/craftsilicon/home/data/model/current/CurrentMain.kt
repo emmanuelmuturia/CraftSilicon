@@ -17,7 +17,7 @@ package emmanuelmuturia.craftsilicon.home.data.model.current
 
 import emmanuelmuturia.craftsilicon.home.source.local.entity.current.CurrentMainEntity
 
-data class Main(
+data class CurrentMain(
     val feelsLike: Double,
     val grndLevel: Int,
     val humidity: Int,
@@ -28,8 +28,8 @@ data class Main(
     val tempMin: Double,
 )
 
-fun CurrentMainEntity.toMain(): Main {
-    return Main(
+fun CurrentMainEntity.toMain(): CurrentMain {
+    return CurrentMain(
         feelsLike = feelsLike,
         grndLevel = grndLevel,
         humidity = humidity,

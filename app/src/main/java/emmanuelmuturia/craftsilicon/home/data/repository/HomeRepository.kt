@@ -21,5 +21,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface HomeRepository {
     suspend fun getCurrentCityWeather(city: String): Flow<CurrentCityWeather>
+
     suspend fun getForecastCityWeather(city: String): Flow<ForecastCityWeather>
 }

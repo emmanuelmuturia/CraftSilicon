@@ -17,12 +17,12 @@ package emmanuelmuturia.craftsilicon.home.data.model.current
 
 import emmanuelmuturia.craftsilicon.home.source.local.entity.current.CurrentCloudsEntity
 
-data class Clouds(
+data class CurrentClouds(
     val all: Int,
 )
 
-fun CurrentCloudsEntity.toClouds(): Clouds {
-    return Clouds(
+fun CurrentCloudsEntity.toClouds(): CurrentClouds {
+    return CurrentClouds(
         all = all,
     )
 }

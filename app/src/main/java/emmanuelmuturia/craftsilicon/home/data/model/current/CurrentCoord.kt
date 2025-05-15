@@ -17,13 +17,13 @@ package emmanuelmuturia.craftsilicon.home.data.model.current
 
 import emmanuelmuturia.craftsilicon.home.source.local.entity.current.CurrentCoordEntity
 
-data class Coord(
+data class CurrentCoord(
     val lat: Double,
     val lon: Double,
 )
 
-fun CurrentCoordEntity.toCoord(): Coord {
-    return Coord(
+fun CurrentCoordEntity.toCoord(): CurrentCoord {
+    return CurrentCoord(
         lat = lat,
         lon = lon,
     )

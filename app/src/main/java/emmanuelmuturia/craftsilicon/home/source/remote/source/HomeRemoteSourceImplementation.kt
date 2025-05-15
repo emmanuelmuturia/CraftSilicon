@@ -59,13 +59,18 @@ class HomeRemoteSourceImplementation(
             val response = openWeatherAPI.getWeatherForecast(city = city)
             if (response.isSuccessful) {
                 craftSiliconDao.insertForecastWeather(
-                    forecastCityWeatherEntity = ForecastCityWeatherEntity(
-                        forecastCityEntity = response.body()!!.forecastCityDTO.toForecastCityEntity(),
-                        cnt = response.body()!!.cnt,
-                        cod = response.body()!!.cod,
-                        list = response.body()!!.list.map { forecastWeatherItemDTO -> forecastWeatherItemDTO.toForecastWeatherItemEntity() },
-                        message = response.body()!!.message,
-                    )
+                    forecastCityWeatherEntity =
+                        ForecastCityWeatherEntity(
+                            forecastCityEntity = response.body()!!.forecastCityDTO.toForecastCityEntity(),
+                            cnt = response.body()!!.cnt,
+                            cod = response.body()!!.cod,
+                            list =
+                                response.body()!!.list.map {
+                                        forecastWeatherItemDTO ->
+                                    forecastWeatherItemDTO.toForecastWeatherItemEntity()
+                                },
+                            message = response.body()!!.message,
+                        ),
                 )
             }
         }

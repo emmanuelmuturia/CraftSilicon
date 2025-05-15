@@ -17,15 +17,15 @@ package emmanuelmuturia.craftsilicon.home.data.model.current
 
 import emmanuelmuturia.craftsilicon.home.source.local.entity.current.CurrentWeatherEntity
 
-data class Weather(
+data class CurrentWeather(
     val description: String,
     val icon: String,
     val id: Int,
     val main: String,
 )
 
-fun CurrentWeatherEntity.toWeather(): Weather {
-    return Weather(
+fun CurrentWeatherEntity.toWeather(): CurrentWeather {
+    return CurrentWeather(
         description = description,
         icon = icon,
         id = id,

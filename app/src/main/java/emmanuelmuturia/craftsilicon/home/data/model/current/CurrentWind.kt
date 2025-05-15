@@ -17,14 +17,14 @@ package emmanuelmuturia.craftsilicon.home.data.model.current
 
 import emmanuelmuturia.craftsilicon.home.source.local.entity.current.CurrentWindEntity
 
-data class Wind(
+data class CurrentWind(
     val deg: Int,
     val gust: Double,
     val speed: Double,
 )
 
-fun CurrentWindEntity.toWind(): Wind {
-    return Wind(
+fun CurrentWindEntity.toWind(): CurrentWind {
+    return CurrentWind(
         deg = deg,
         gust = gust,
         speed = speed,

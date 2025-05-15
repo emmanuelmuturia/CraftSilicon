@@ -40,18 +40,18 @@ class HomeRepositoryImplementation(
             homeLocalSource.getCurrentCityWeather(city = city).map { cityWeatherEntity ->
                 CurrentCityWeather(
                     base = cityWeatherEntity.base,
-                    clouds = cityWeatherEntity.currentCloudsEntity.toClouds(),
+                    currentClouds = cityWeatherEntity.currentCloudsEntity.toClouds(),
                     cod = cityWeatherEntity.cod,
-                    coord = cityWeatherEntity.currentCoordEntity.toCoord(),
+                    currentCoord = cityWeatherEntity.currentCoordEntity.toCoord(),
                     dt = cityWeatherEntity.dt,
                     id = cityWeatherEntity.id,
-                    main = cityWeatherEntity.currentMainEntity.toMain(),
+                    currentMain = cityWeatherEntity.currentMainEntity.toMain(),
                     name = cityWeatherEntity.name,
-                    sys = cityWeatherEntity.currentSysEntity.toSys(),
+                    currentSys = cityWeatherEntity.currentSysEntity.toSys(),
                     timezone = cityWeatherEntity.timezone,
                     visibility = cityWeatherEntity.visibility,
-                    weather = cityWeatherEntity.currentWeatherEntity.map { weatherEntity -> weatherEntity.toWeather() },
-                    wind = cityWeatherEntity.currentWindEntity.toWind(),
+                    currentWeather = cityWeatherEntity.currentWeatherEntity.map { weatherEntity -> weatherEntity.toWeather() },
+                    currentWind = cityWeatherEntity.currentWindEntity.toWind(),
                     lastUpdated = cityWeatherEntity.lastUpdated,
                 )
             }
@@ -65,8 +65,10 @@ class HomeRepositoryImplementation(
                     forecastCity = forecastCityWeatherEntity.forecastCityEntity.toForecastCity(),
                     cnt = forecastCityWeatherEntity.cnt,
                     cod = forecastCityWeatherEntity.cod,
-                    list = forecastCityWeatherEntity.list.map { forecastCityWeatherEntityList ->
-                        forecastCityWeatherEntityList.toForecastWeatherItem() },
+                    list =
+                        forecastCityWeatherEntity.list.map { forecastCityWeatherEntityList ->
+                            forecastCityWeatherEntityList.toForecastWeatherItem()
+                        },
                     message = forecastCityWeatherEntity.message,
                 )
             }

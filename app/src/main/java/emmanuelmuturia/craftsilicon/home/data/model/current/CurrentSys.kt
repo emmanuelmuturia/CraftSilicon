@@ -17,14 +17,14 @@ package emmanuelmuturia.craftsilicon.home.data.model.current
 
 import emmanuelmuturia.craftsilicon.home.source.local.entity.current.CurrentSysEntity
 
-data class Sys(
+data class CurrentSys(
     val country: String,
     val sunrise: Int,
     val sunset: Int,
 )
 
-fun CurrentSysEntity.toSys(): Sys {
-    return Sys(
+fun CurrentSysEntity.toSys(): CurrentSys {
+    return CurrentSys(
         country = country,
         sunrise = sunrise,
         sunset = sunset,
