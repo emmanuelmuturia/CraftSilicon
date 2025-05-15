@@ -48,4 +48,6 @@ data class CityWeatherEntity(
     val weatherEntity: List<WeatherEntity>,
     @ColumnInfo(name = "wind")
     val windEntity: WindEntity,
+    @ColumnInfo(name = "lastUpdated")
+    val lastUpdated: Long,
 )
