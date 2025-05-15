@@ -46,7 +46,7 @@ class HomeLocalSourceImplementation(
                     visibility = cityWeatherEntity.visibility,
                     weatherEntity = cityWeatherEntity.weatherEntity,
                     windEntity = cityWeatherEntity.windEntity,
-                    lastUpdated = cityWeatherEntity.lastUpdated
+                    lastUpdated = cityWeatherEntity.lastUpdated,
                 )
             }
         }.onEach {

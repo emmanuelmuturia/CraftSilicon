@@ -49,7 +49,7 @@ class HomeRepositoryImplementation(
                     visibility = cityWeatherEntity.visibility,
                     weather = cityWeatherEntity.weatherEntity.map { weatherEntity -> weatherEntity.toWeather() },
                     wind = cityWeatherEntity.windEntity.toWind(),
-                    lastUpdated = cityWeatherEntity.lastUpdated
+                    lastUpdated = cityWeatherEntity.lastUpdated,
                 )
             }
         }

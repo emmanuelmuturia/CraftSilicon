@@ -29,5 +29,5 @@ data class CityWeather(
     val visibility: Int,
     val weather: List<Weather>,
     val wind: Wind,
-    val lastUpdated: Long
+    val lastUpdated: Long,
 )

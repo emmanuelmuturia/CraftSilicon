@@ -46,7 +46,7 @@ class HomeRemoteSourceImplementation(
                             visibility = response.body()!!.visibility,
                             weatherEntity = response.body()!!.weatherDTO.map { weatherDTO -> weatherDTO.toWeatherEntity() },
                             windEntity = response.body()!!.windDTO.toWindEntity(),
-                            lastUpdated = System.currentTimeMillis()
+                            lastUpdated = System.currentTimeMillis(),
                         ),
                 )
             }
