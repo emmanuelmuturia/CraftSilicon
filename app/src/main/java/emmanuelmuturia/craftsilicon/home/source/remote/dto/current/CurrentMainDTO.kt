@@ -13,14 +13,14 @@
  * See the Licence for the specific language governing permissions and
  * limitations under the Licence.
  */
-package emmanuelmuturia.craftsilicon.home.source.remote.dto
+package emmanuelmuturia.craftsilicon.home.source.remote.dto.current
 
 import emmanuelmuturia.craftsilicon.home.source.local.entity.MainEntity
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class MainDTO(
+data class CurrentMainDTO(
     @SerialName("feels_like")
     val feelsLike: Double,
     @SerialName("grnd_level")

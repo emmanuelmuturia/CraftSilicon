@@ -13,14 +13,14 @@
  * See the Licence for the specific language governing permissions and
  * limitations under the Licence.
  */
-package emmanuelmuturia.craftsilicon.home.source.remote.dto
+package emmanuelmuturia.craftsilicon.home.source.remote.dto.current
 
 import emmanuelmuturia.craftsilicon.home.source.local.entity.SysEntity
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class SysDTO(
+data class CurrentSysDTO(
     @SerialName("country")
     val country: String,
     @SerialName("sunrise")

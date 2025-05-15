@@ -13,20 +13,23 @@
  * See the Licence for the specific language governing permissions and
  * limitations under the Licence.
  */
-package emmanuelmuturia.craftsilicon.home.source.remote.dto
+package emmanuelmuturia.craftsilicon.home.source.remote.dto.current
 
-import emmanuelmuturia.craftsilicon.home.source.local.entity.CloudsEntity
+import emmanuelmuturia.craftsilicon.home.source.local.entity.CoordEntity
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class CloudsDTO(
-    @SerialName("all")
-    val all: Int,
+data class CurrentCoordDTO(
+    @SerialName("lat")
+    val lat: Double,
+    @SerialName("lon")
+    val lon: Double,
 ) {
-    fun toCloudsEntity(): CloudsEntity {
-        return CloudsEntity(
-            all = all,
+    fun toCoordEntity(): CoordEntity {
+        return CoordEntity(
+            lat = lat,
+            lon = lon,
         )
     }
 }

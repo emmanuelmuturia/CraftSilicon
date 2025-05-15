@@ -13,37 +13,29 @@
  * See the Licence for the specific language governing permissions and
  * limitations under the Licence.
  */
-package emmanuelmuturia.craftsilicon.home.source.remote.dto
+package emmanuelmuturia.craftsilicon.home.source.remote.dto.current
 
+import emmanuelmuturia.craftsilicon.home.source.local.entity.WeatherEntity
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class CityWeatherDTO(
-    @SerialName("base")
-    val base: String,
-    @SerialName("clouds")
-    val cloudsDTO: CloudsDTO,
-    @SerialName("cod")
-    val cod: Int,
-    @SerialName("coord")
-    val coordDTO: CoordDTO,
-    @SerialName("dt")
-    val dt: Int,
+data class CurrentWeatherDTO(
+    @SerialName("description")
+    val description: String,
+    @SerialName("icon")
+    val icon: String,
     @SerialName("id")
     val id: Int,
     @SerialName("main")
-    val mainDTO: MainDTO,
-    @SerialName("name")
-    val name: String,
-    @SerialName("sys")
-    val sysDTO: SysDTO,
-    @SerialName("timezone")
-    val timezone: Int,
-    @SerialName("visibility")
-    val visibility: Int,
-    @SerialName("weather")
-    val weatherDTO: List<WeatherDTO>,
-    @SerialName("wind")
-    val windDTO: WindDTO,
-)
+    val main: String,
+) {
+    fun toWeatherEntity(): WeatherEntity {
+        return WeatherEntity(
+            description = description,
+            icon = icon,
+            id = id,
+            main = main,
+        )
+    }
+}
