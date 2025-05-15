@@ -16,6 +16,7 @@
 package emmanuelmuturia.craftsilicon.home.source.local.entity.current
 
 import androidx.room.ColumnInfo
+import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
@@ -23,31 +24,30 @@ import androidx.room.PrimaryKey
 data class CurrentCityWeatherEntity(
     @ColumnInfo(name = "base")
     val base: String,
-    @ColumnInfo(name = "clouds")
-    val currentCloudsEntity: CurrentCloudsEntity,
+    /*@Embedded(prefix = "clouds")
+    val currentCloudsEntity: CurrentCloudsEntity,*/
     @ColumnInfo(name = "cod")
     val cod: Int,
-    @ColumnInfo(name = "coord")
-    val currentCoordEntity: CurrentCoordEntity,
+    /*@Embedded(prefix = "coord")
+    val currentCoordEntity: CurrentCoordEntity,*/
     @ColumnInfo(name = "dt")
     val dt: Int,
     @PrimaryKey
     @ColumnInfo(name = "id")
     val id: Int,
-    @ColumnInfo(name = "main")
-    val currentMainEntity: CurrentMainEntity,
+    /*@Embedded(prefix = "main")
+    val currentMainEntity: CurrentMainEntity,*/
     @ColumnInfo(name = "name")
     val name: String,
-    @ColumnInfo(name = "sys")
-    val currentSysEntity: CurrentSysEntity,
+    /*@Embedded(prefix = "sys")
+    val currentSysEntity: CurrentSysEntity,*/
     @ColumnInfo(name = "timezone")
     val timezone: Int,
     @ColumnInfo(name = "visibility")
     val visibility: Int,
-    @ColumnInfo(name = "weather")
-    val currentWeatherEntity: List<CurrentWeatherEntity>,
-    @ColumnInfo(name = "wind")
-    val currentWindEntity: CurrentWindEntity,
+    //val currentWeatherEntity: List<CurrentWeatherEntity>,
+    /*@Embedded(prefix = "wind")
+    val currentWindEntity: CurrentWindEntity,*/
     @ColumnInfo(name = "lastUpdated")
     val lastUpdated: Long,
 )

@@ -15,6 +15,8 @@
  */
 package emmanuelmuturia.craftsilicon.home.source.remote.source
 
+import android.util.Log
+import android.widget.Toast
 import emmanuelmuturia.craftsilicon.home.source.local.dao.CraftSiliconDao
 import emmanuelmuturia.craftsilicon.home.source.local.entity.current.CurrentCityWeatherEntity
 import emmanuelmuturia.craftsilicon.home.source.local.entity.forecast.ForecastCityWeatherEntity
@@ -30,26 +32,28 @@ class HomeRemoteSourceImplementation(
     override suspend fun getCurrentWeather(city: String) {
         withContext(context = dispatcher) {
             val response = openWeatherAPI.getCurrentWeather(city = city)
+            Log.d("HomeRemoteSource", "getCurrentWeather: ${response.body()}")
             if (response.isSuccessful) {
                 craftSiliconDao.insertCurrentWeather(
                     currentCityWeatherEntity =
                         CurrentCityWeatherEntity(
                             base = response.body()!!.base,
-                            currentCloudsEntity = response.body()!!.currentCloudsDTO.toCloudsEntity(),
+                            //currentCloudsEntity = response.body()!!.currentCloudsDTO.toCloudsEntity(),
                             cod = response.body()!!.cod,
-                            currentCoordEntity = response.body()!!.currentCoordDTO.toCoordEntity(),
+                            //currentCoordEntity = response.body()!!.currentCoordDTO.toCoordEntity(),
                             dt = response.body()!!.dt,
                             id = response.body()!!.id,
-                            currentMainEntity = response.body()!!.currentMainDTO.toMainEntity(),
+                            //currentMainEntity = response.body()!!.currentMainDTO.toMainEntity(),
                             name = response.body()!!.name,
-                            currentSysEntity = response.body()!!.currentSysDTO.toSysEntity(),
+                            //currentSysEntity = response.body()!!.currentSysDTO.toSysEntity(),
                             timezone = response.body()!!.timezone,
                             visibility = response.body()!!.visibility,
-                            currentWeatherEntity = response.body()!!.currentWeatherDTO.map { weatherDTO -> weatherDTO.toWeatherEntity() },
-                            currentWindEntity = response.body()!!.currentWindDTO.toWindEntity(),
+                            //currentWeatherEntity = response.body()!!.currentWeatherDTO.map { weatherDTO -> weatherDTO.toWeatherEntity() },
+                            //currentWindEntity = response.body()!!.currentWindDTO.toWindEntity(),
                             lastUpdated = System.currentTimeMillis(),
                         ),
                 )
+                Log.d("Home Remote Source", "Inserted weather into Room")
             }
         }
     }

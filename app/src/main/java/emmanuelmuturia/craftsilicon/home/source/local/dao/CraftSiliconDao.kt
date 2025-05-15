@@ -32,8 +32,8 @@ interface CraftSiliconDao {
     suspend fun insertForecastWeather(forecastCityWeatherEntity: ForecastCityWeatherEntity)
 
     @Query(value = "SELECT * FROM CurrentCityWeatherEntity")
-    fun getCurrentWeather(): Flow<CurrentCityWeatherEntity>
+    fun getCurrentWeather(): Flow<CurrentCityWeatherEntity?>
 
     @Query(value = "SELECT * FROM ForecastCityWeatherEntity")
-    fun getForecastWeather(): Flow<ForecastCityWeatherEntity>
+    fun getForecastWeather(): Flow<ForecastCityWeatherEntity?>
 }

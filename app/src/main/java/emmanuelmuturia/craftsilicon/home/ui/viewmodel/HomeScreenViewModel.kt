@@ -15,6 +15,7 @@
  */
 package emmanuelmuturia.craftsilicon.home.ui.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import emmanuelmuturia.craftsilicon.commons.state.CraftSiliconNetworkResult
@@ -48,6 +49,7 @@ class HomeScreenViewModel(
                                 currentCityWeather = result.data,
                             )
                         }
+                        Log.d("Weather Data", "${result.data}")
                     }
 
                     is CraftSiliconNetworkResult.Error -> {

@@ -15,6 +15,7 @@
  */
 package emmanuelmuturia.craftsilicon.home.source.local.source
 
+import android.util.Log
 import emmanuelmuturia.craftsilicon.home.source.local.dao.CraftSiliconDao
 import emmanuelmuturia.craftsilicon.home.source.local.entity.current.CurrentCityWeatherEntity
 import emmanuelmuturia.craftsilicon.home.source.local.entity.forecast.ForecastCityWeatherEntity
@@ -30,25 +31,27 @@ class HomeLocalSourceImplementation(
     private val dispatcher: CoroutineDispatcher,
     private val homeRemoteSource: HomeRemoteSource,
 ) : HomeLocalSource {
-    override suspend fun getCurrentCityWeather(city: String): Flow<CurrentCityWeatherEntity> {
+    override suspend fun getCurrentCityWeather(city: String): Flow<CurrentCityWeatherEntity?> {
         return withContext(context = dispatcher) {
             craftSiliconDao.getCurrentWeather().map { cityWeatherEntity ->
-                CurrentCityWeatherEntity(
-                    base = cityWeatherEntity.base,
-                    currentCloudsEntity = cityWeatherEntity.currentCloudsEntity,
-                    cod = cityWeatherEntity.cod,
-                    currentCoordEntity = cityWeatherEntity.currentCoordEntity,
-                    dt = cityWeatherEntity.dt,
-                    id = cityWeatherEntity.id,
-                    currentMainEntity = cityWeatherEntity.currentMainEntity,
-                    name = cityWeatherEntity.name,
-                    currentSysEntity = cityWeatherEntity.currentSysEntity,
-                    timezone = cityWeatherEntity.timezone,
-                    visibility = cityWeatherEntity.visibility,
-                    currentWeatherEntity = cityWeatherEntity.currentWeatherEntity,
-                    currentWindEntity = cityWeatherEntity.currentWindEntity,
-                    lastUpdated = cityWeatherEntity.lastUpdated,
-                )
+                cityWeatherEntity?.let {
+                    CurrentCityWeatherEntity(
+                        base = it.base,
+                        //currentCloudsEntity = cityWeatherEntity.currentCloudsEntity,
+                        cod = cityWeatherEntity.cod,
+                        //currentCoordEntity = cityWeatherEntity.currentCoordEntity,
+                        dt = cityWeatherEntity.dt,
+                        id = cityWeatherEntity.id,
+                        //currentMainEntity = cityWeatherEntity.currentMainEntity,
+                        name = cityWeatherEntity.name,
+                        //currentSysEntity = cityWeatherEntity.currentSysEntity,
+                        timezone = cityWeatherEntity.timezone,
+                        visibility = cityWeatherEntity.visibility,
+                        //currentWeatherEntity = cityWeatherEntity.currentWeatherEntity,
+                        //currentWindEntity = cityWeatherEntity.currentWindEntity,
+                        lastUpdated = cityWeatherEntity.lastUpdated,
+                    )
+                }
             }
         }.onEach {
             if (it == null) {
@@ -57,16 +60,18 @@ class HomeLocalSourceImplementation(
         }
     }
 
-    override suspend fun getForecastCityWeather(city: String): Flow<ForecastCityWeatherEntity> {
+    override suspend fun getForecastCityWeather(city: String): Flow<ForecastCityWeatherEntity?> {
         return withContext(context = dispatcher) {
             craftSiliconDao.getForecastWeather().map { forecastCityWeatherEntity ->
-                ForecastCityWeatherEntity(
-                    forecastCityEntity = forecastCityWeatherEntity.forecastCityEntity,
-                    cnt = forecastCityWeatherEntity.cnt,
-                    cod = forecastCityWeatherEntity.cod,
-                    list = forecastCityWeatherEntity.list,
-                    message = forecastCityWeatherEntity.message,
-                )
+                forecastCityWeatherEntity?.let {
+                    ForecastCityWeatherEntity(
+                        forecastCityEntity = it.forecastCityEntity,
+                        cnt = forecastCityWeatherEntity.cnt,
+                        cod = forecastCityWeatherEntity.cod,
+                        list = forecastCityWeatherEntity.list,
+                        message = forecastCityWeatherEntity.message,
+                    )
+                }
             }
         }.onEach {
             if (it == null) {

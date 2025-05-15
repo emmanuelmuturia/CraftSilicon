@@ -20,7 +20,6 @@ import emmanuelmuturia.craftsilicon.home.source.local.entity.forecast.ForecastCi
 import kotlinx.coroutines.flow.Flow
 
 interface HomeLocalSource {
-    suspend fun getCurrentCityWeather(city: String): Flow<CurrentCityWeatherEntity>
-
-    suspend fun getForecastCityWeather(city: String): Flow<ForecastCityWeatherEntity>
+    suspend fun getCurrentCityWeather(city: String): Flow<CurrentCityWeatherEntity?>
+    suspend fun getForecastCityWeather(city: String): Flow<ForecastCityWeatherEntity?>
 }

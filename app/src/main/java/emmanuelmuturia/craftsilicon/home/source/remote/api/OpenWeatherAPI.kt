@@ -15,6 +15,7 @@
  */
 package emmanuelmuturia.craftsilicon.home.source.remote.api
 
+import emmanuelmuturia.craftsilicon.BuildConfig
 import emmanuelmuturia.craftsilicon.home.source.remote.dto.current.CurrentCityWeatherDTO
 import emmanuelmuturia.craftsilicon.home.source.remote.dto.forecast.ForecastCityWeatherDTO
 import retrofit2.Response
@@ -25,6 +26,7 @@ interface OpenWeatherAPI {
     @GET("data/2.5/weather")
     suspend fun getCurrentWeather(
         @Query("q") city: String,
+        @Query("APPID") appId: String = BuildConfig.apiKey,
     ): Response<CurrentCityWeatherDTO>
 
     @GET("data/2.5/forecast")

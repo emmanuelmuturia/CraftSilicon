@@ -26,6 +26,7 @@ import emmanuelmuturia.craftsilicon.home.data.model.forecast.ForecastCityWeather
 import emmanuelmuturia.craftsilicon.home.data.model.forecast.toForecastCity
 import emmanuelmuturia.craftsilicon.home.data.model.forecast.toForecastWeatherItem
 import emmanuelmuturia.craftsilicon.home.source.local.source.HomeLocalSource
+import emmanuelmuturia.craftsilicon.home.source.remote.source.HomeRemoteSource
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -35,42 +36,46 @@ class HomeRepositoryImplementation(
     private val homeLocalSource: HomeLocalSource,
     private val dispatcher: CoroutineDispatcher,
 ) : HomeRepository {
-    override suspend fun getCurrentCityWeather(city: String): Flow<CurrentCityWeather> {
+    override suspend fun getCurrentCityWeather(city: String): Flow<CurrentCityWeather?> {
         return withContext(context = dispatcher) {
             homeLocalSource.getCurrentCityWeather(city = city).map { cityWeatherEntity ->
-                CurrentCityWeather(
-                    base = cityWeatherEntity.base,
-                    currentClouds = cityWeatherEntity.currentCloudsEntity.toClouds(),
-                    cod = cityWeatherEntity.cod,
-                    currentCoord = cityWeatherEntity.currentCoordEntity.toCoord(),
-                    dt = cityWeatherEntity.dt,
-                    id = cityWeatherEntity.id,
-                    currentMain = cityWeatherEntity.currentMainEntity.toMain(),
-                    name = cityWeatherEntity.name,
-                    currentSys = cityWeatherEntity.currentSysEntity.toSys(),
-                    timezone = cityWeatherEntity.timezone,
-                    visibility = cityWeatherEntity.visibility,
-                    currentWeather = cityWeatherEntity.currentWeatherEntity.map { weatherEntity -> weatherEntity.toWeather() },
-                    currentWind = cityWeatherEntity.currentWindEntity.toWind(),
-                    lastUpdated = cityWeatherEntity.lastUpdated,
-                )
+                cityWeatherEntity?.let {
+                    CurrentCityWeather(
+                        base = it.base,
+                        //currentClouds = cityWeatherEntity.currentCloudsEntity.toClouds(),
+                        cod = cityWeatherEntity.cod,
+                        //currentCoord = cityWeatherEntity.currentCoordEntity.toCoord(),
+                        dt = cityWeatherEntity.dt,
+                        id = cityWeatherEntity.id,
+                        //currentMain = cityWeatherEntity.currentMainEntity.toMain(),
+                        name = cityWeatherEntity.name,
+                        //currentSys = cityWeatherEntity.currentSysEntity.toSys(),
+                        timezone = cityWeatherEntity.timezone,
+                        visibility = cityWeatherEntity.visibility,
+                        //currentWeather = cityWeatherEntity.currentWeatherEntity.map { weatherEntity -> weatherEntity.toWeather() },
+                        //currentWind = cityWeatherEntity.currentWindEntity.toWind(),
+                        lastUpdated = cityWeatherEntity.lastUpdated,
+                    )
+                }
             }
         }
     }
 
-    override suspend fun getForecastCityWeather(city: String): Flow<ForecastCityWeather> {
+    override suspend fun getForecastCityWeather(city: String): Flow<ForecastCityWeather?> {
         return withContext(context = dispatcher) {
             homeLocalSource.getForecastCityWeather(city = city).map { forecastCityWeatherEntity ->
-                ForecastCityWeather(
-                    forecastCity = forecastCityWeatherEntity.forecastCityEntity.toForecastCity(),
-                    cnt = forecastCityWeatherEntity.cnt,
-                    cod = forecastCityWeatherEntity.cod,
-                    list =
-                        forecastCityWeatherEntity.list.map { forecastCityWeatherEntityList ->
-                            forecastCityWeatherEntityList.toForecastWeatherItem()
-                        },
-                    message = forecastCityWeatherEntity.message,
-                )
+                forecastCityWeatherEntity?.forecastCityEntity?.let {
+                    ForecastCityWeather(
+                        forecastCity = it.toForecastCity(),
+                        cnt = forecastCityWeatherEntity.cnt,
+                        cod = forecastCityWeatherEntity.cod,
+                        list =
+                            forecastCityWeatherEntity.list.map { forecastCityWeatherEntityList ->
+                                forecastCityWeatherEntityList.toForecastWeatherItem()
+                            },
+                        message = forecastCityWeatherEntity.message,
+                    )
+                }
             }
         }
     }
