@@ -13,21 +13,22 @@
  * See the Licence for the specific language governing permissions and
  * limitations under the Licence.
  */
-package emmanuelmuturia.craftsilicon.home.source.local.entity
+package emmanuelmuturia.craftsilicon.home.data.model.current
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import emmanuelmuturia.craftsilicon.home.source.local.entity.current.CurrentWeatherEntity
 
-@Entity(tableName = "WeatherEntity")
-data class WeatherEntity(
-    @ColumnInfo(name = "description")
+data class Weather(
     val description: String,
-    @ColumnInfo(name = "icon")
     val icon: String,
-    @PrimaryKey
-    @ColumnInfo(name = "id")
     val id: Int,
-    @ColumnInfo(name = "main")
     val main: String,
 )
+
+fun CurrentWeatherEntity.toWeather(): Weather {
+    return Weather(
+        description = description,
+        icon = icon,
+        id = id,
+        main = main,
+    )
+}

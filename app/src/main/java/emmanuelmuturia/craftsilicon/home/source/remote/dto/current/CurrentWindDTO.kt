@@ -15,7 +15,7 @@
  */
 package emmanuelmuturia.craftsilicon.home.source.remote.dto.current
 
-import emmanuelmuturia.craftsilicon.home.source.local.entity.WindEntity
+import emmanuelmuturia.craftsilicon.home.source.local.entity.current.CurrentWindEntity
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -28,8 +28,8 @@ data class CurrentWindDTO(
     @SerialName("speed")
     val speed: Double,
 ) {
-    fun toWindEntity(): WindEntity {
-        return WindEntity(
+    fun toWindEntity(): CurrentWindEntity {
+        return CurrentWindEntity(
             deg = deg,
             gust = gust,
             speed = speed,

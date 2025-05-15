@@ -16,7 +16,8 @@
 package emmanuelmuturia.craftsilicon.home.source.local.source
 
 import emmanuelmuturia.craftsilicon.home.source.local.dao.CraftSiliconDao
-import emmanuelmuturia.craftsilicon.home.source.local.entity.CityWeatherEntity
+import emmanuelmuturia.craftsilicon.home.source.local.entity.current.CurrentCityWeatherEntity
+import emmanuelmuturia.craftsilicon.home.source.local.entity.forecast.ForecastCityWeatherEntity
 import emmanuelmuturia.craftsilicon.home.source.remote.source.HomeRemoteSource
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
@@ -29,29 +30,47 @@ class HomeLocalSourceImplementation(
     private val dispatcher: CoroutineDispatcher,
     private val homeRemoteSource: HomeRemoteSource,
 ) : HomeLocalSource {
-    override suspend fun getCityWeather(city: String): Flow<CityWeatherEntity> {
+    override suspend fun getCurrentCityWeather(city: String): Flow<CurrentCityWeatherEntity> {
         return withContext(context = dispatcher) {
-            craftSiliconDao.getCityWeather().map { cityWeatherEntity ->
-                CityWeatherEntity(
+            craftSiliconDao.getCurrentWeather().map { cityWeatherEntity ->
+                CurrentCityWeatherEntity(
                     base = cityWeatherEntity.base,
-                    cloudsEntity = cityWeatherEntity.cloudsEntity,
+                    currentCloudsEntity = cityWeatherEntity.currentCloudsEntity,
                     cod = cityWeatherEntity.cod,
-                    coordEntity = cityWeatherEntity.coordEntity,
+                    currentCoordEntity = cityWeatherEntity.currentCoordEntity,
                     dt = cityWeatherEntity.dt,
                     id = cityWeatherEntity.id,
-                    mainEntity = cityWeatherEntity.mainEntity,
+                    currentMainEntity = cityWeatherEntity.currentMainEntity,
                     name = cityWeatherEntity.name,
-                    sysEntity = cityWeatherEntity.sysEntity,
+                    currentSysEntity = cityWeatherEntity.currentSysEntity,
                     timezone = cityWeatherEntity.timezone,
                     visibility = cityWeatherEntity.visibility,
-                    weatherEntity = cityWeatherEntity.weatherEntity,
-                    windEntity = cityWeatherEntity.windEntity,
+                    currentWeatherEntity = cityWeatherEntity.currentWeatherEntity,
+                    currentWindEntity = cityWeatherEntity.currentWindEntity,
                     lastUpdated = cityWeatherEntity.lastUpdated,
                 )
             }
         }.onEach {
             if (it == null) {
-                homeRemoteSource.getCityWeather(city = city)
+                homeRemoteSource.getCurrentWeather(city = city)
+            }
+        }
+    }
+
+    override suspend fun getForecastCityWeather(city: String): Flow<ForecastCityWeatherEntity> {
+        return withContext(context = dispatcher) {
+            craftSiliconDao.getForecastWeather().map { forecastCityWeatherEntity ->
+                ForecastCityWeatherEntity(
+                    forecastCityEntity = forecastCityWeatherEntity.forecastCityEntity,
+                    cnt = forecastCityWeatherEntity.cnt,
+                    cod = forecastCityWeatherEntity.cod,
+                    list = forecastCityWeatherEntity.list,
+                    message = forecastCityWeatherEntity.message,
+                )
+            }
+        }.onEach {
+            if (it == null) {
+                homeRemoteSource.getForecastWeather(city = city)
             }
         }
     }

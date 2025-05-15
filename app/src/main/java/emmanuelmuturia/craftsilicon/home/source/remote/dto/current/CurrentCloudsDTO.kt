@@ -15,7 +15,7 @@
  */
 package emmanuelmuturia.craftsilicon.home.source.remote.dto.current
 
-import emmanuelmuturia.craftsilicon.home.source.local.entity.CloudsEntity
+import emmanuelmuturia.craftsilicon.home.source.local.entity.current.CurrentCloudsEntity
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -24,8 +24,8 @@ data class CurrentCloudsDTO(
     @SerialName("all")
     val all: Int,
 ) {
-    fun toCloudsEntity(): CloudsEntity {
-        return CloudsEntity(
+    fun toCloudsEntity(): CurrentCloudsEntity {
+        return CurrentCloudsEntity(
             all = all,
         )
     }

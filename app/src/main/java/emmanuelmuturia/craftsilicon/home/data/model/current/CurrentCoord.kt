@@ -13,17 +13,18 @@
  * See the Licence for the specific language governing permissions and
  * limitations under the Licence.
  */
-package emmanuelmuturia.craftsilicon.home.source.local.entity
+package emmanuelmuturia.craftsilicon.home.data.model.current
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import emmanuelmuturia.craftsilicon.home.source.local.entity.current.CurrentCoordEntity
 
-@Entity(tableName = "CoordEntity")
-data class CoordEntity(
-    @PrimaryKey
-    @ColumnInfo(name = "lat")
+data class Coord(
     val lat: Double,
-    @ColumnInfo(name = "lon")
     val lon: Double,
 )
+
+fun CurrentCoordEntity.toCoord(): Coord {
+    return Coord(
+        lat = lat,
+        lon = lon,
+    )
+}

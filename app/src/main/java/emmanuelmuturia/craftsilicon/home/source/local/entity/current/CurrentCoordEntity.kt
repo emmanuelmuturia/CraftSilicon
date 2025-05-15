@@ -13,19 +13,17 @@
  * See the Licence for the specific language governing permissions and
  * limitations under the Licence.
  */
-package emmanuelmuturia.craftsilicon.home.source.local.entity
+package emmanuelmuturia.craftsilicon.home.source.local.entity.current
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "SysEntity")
-data class SysEntity(
+@Entity(tableName = "CoordEntity")
+data class CurrentCoordEntity(
     @PrimaryKey
-    @ColumnInfo(name = "country")
-    val country: String,
-    @ColumnInfo(name = "sunrise")
-    val sunrise: Int,
-    @ColumnInfo(name = "sunset")
-    val sunset: Int,
+    @ColumnInfo(name = "lat")
+    val lat: Double,
+    @ColumnInfo(name = "lon")
+    val lon: Double,
 )

@@ -19,14 +19,21 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import emmanuelmuturia.craftsilicon.home.source.local.entity.CityWeatherEntity
+import emmanuelmuturia.craftsilicon.home.source.local.entity.current.CurrentCityWeatherEntity
+import emmanuelmuturia.craftsilicon.home.source.local.entity.forecast.ForecastCityWeatherEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface CraftSiliconDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertCityWeather(cityWeatherEntity: CityWeatherEntity)
+    suspend fun insertCurrentWeather(currentCityWeatherEntity: CurrentCityWeatherEntity)
 
-    @Query(value = "SELECT * FROM CityWeatherEntity")
-    fun getCityWeather(): Flow<CityWeatherEntity>
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertForecastWeather(forecastCityWeatherEntity: ForecastCityWeatherEntity)
+
+    @Query(value = "SELECT * FROM CurrentCityWeatherEntity")
+    fun getCurrentWeather(): Flow<CurrentCityWeatherEntity>
+
+    @Query(value = "SELECT * FROM ForecastCityWeatherEntity")
+    fun getForecastWeather(): Flow<ForecastCityWeatherEntity>
 }

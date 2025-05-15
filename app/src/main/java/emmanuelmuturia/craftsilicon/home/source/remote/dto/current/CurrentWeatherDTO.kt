@@ -15,7 +15,7 @@
  */
 package emmanuelmuturia.craftsilicon.home.source.remote.dto.current
 
-import emmanuelmuturia.craftsilicon.home.source.local.entity.WeatherEntity
+import emmanuelmuturia.craftsilicon.home.source.local.entity.current.CurrentWeatherEntity
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -30,8 +30,8 @@ data class CurrentWeatherDTO(
     @SerialName("main")
     val main: String,
 ) {
-    fun toWeatherEntity(): WeatherEntity {
-        return WeatherEntity(
+    fun toWeatherEntity(): CurrentWeatherEntity {
+        return CurrentWeatherEntity(
             description = description,
             icon = icon,
             id = id,

@@ -13,9 +13,9 @@
  * See the Licence for the specific language governing permissions and
  * limitations under the Licence.
  */
-package emmanuelmuturia.craftsilicon.home.data.model
+package emmanuelmuturia.craftsilicon.home.data.model.current
 
-import emmanuelmuturia.craftsilicon.home.source.local.entity.SysEntity
+import emmanuelmuturia.craftsilicon.home.source.local.entity.current.CurrentSysEntity
 
 data class Sys(
     val country: String,
@@ -23,7 +23,7 @@ data class Sys(
     val sunset: Int,
 )
 
-fun SysEntity.toSys(): Sys {
+fun CurrentSysEntity.toSys(): Sys {
     return Sys(
         country = country,
         sunrise = sunrise,

@@ -15,7 +15,7 @@
  */
 package emmanuelmuturia.craftsilicon.home.source.remote.dto.current
 
-import emmanuelmuturia.craftsilicon.home.source.local.entity.SysEntity
+import emmanuelmuturia.craftsilicon.home.source.local.entity.current.CurrentSysEntity
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -28,8 +28,8 @@ data class CurrentSysDTO(
     @SerialName("sunset")
     val sunset: Int,
 ) {
-    fun toSysEntity(): SysEntity {
-        return SysEntity(
+    fun toSysEntity(): CurrentSysEntity {
+        return CurrentSysEntity(
             country = country,
             sunrise = sunrise,
             sunset = sunset,

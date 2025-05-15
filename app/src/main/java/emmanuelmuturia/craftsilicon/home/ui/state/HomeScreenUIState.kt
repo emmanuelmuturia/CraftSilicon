@@ -15,11 +15,13 @@
  */
 package emmanuelmuturia.craftsilicon.home.ui.state
 
-import emmanuelmuturia.craftsilicon.home.data.model.CityWeather
+import emmanuelmuturia.craftsilicon.home.data.model.current.CurrentCityWeather
+import emmanuelmuturia.craftsilicon.home.data.model.forecast.ForecastCityWeather
 
 data class HomeScreenUIState(
     val isLoading: Boolean = false,
-    val cityWeather: CityWeather? = null,
+    val currentCityWeather: CurrentCityWeather? = null,
+    val foreCastCityWeather: ForecastCityWeather? = null,
     val error: String? = null,
     val cityName: String = "Nairobi",
 )

@@ -15,7 +15,7 @@
  */
 package emmanuelmuturia.craftsilicon.home.source.remote.dto.current
 
-import emmanuelmuturia.craftsilicon.home.source.local.entity.CoordEntity
+import emmanuelmuturia.craftsilicon.home.source.local.entity.current.CurrentCoordEntity
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -26,8 +26,8 @@ data class CurrentCoordDTO(
     @SerialName("lon")
     val lon: Double,
 ) {
-    fun toCoordEntity(): CoordEntity {
-        return CoordEntity(
+    fun toCoordEntity(): CurrentCoordEntity {
+        return CurrentCoordEntity(
             lat = lat,
             lon = lon,
         )

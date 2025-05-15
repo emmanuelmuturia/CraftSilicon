@@ -13,41 +13,41 @@
  * See the Licence for the specific language governing permissions and
  * limitations under the Licence.
  */
-package emmanuelmuturia.craftsilicon.home.source.local.entity
+package emmanuelmuturia.craftsilicon.home.source.local.entity.current
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "CityWeatherEntity")
-data class CityWeatherEntity(
+@Entity(tableName = "CurrentCityWeatherEntity")
+data class CurrentCityWeatherEntity(
     @ColumnInfo(name = "base")
     val base: String,
     @ColumnInfo(name = "clouds")
-    val cloudsEntity: CloudsEntity,
+    val currentCloudsEntity: CurrentCloudsEntity,
     @ColumnInfo(name = "cod")
     val cod: Int,
     @ColumnInfo(name = "coord")
-    val coordEntity: CoordEntity,
+    val currentCoordEntity: CurrentCoordEntity,
     @ColumnInfo(name = "dt")
     val dt: Int,
     @PrimaryKey
     @ColumnInfo(name = "id")
     val id: Int,
     @ColumnInfo(name = "main")
-    val mainEntity: MainEntity,
+    val currentMainEntity: CurrentMainEntity,
     @ColumnInfo(name = "name")
     val name: String,
     @ColumnInfo(name = "sys")
-    val sysEntity: SysEntity,
+    val currentSysEntity: CurrentSysEntity,
     @ColumnInfo(name = "timezone")
     val timezone: Int,
     @ColumnInfo(name = "visibility")
     val visibility: Int,
     @ColumnInfo(name = "weather")
-    val weatherEntity: List<WeatherEntity>,
+    val currentWeatherEntity: List<CurrentWeatherEntity>,
     @ColumnInfo(name = "wind")
-    val windEntity: WindEntity,
+    val currentWindEntity: CurrentWindEntity,
     @ColumnInfo(name = "lastUpdated")
     val lastUpdated: Long,
 )

@@ -15,7 +15,7 @@
  */
 package emmanuelmuturia.craftsilicon.home.source.remote.dto.current
 
-import emmanuelmuturia.craftsilicon.home.source.local.entity.MainEntity
+import emmanuelmuturia.craftsilicon.home.source.local.entity.current.CurrentMainEntity
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -38,8 +38,8 @@ data class CurrentMainDTO(
     @SerialName("temp_min")
     val tempMin: Double,
 ) {
-    fun toMainEntity(): MainEntity {
-        return MainEntity(
+    fun toMainEntity(): CurrentMainEntity {
+        return CurrentMainEntity(
             feelsLike = feelsLike,
             grndLevel = grndLevel,
             humidity = humidity,

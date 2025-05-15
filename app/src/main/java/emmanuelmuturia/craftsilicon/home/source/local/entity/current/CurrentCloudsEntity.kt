@@ -13,16 +13,15 @@
  * See the Licence for the specific language governing permissions and
  * limitations under the Licence.
  */
-package emmanuelmuturia.craftsilicon.home.data.model
+package emmanuelmuturia.craftsilicon.home.source.local.entity.current
 
-import emmanuelmuturia.craftsilicon.home.source.local.entity.CloudsEntity
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
-data class Clouds(
+@Entity(tableName = "CloudsEntity")
+data class CurrentCloudsEntity(
+    @PrimaryKey
+    @ColumnInfo(name = "all")
     val all: Int,
 )
-
-fun CloudsEntity.toClouds(): Clouds {
-    return Clouds(
-        all = all,
-    )
-}

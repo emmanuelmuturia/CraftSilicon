@@ -15,13 +15,16 @@
  */
 package emmanuelmuturia.craftsilicon.home.data.repository
 
-import emmanuelmuturia.craftsilicon.home.data.model.CityWeather
-import emmanuelmuturia.craftsilicon.home.data.model.toClouds
-import emmanuelmuturia.craftsilicon.home.data.model.toCoord
-import emmanuelmuturia.craftsilicon.home.data.model.toMain
-import emmanuelmuturia.craftsilicon.home.data.model.toSys
-import emmanuelmuturia.craftsilicon.home.data.model.toWeather
-import emmanuelmuturia.craftsilicon.home.data.model.toWind
+import emmanuelmuturia.craftsilicon.home.data.model.current.CurrentCityWeather
+import emmanuelmuturia.craftsilicon.home.data.model.current.toClouds
+import emmanuelmuturia.craftsilicon.home.data.model.current.toCoord
+import emmanuelmuturia.craftsilicon.home.data.model.current.toMain
+import emmanuelmuturia.craftsilicon.home.data.model.current.toSys
+import emmanuelmuturia.craftsilicon.home.data.model.current.toWeather
+import emmanuelmuturia.craftsilicon.home.data.model.current.toWind
+import emmanuelmuturia.craftsilicon.home.data.model.forecast.ForecastCityWeather
+import emmanuelmuturia.craftsilicon.home.data.model.forecast.toForecastCity
+import emmanuelmuturia.craftsilicon.home.data.model.forecast.toForecastWeatherItem
 import emmanuelmuturia.craftsilicon.home.source.local.source.HomeLocalSource
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
@@ -32,24 +35,39 @@ class HomeRepositoryImplementation(
     private val homeLocalSource: HomeLocalSource,
     private val dispatcher: CoroutineDispatcher,
 ) : HomeRepository {
-    override suspend fun getCityWeather(city: String): Flow<CityWeather> {
+    override suspend fun getCurrentCityWeather(city: String): Flow<CurrentCityWeather> {
         return withContext(context = dispatcher) {
-            homeLocalSource.getCityWeather(city = city).map { cityWeatherEntity ->
-                CityWeather(
+            homeLocalSource.getCurrentCityWeather(city = city).map { cityWeatherEntity ->
+                CurrentCityWeather(
                     base = cityWeatherEntity.base,
-                    clouds = cityWeatherEntity.cloudsEntity.toClouds(),
+                    clouds = cityWeatherEntity.currentCloudsEntity.toClouds(),
                     cod = cityWeatherEntity.cod,
-                    coord = cityWeatherEntity.coordEntity.toCoord(),
+                    coord = cityWeatherEntity.currentCoordEntity.toCoord(),
                     dt = cityWeatherEntity.dt,
                     id = cityWeatherEntity.id,
-                    main = cityWeatherEntity.mainEntity.toMain(),
+                    main = cityWeatherEntity.currentMainEntity.toMain(),
                     name = cityWeatherEntity.name,
-                    sys = cityWeatherEntity.sysEntity.toSys(),
+                    sys = cityWeatherEntity.currentSysEntity.toSys(),
                     timezone = cityWeatherEntity.timezone,
                     visibility = cityWeatherEntity.visibility,
-                    weather = cityWeatherEntity.weatherEntity.map { weatherEntity -> weatherEntity.toWeather() },
-                    wind = cityWeatherEntity.windEntity.toWind(),
+                    weather = cityWeatherEntity.currentWeatherEntity.map { weatherEntity -> weatherEntity.toWeather() },
+                    wind = cityWeatherEntity.currentWindEntity.toWind(),
                     lastUpdated = cityWeatherEntity.lastUpdated,
+                )
+            }
+        }
+    }
+
+    override suspend fun getForecastCityWeather(city: String): Flow<ForecastCityWeather> {
+        return withContext(context = dispatcher) {
+            homeLocalSource.getForecastCityWeather(city = city).map { forecastCityWeatherEntity ->
+                ForecastCityWeather(
+                    forecastCity = forecastCityWeatherEntity.forecastCityEntity.toForecastCity(),
+                    cnt = forecastCityWeatherEntity.cnt,
+                    cod = forecastCityWeatherEntity.cod,
+                    list = forecastCityWeatherEntity.list.map { forecastCityWeatherEntityList ->
+                        forecastCityWeatherEntityList.toForecastWeatherItem() },
+                    message = forecastCityWeatherEntity.message,
                 )
             }
         }

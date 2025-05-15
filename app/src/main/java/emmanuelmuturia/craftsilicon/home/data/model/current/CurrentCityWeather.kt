@@ -13,20 +13,21 @@
  * See the Licence for the specific language governing permissions and
  * limitations under the Licence.
  */
-package emmanuelmuturia.craftsilicon.home.data.model
+package emmanuelmuturia.craftsilicon.home.data.model.current
 
-import emmanuelmuturia.craftsilicon.home.source.local.entity.WindEntity
-
-data class Wind(
-    val deg: Int,
-    val gust: Double,
-    val speed: Double,
+data class CurrentCityWeather(
+    val base: String,
+    val clouds: Clouds,
+    val cod: Int,
+    val coord: Coord,
+    val dt: Int,
+    val id: Int,
+    val main: Main,
+    val name: String,
+    val sys: Sys,
+    val timezone: Int,
+    val visibility: Int,
+    val weather: List<Weather>,
+    val wind: Wind,
+    val lastUpdated: Long,
 )
-
-fun WindEntity.toWind(): Wind {
-    return Wind(
-        deg = deg,
-        gust = gust,
-        speed = speed,
-    )
-}

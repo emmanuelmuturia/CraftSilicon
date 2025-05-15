@@ -15,9 +15,11 @@
  */
 package emmanuelmuturia.craftsilicon.home.data.repository
 
-import emmanuelmuturia.craftsilicon.home.data.model.CityWeather
+import emmanuelmuturia.craftsilicon.home.data.model.current.CurrentCityWeather
+import emmanuelmuturia.craftsilicon.home.data.model.forecast.ForecastCityWeather
 import kotlinx.coroutines.flow.Flow
 
 interface HomeRepository {
-    suspend fun getCityWeather(city: String): Flow<CityWeather>
+    suspend fun getCurrentCityWeather(city: String): Flow<CurrentCityWeather>
+    suspend fun getForecastCityWeather(city: String): Flow<ForecastCityWeather>
 }

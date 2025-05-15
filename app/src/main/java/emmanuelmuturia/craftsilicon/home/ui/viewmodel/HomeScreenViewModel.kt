@@ -31,20 +31,49 @@ class HomeScreenViewModel(
     val homeScreenUIState = MutableStateFlow(value = HomeScreenUIState())
 
     init {
-        getCityWeather(city = homeScreenUIState.value.cityName)
+        getCurrentCityWeather(city = homeScreenUIState.value.cityName)
+        getForecastCityWeather(city = homeScreenUIState.value.cityName)
     }
 
-    private fun getCityWeather(city: String) {
+    private fun getCurrentCityWeather(city: String) {
         homeScreenUIState.value = HomeScreenUIState(isLoading = true)
         viewModelScope.launch {
-            homeRepository.getCityWeather(city = city).asResult().collect { result ->
+            homeRepository.getCurrentCityWeather(city = city).asResult().collect { result ->
 
                 when (result) {
                     is CraftSiliconNetworkResult.Success -> {
                         homeScreenUIState.update {
                             it.copy(
                                 isLoading = false,
-                                cityWeather = result.data,
+                                currentCityWeather = result.data,
+                            )
+                        }
+                    }
+
+                    is CraftSiliconNetworkResult.Error -> {
+                        homeScreenUIState.update {
+                            it.copy(
+                                isLoading = false,
+                                error = result.error,
+                            )
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private fun getForecastCityWeather(city: String) {
+        homeScreenUIState.value = HomeScreenUIState(isLoading = true)
+        viewModelScope.launch {
+            homeRepository.getForecastCityWeather(city = city).asResult().collect { result ->
+
+                when (result) {
+                    is CraftSiliconNetworkResult.Success -> {
+                        homeScreenUIState.update {
+                            it.copy(
+                                isLoading = false,
+                                foreCastCityWeather = result.data,
                             )
                         }
                     }

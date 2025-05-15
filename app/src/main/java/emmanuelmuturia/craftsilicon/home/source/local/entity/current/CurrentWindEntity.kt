@@ -13,18 +13,19 @@
  * See the Licence for the specific language governing permissions and
  * limitations under the Licence.
  */
-package emmanuelmuturia.craftsilicon.home.data.model
+package emmanuelmuturia.craftsilicon.home.source.local.entity.current
 
-import emmanuelmuturia.craftsilicon.home.source.local.entity.CoordEntity
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
-data class Coord(
-    val lat: Double,
-    val lon: Double,
+@Entity(tableName = "WindEntity")
+data class CurrentWindEntity(
+    @PrimaryKey
+    @ColumnInfo(name = "deg")
+    val deg: Int,
+    @ColumnInfo(name = "gust")
+    val gust: Double,
+    @ColumnInfo(name = "speed")
+    val speed: Double,
 )
-
-fun CoordEntity.toCoord(): Coord {
-    return Coord(
-        lat = lat,
-        lon = lon,
-    )
-}

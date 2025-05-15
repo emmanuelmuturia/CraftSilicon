@@ -1,6 +1,8 @@
 package emmanuelmuturia.craftsilicon.home.source.remote.dto.forecast
 
 
+import emmanuelmuturia.craftsilicon.home.source.local.entity.forecast.ForecastCityEntity
+import emmanuelmuturia.craftsilicon.home.source.local.entity.forecast.ForecastCoordEntity
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -22,4 +24,20 @@ data class ForecastCityDTO(
     val sunset: Int,
     @SerialName("timezone")
     val timezone: Int
-)
+) {
+    fun toForecastCityEntity(): ForecastCityEntity {
+        return ForecastCityEntity(
+            forecastCoordEntity = ForecastCoordEntity(
+                lat = forecastCoordDTO.lat,
+                lon = forecastCoordDTO.lon,
+            ),
+            country = country,
+            id = id,
+            name = name,
+            population = population,
+            sunrise = sunrise,
+            sunset = sunset,
+            timezone = timezone,
+            )
+    }
+}

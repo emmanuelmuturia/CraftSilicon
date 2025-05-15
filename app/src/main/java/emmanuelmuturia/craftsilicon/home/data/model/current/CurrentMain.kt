@@ -13,9 +13,9 @@
  * See the Licence for the specific language governing permissions and
  * limitations under the Licence.
  */
-package emmanuelmuturia.craftsilicon.home.data.model
+package emmanuelmuturia.craftsilicon.home.data.model.current
 
-import emmanuelmuturia.craftsilicon.home.source.local.entity.MainEntity
+import emmanuelmuturia.craftsilicon.home.source.local.entity.current.CurrentMainEntity
 
 data class Main(
     val feelsLike: Double,
@@ -28,7 +28,7 @@ data class Main(
     val tempMin: Double,
 )
 
-fun MainEntity.toMain(): Main {
+fun CurrentMainEntity.toMain(): Main {
     return Main(
         feelsLike = feelsLike,
         grndLevel = grndLevel,
