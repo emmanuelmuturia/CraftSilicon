@@ -68,7 +68,7 @@ class HomeScreenViewModel(
         }
     }*/
 
-    private fun getCurrentCityWeather(cityName: String) {
+    fun getCurrentCityWeather(cityName: String) {
         homeScreenUIState.value = HomeScreenUIState(isLoading = true)
         viewModelScope.launch {
             homeRepository.getCurrentCityWeather(cityName = cityName).asResult().collect { result ->
@@ -81,7 +81,6 @@ class HomeScreenViewModel(
                                 currentCityWeather = result.data,
                             )
                         }
-                        Log.d("Weather Data", "${result.data}")
                     }
 
                     is CraftSiliconNetworkResult.Error -> {
@@ -97,7 +96,7 @@ class HomeScreenViewModel(
         }
     }
 
-    private fun getForecastCityWeather(cityName: String) {
+    fun getForecastCityWeather(cityName: String) {
         homeScreenUIState.value = HomeScreenUIState(isLoading = true)
         viewModelScope.launch {
             homeRepository.getForecastCityWeather(cityName = cityName).asResult().collect { result ->
