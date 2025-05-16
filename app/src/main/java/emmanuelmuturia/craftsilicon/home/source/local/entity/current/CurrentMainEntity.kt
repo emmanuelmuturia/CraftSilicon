@@ -15,27 +15,13 @@
  */
 package emmanuelmuturia.craftsilicon.home.source.local.entity.current
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.PrimaryKey
-
-@Entity(tableName = "MainEntity")
 data class CurrentMainEntity(
-    @PrimaryKey
-    @ColumnInfo(name = "feels_like")
     val feelsLike: Double,
-    @ColumnInfo(name = "grnd_level")
     val grndLevel: Int,
-    @ColumnInfo(name = "humidity")
     val humidity: Int,
-    @ColumnInfo(name = "pressure")
     val pressure: Int,
-    @ColumnInfo(name = "sea_level")
     val seaLevel: Int,
-    @ColumnInfo(name = "temp")
     val temp: Double,
-    @ColumnInfo(name = "temp_max")
     val tempMax: Double,
-    @ColumnInfo(name = "temp_min")
     val tempMin: Double,
 )

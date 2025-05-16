@@ -16,19 +16,19 @@
 package emmanuelmuturia.craftsilicon.home.source.local.entity.forecast
 
 import androidx.room.ColumnInfo
+import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "ForecastCityWeatherEntity")
 data class ForecastCityWeatherEntity(
-    @PrimaryKey
-    @ColumnInfo(name = "city")
+    @Embedded(prefix = "city_")
     val forecastCityEntity: ForecastCityEntity,
+    @PrimaryKey
     @ColumnInfo(name = "cnt")
     val cnt: Int,
     @ColumnInfo(name = "cod")
     val cod: String,
-    @ColumnInfo(name = "list")
     val list: List<ForecastWeatherItemEntity>,
     @ColumnInfo(name = "message")
     val message: Int,

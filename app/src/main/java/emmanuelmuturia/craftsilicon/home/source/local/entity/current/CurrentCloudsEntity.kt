@@ -15,13 +15,6 @@
  */
 package emmanuelmuturia.craftsilicon.home.source.local.entity.current
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.PrimaryKey
-
-@Entity(tableName = "CloudsEntity")
 data class CurrentCloudsEntity(
-    @PrimaryKey
-    @ColumnInfo(name = "all")
     val all: Int,
 )

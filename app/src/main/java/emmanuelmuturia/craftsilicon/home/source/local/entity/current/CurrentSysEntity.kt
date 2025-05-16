@@ -15,17 +15,8 @@
  */
 package emmanuelmuturia.craftsilicon.home.source.local.entity.current
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.PrimaryKey
-
-@Entity(tableName = "SysEntity")
 data class CurrentSysEntity(
-    @PrimaryKey
-    @ColumnInfo(name = "country")
     val country: String,
-    @ColumnInfo(name = "sunrise")
     val sunrise: Int,
-    @ColumnInfo(name = "sunset")
     val sunset: Int,
 )

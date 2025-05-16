@@ -15,17 +15,11 @@
  */
 package emmanuelmuturia.craftsilicon.home.source.local.entity.forecast
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import kotlinx.serialization.Serializable
 
-@Entity(tableName = "ForecastWind")
+@Serializable
 data class ForecastWindEntity(
-    @PrimaryKey
-    @ColumnInfo(name = "deg")
     val deg: Int,
-    @ColumnInfo(name = "gust")
     val gust: Double,
-    @ColumnInfo(name = "speed")
     val speed: Double,
 )

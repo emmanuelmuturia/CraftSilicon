@@ -41,12 +41,8 @@ import emmanuelmuturia.craftsilicon.home.source.local.typeConverters.forecast.Fo
 
 @Database(
     entities = [
-        CurrentCityWeatherEntity::class, CurrentCloudsEntity::class, CurrentCoordEntity::class,
-        CurrentMainEntity::class, CurrentSysEntity::class, CurrentWeatherEntity::class,
-        CurrentWindEntity::class, ForecastCityEntity::class, ForecastCityWeatherEntity::class, ForecastCloudsEntity::class,
-        ForecastCoordEntity::class, ForecastMainEntity::class, ForecastRainEntity::class,
-        ForecastSysEntity::class, ForecastWeatherEntity::class, ForecastWeatherItemEntity::class,
-        ForecastWindEntity::class,
+        CurrentCityWeatherEntity::class,
+        ForecastCityWeatherEntity::class,
     ],
     version = 1,
     exportSchema = false,

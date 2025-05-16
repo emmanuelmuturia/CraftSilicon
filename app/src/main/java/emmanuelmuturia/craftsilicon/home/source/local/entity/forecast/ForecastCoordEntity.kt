@@ -15,15 +15,7 @@
  */
 package emmanuelmuturia.craftsilicon.home.source.local.entity.forecast
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.PrimaryKey
-
-@Entity(tableName = "ForecastCoordEntity")
 data class ForecastCoordEntity(
-    @PrimaryKey
-    @ColumnInfo(name = "lat")
     val lat: Double,
-    @ColumnInfo(name = "lon")
     val lon: Double,
 )

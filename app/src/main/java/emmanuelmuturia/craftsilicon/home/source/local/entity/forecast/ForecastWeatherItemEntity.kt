@@ -15,31 +15,24 @@
  */
 package emmanuelmuturia.craftsilicon.home.source.local.entity.forecast
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import androidx.room.Embedded
+import kotlinx.serialization.Serializable
 
-@Entity(tableName = "ForecastWeatherItemEntity")
+@Serializable
 data class ForecastWeatherItemEntity(
-    @PrimaryKey
-    @ColumnInfo(name = "clouds")
+    @Embedded(prefix = "forecast_clouds_")
     val forecastCloudsEntity: ForecastCloudsEntity,
-    @ColumnInfo(name = "dt")
     val dt: Int,
-    @ColumnInfo(name = "dt_txt")
     val dtTxt: String,
-    @ColumnInfo(name = "main")
+    @Embedded(prefix = "forecast_main_")
     val forecastMainEntity: ForecastMainEntity,
-    @ColumnInfo(name = "pop")
     val pop: Double,
-    @ColumnInfo(name = "rain")
+    @Embedded(prefix = "forecast_rain_")
     val forecastRainEntity: ForecastRainEntity,
-    @ColumnInfo(name = "sys")
+    @Embedded(prefix = "forecast_sys_")
     val forecastSysEntity: ForecastSysEntity,
-    @ColumnInfo(name = "visibility")
     val visibility: Int,
-    @ColumnInfo(name = "weather")
     val forecastWeatherEntity: List<ForecastWeatherEntity>,
-    @ColumnInfo(name = "wind")
+    @Embedded(prefix = "forecast_wind_")
     val forecastWindEntity: ForecastWindEntity,
 )

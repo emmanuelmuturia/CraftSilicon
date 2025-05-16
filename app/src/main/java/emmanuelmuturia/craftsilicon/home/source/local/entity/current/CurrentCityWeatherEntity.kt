@@ -24,30 +24,30 @@ import androidx.room.PrimaryKey
 data class CurrentCityWeatherEntity(
     @ColumnInfo(name = "base")
     val base: String,
-    /*@Embedded(prefix = "clouds")
-    val currentCloudsEntity: CurrentCloudsEntity,*/
+    @Embedded(prefix = "clouds_")
+    val currentCloudsEntity: CurrentCloudsEntity,
     @ColumnInfo(name = "cod")
     val cod: Int,
-    /*@Embedded(prefix = "coord")
-    val currentCoordEntity: CurrentCoordEntity,*/
+    @Embedded(prefix = "coord_")
+    val currentCoordEntity: CurrentCoordEntity,
     @ColumnInfo(name = "dt")
     val dt: Int,
     @PrimaryKey
     @ColumnInfo(name = "id")
     val id: Int,
-    /*@Embedded(prefix = "main")
-    val currentMainEntity: CurrentMainEntity,*/
+    @Embedded(prefix = "main_")
+    val currentMainEntity: CurrentMainEntity,
     @ColumnInfo(name = "name")
     val name: String,
-    /*@Embedded(prefix = "sys")
-    val currentSysEntity: CurrentSysEntity,*/
+    @Embedded(prefix = "sys_")
+    val currentSysEntity: CurrentSysEntity,
     @ColumnInfo(name = "timezone")
     val timezone: Int,
     @ColumnInfo(name = "visibility")
     val visibility: Int,
-    //val currentWeatherEntity: List<CurrentWeatherEntity>,
-    /*@Embedded(prefix = "wind")
-    val currentWindEntity: CurrentWindEntity,*/
+    val currentWeatherEntity: List<CurrentWeatherEntity>,
+    @Embedded(prefix = "wind_")
+    val currentWindEntity: CurrentWindEntity,
     @ColumnInfo(name = "lastUpdated")
     val lastUpdated: Long,
 )

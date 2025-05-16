@@ -15,15 +15,7 @@
  */
 package emmanuelmuturia.craftsilicon.home.source.local.entity.current
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.PrimaryKey
-
-@Entity(tableName = "CoordEntity")
 data class CurrentCoordEntity(
-    @PrimaryKey
-    @ColumnInfo(name = "lat")
     val lat: Double,
-    @ColumnInfo(name = "lon")
     val lon: Double,
 )
