@@ -38,7 +38,7 @@ data class ForecastWeatherItemDTO(
     @SerialName("pop")
     val pop: Double,
     @SerialName("rain")
-    val forecastRainDTO: ForecastRainDTO,
+    val forecastRainDTO: ForecastRainDTO? = null,
     @SerialName("sys")
     val forecastSysDTO: ForecastSysDTO,
     @SerialName("visibility")
@@ -71,7 +71,7 @@ data class ForecastWeatherItemDTO(
             pop = pop,
             forecastRainEntity =
                 ForecastRainEntity(
-                    h = forecastRainDTO.h,
+                    h = forecastRainDTO?.h ?: 0.0,
                 ),
             forecastSysEntity =
                 ForecastSysEntity(

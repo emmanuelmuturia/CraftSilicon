@@ -30,7 +30,7 @@ interface OpenWeatherAPI {
     ): Response<CurrentCityWeatherDTO>
 
     @GET("data/2.5/forecast")
-    suspend fun getWeatherForecast(
+    suspend fun getForecastWeather(
         @Query("q") city: String,
         @Query("cnt") count: Int = 5,
         @Query("appid") appId: String = BuildConfig.apiKey,

@@ -16,6 +16,7 @@
 package emmanuelmuturia.craftsilicon.main.application
 
 import android.app.Application
+import emmanuelmuturia.craftsilicon.BuildConfig
 import emmanuelmuturia.craftsilicon.commons.dependencyInjection.commonsKoinModule
 import emmanuelmuturia.craftsilicon.home.data.dependencyInjection.homeDataKoinModule
 import emmanuelmuturia.craftsilicon.home.source.local.dependencyInjection.homeLocalSourceKoinModule
@@ -23,6 +24,7 @@ import emmanuelmuturia.craftsilicon.home.source.remote.dependencyInjection.homeR
 import emmanuelmuturia.craftsilicon.home.ui.dependencyInjection.homeUIKoinModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
+import timber.log.Timber
 
 /**
  * This is the main [Application] class for the app and acts as the entry point...
@@ -31,6 +33,9 @@ import org.koin.core.context.startKoin
 class CraftSiliconApplication : Application() {
     override fun onCreate() {
         super.onCreate()
+        if (BuildConfig.DEBUG) {
+            Timber.plant(tree = Timber.DebugTree())
+        }
         startKoin {
             androidContext(androidContext = this@CraftSiliconApplication)
             modules(

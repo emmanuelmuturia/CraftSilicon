@@ -15,8 +15,6 @@
  */
 package emmanuelmuturia.craftsilicon.home.source.remote.source
 
-import android.util.Log
-import android.widget.Toast
 import emmanuelmuturia.craftsilicon.home.source.local.dao.CraftSiliconDao
 import emmanuelmuturia.craftsilicon.home.source.local.entity.current.CurrentCityWeatherEntity
 import emmanuelmuturia.craftsilicon.home.source.local.entity.forecast.ForecastCityWeatherEntity
@@ -32,7 +30,6 @@ class HomeRemoteSourceImplementation(
     override suspend fun getCurrentWeather(city: String) {
         withContext(context = dispatcher) {
             val response = openWeatherAPI.getCurrentWeather(city = city)
-            Log.d("HomeRemoteSource", "getCurrentWeather: ${response.body()}")
             if (response.isSuccessful) {
                 craftSiliconDao.insertCurrentWeather(
                     currentCityWeatherEntity =
@@ -53,14 +50,13 @@ class HomeRemoteSourceImplementation(
                             lastUpdated = System.currentTimeMillis(),
                         ),
                 )
-                Log.d("Home Remote Source", "Inserted weather into Room")
             }
         }
     }
 
     override suspend fun getForecastWeather(city: String) {
         withContext(context = dispatcher) {
-            val response = openWeatherAPI.getWeatherForecast(city = city)
+            val response = openWeatherAPI.getForecastWeather(city = city)
             if (response.isSuccessful) {
                 craftSiliconDao.insertForecastWeather(
                     forecastCityWeatherEntity =

@@ -23,23 +23,30 @@ import kotlinx.serialization.json.Json
 
 class ForecastWeatherTypeConverters {
 
+    private val json = Json {
+        ignoreUnknownKeys = true
+        isLenient = true
+        encodeDefaults = true
+        prettyPrint = true
+    }
+
     @TypeConverter
     fun convertForecastWeatherListToString(forecastWeatherItemEntities: List<ForecastWeatherItemEntity>): String {
-        return Json.encodeToString(value = forecastWeatherItemEntities)
+        return json.encodeToString(value = forecastWeatherItemEntities)
     }
 
     @TypeConverter
     fun convertStringToForecastWeatherList(forecastWeatherItems: String): List<ForecastWeatherItemEntity> {
-        return Json.decodeFromString(string = forecastWeatherItems)
+        return json.decodeFromString(string = forecastWeatherItems)
     }
 
     @TypeConverter
     fun convertWeatherListToString(forecastWeatherEntityList: List<ForecastWeatherEntity>): String {
-        return Json.encodeToString(value = forecastWeatherEntityList)
+        return json.encodeToString(value = forecastWeatherEntityList)
     }
 
     @TypeConverter
     fun convertStringToWeatherList(weatherListString: String): List<ForecastWeatherEntity> {
-        return Json.decodeFromString(string = weatherListString)
+        return json.decodeFromString(string = weatherListString)
     }
 }
