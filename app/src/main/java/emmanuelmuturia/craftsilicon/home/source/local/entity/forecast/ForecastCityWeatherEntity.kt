@@ -22,9 +22,10 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "ForecastCityWeatherEntity")
 data class ForecastCityWeatherEntity(
+    @PrimaryKey
+    val forecastCityWeatherId: Int = 0,
     @Embedded(prefix = "city_")
     val forecastCityEntity: ForecastCityEntity,
-    @PrimaryKey
     @ColumnInfo(name = "cnt")
     val cnt: Int,
     @ColumnInfo(name = "cod")

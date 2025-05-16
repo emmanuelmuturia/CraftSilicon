@@ -16,7 +16,7 @@
 package emmanuelmuturia.craftsilicon.home.source.remote.source
 
 interface HomeRemoteSource {
-    suspend fun getCurrentWeather(city: String)
+    suspend fun getCurrentWeather(cityName: String)
 
-    suspend fun getForecastWeather(city: String)
+    suspend fun getForecastWeather(cityName: String)
 }

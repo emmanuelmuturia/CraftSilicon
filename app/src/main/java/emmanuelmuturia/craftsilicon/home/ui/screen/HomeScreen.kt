@@ -16,6 +16,7 @@
 package emmanuelmuturia.craftsilicon.home.ui.screen
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -28,17 +29,25 @@ import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Search
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -62,6 +71,7 @@ import emmanuelmuturia.craftsilicon.home.ui.viewmodel.HomeScreenViewModel
 fun HomeScreen(
     modifier: Modifier = Modifier,
     homeScreenViewModel: HomeScreenViewModel,
+    onSearchCity: (String) -> Unit
 ) {
     val homeScreenUIState: HomeScreenUIState by
     homeScreenViewModel.homeScreenUIState.collectAsStateWithLifecycle()
@@ -95,13 +105,20 @@ fun HomeScreen(
     ) { paddingValues ->
         HomeScreenContent(
             modifier = Modifier.padding(paddingValues = paddingValues),
-            homeScreenUIState = homeScreenUIState
+            homeScreenUIState = homeScreenUIState,
+            onSearchCity = onSearchCity
         )
     }
 }
 
 @Composable
-private fun HomeScreenContent(modifier: Modifier = Modifier, homeScreenUIState: HomeScreenUIState) {
+private fun HomeScreenContent(
+    modifier: Modifier = Modifier,
+    homeScreenUIState: HomeScreenUIState,
+    onSearchCity: (String) -> Unit
+) {
+
+    var citySearchQuery by rememberSaveable { mutableStateOf(value = "") }
 
     AnimatedVisibility(visible = homeScreenUIState.isLoading) {
         CircularProgressIndicator()
@@ -119,6 +136,54 @@ private fun HomeScreenContent(modifier: Modifier = Modifier, homeScreenUIState: 
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
         ) {
+
+            item {
+                OutlinedTextField(
+                    modifier =
+                        Modifier.semantics {
+                            contentDescription = "City Search Bar"
+                        },
+                    value = citySearchQuery,
+                    onValueChange = { citySearch ->
+                        citySearchQuery = citySearch
+                    },
+                    leadingIcon = {
+                        Icon(
+                            imageVector = Icons.Rounded.Search,
+                            tint = MaterialTheme.colorScheme.primary,
+                            contentDescription = "Home Screen Search Bar",
+                        )
+                    },
+                    trailingIcon = {
+                        Icon(
+                            modifier = Modifier.clickable {
+                                onSearchCity(citySearchQuery)
+                            },
+                            imageVector = Icons.Rounded.Search,
+                            tint = MaterialTheme.colorScheme.primary,
+                            contentDescription = "Home Screen Search Icon",
+                        )
+                    },
+                    label = {
+                        Text(
+                            modifier =
+                                Modifier.semantics {
+                                    contentDescription = "Home Screen Search Bar Label"
+                                },
+                            text = "Enter City Name",
+                            color = MaterialTheme.colorScheme.primary,
+                            fontSize = 14.sp,
+                        )
+                    },
+                    shape = RoundedCornerShape(size = 21.dp),
+                    colors =
+                        TextFieldDefaults.colors(
+                            focusedContainerColor = MaterialTheme.colorScheme.background,
+                            unfocusedContainerColor = MaterialTheme.colorScheme.background,
+                        ),
+                )
+            }
+
             item {
                 Text(
                     text = "Current Weather [${homeScreenUIState.currentCityWeather?.name}, ${homeScreenUIState.currentCityWeather?.currentSys?.country}]",
@@ -219,7 +284,10 @@ private fun HomeScreenWeatherCard(
                 }
             }
 
-            CurrentWeatherDetailRow(title = "Temperature", value = "${currentCityWeather.currentMain.temp} K")
+            CurrentWeatherDetailRow(
+                title = "Temperature",
+                value = "${currentCityWeather.currentMain.temp} K"
+            )
             CurrentWeatherDetailRow(
                 title = "Temperature [Max]",
                 value = "${currentCityWeather.currentMain.temp} K"
@@ -232,12 +300,18 @@ private fun HomeScreenWeatherCard(
                 title = "Feels Like",
                 value = "${currentCityWeather.currentMain.feelsLike} K"
             )
-            CurrentWeatherDetailRow(title = "Humidity", value = "${currentCityWeather.currentMain.humidity} %")
+            CurrentWeatherDetailRow(
+                title = "Humidity",
+                value = "${currentCityWeather.currentMain.humidity} %"
+            )
             CurrentWeatherDetailRow(
                 title = "Pressure",
                 value = "${currentCityWeather.currentMain.pressure} hPa"
             )
-            CurrentWeatherDetailRow(title = "Visibility", value = "${currentCityWeather.visibility / 1000} km")
+            CurrentWeatherDetailRow(
+                title = "Visibility",
+                value = "${currentCityWeather.visibility / 1000} km"
+            )
             CurrentWeatherDetailRow(
                 title = "Sea Level",
                 value = "${currentCityWeather.currentMain.seaLevel / 1000} km"
@@ -246,7 +320,10 @@ private fun HomeScreenWeatherCard(
                 title = "Ground Level",
                 value = "${currentCityWeather.currentMain.grndLevel / 1000} km"
             )
-            CurrentWeatherDetailRow(title = "Cloudiness", value = "${currentCityWeather.currentClouds.all} %")
+            CurrentWeatherDetailRow(
+                title = "Cloudiness",
+                value = "${currentCityWeather.currentClouds.all} %"
+            )
             CurrentWeatherDetailRow(
                 title = "Wind Speed",
                 value = "${currentCityWeather.currentWind.speed} m/s"

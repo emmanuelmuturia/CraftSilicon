@@ -45,6 +45,9 @@ fun CraftSiliconNavHost() {
             NavHost(startDestination = HomeScreen, navController = navController) {
                 homeScreen(
                     homeScreenViewModel = homeScreenViewModel,
+                    onSearchCity = { cityName ->
+                        homeScreenViewModel.searchNewCity(cityName = cityName)
+                    }
                 )
             }
         }

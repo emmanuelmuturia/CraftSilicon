@@ -20,8 +20,10 @@ import emmanuelmuturia.craftsilicon.home.source.local.entity.current.CurrentCity
 import emmanuelmuturia.craftsilicon.home.source.local.entity.forecast.ForecastCityWeatherEntity
 import emmanuelmuturia.craftsilicon.home.source.remote.source.HomeRemoteSource
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class HomeLocalSourceImplementation(
@@ -30,22 +32,28 @@ class HomeLocalSourceImplementation(
     private val homeRemoteSource: HomeRemoteSource,
 ) : HomeLocalSource {
 
-    override suspend fun getCurrentCityWeather(city: String): Flow<CurrentCityWeatherEntity?> {
+    override suspend fun getCurrentCityWeather(cityName: String): Flow<CurrentCityWeatherEntity?> {
         return withContext(dispatcher) {
+            async {
+                homeRemoteSource.getCurrentWeather(cityName = cityName)
+            }.await()
             craftSiliconDao.getCurrentWeather()
         }.onEach { cachedWeather ->
             if (cachedWeather == null) {
-                homeRemoteSource.getCurrentWeather(city)
+                homeRemoteSource.getCurrentWeather(cityName = cityName)
             }
         }
     }
 
-    override suspend fun getForecastCityWeather(city: String): Flow<ForecastCityWeatherEntity?> {
+    override suspend fun getForecastCityWeather(cityName: String): Flow<ForecastCityWeatherEntity?> {
         return withContext(dispatcher) {
+            async {
+                homeRemoteSource.getForecastWeather(cityName = cityName)
+            }.await()
             craftSiliconDao.getForecastWeather()
         }.onEach { cachedForecast ->
             if (cachedForecast == null) {
-                homeRemoteSource.getForecastWeather(city)
+                homeRemoteSource.getForecastWeather(cityName = cityName)
             }
         }
     }

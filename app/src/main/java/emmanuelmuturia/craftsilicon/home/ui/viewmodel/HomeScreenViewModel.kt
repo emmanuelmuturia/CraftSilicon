@@ -31,15 +31,47 @@ class HomeScreenViewModel(
 ) : ViewModel() {
     val homeScreenUIState = MutableStateFlow(value = HomeScreenUIState())
 
+    //private val citySearchQuery = MutableStateFlow(value = "")
+
     init {
-        getCurrentCityWeather(city = homeScreenUIState.value.cityName)
-        getForecastCityWeather(city = homeScreenUIState.value.cityName)
+        getCurrentCityWeather(cityName = homeScreenUIState.value.cityName)
+        getForecastCityWeather(cityName = homeScreenUIState.value.cityName)
+        //observeCitySearchQuery()
     }
 
-    private fun getCurrentCityWeather(city: String) {
+    fun searchNewCity(cityName: String) {
+        homeScreenUIState.value.cityName = cityName
+        getCurrentCityWeather(cityName = cityName)
+        getForecastCityWeather(cityName = cityName)
+    }
+
+    /*fun onCityNameChanged(cityName: String) {
+        citySearchQuery.value = cityName
+        homeScreenUIState.update {
+            it.copy(
+                cityName = cityName
+            )
+        }
+        Timber.tag("City Name").d(homeScreenUIState.value.cityName)
+    }*/
+
+    /*@OptIn(FlowPreview::class)
+    private fun observeCitySearchQuery() {
+        viewModelScope.launch {
+            citySearchQuery.debounce(
+                timeoutMillis = 700
+            ).distinctUntilChanged()
+                .collectLatest { cityName ->
+                    getCurrentCityWeather(city = cityName)
+                    getForecastCityWeather(city = cityName)
+                }
+        }
+    }*/
+
+    private fun getCurrentCityWeather(cityName: String) {
         homeScreenUIState.value = HomeScreenUIState(isLoading = true)
         viewModelScope.launch {
-            homeRepository.getCurrentCityWeather(city = city).asResult().collect { result ->
+            homeRepository.getCurrentCityWeather(cityName = cityName).asResult().collect { result ->
 
                 when (result) {
                     is CraftSiliconNetworkResult.Success -> {
@@ -65,10 +97,10 @@ class HomeScreenViewModel(
         }
     }
 
-    private fun getForecastCityWeather(city: String) {
+    private fun getForecastCityWeather(cityName: String) {
         homeScreenUIState.value = HomeScreenUIState(isLoading = true)
         viewModelScope.launch {
-            homeRepository.getForecastCityWeather(city = city).asResult().collect { result ->
+            homeRepository.getForecastCityWeather(cityName = cityName).asResult().collect { result ->
 
                 when (result) {
                     is CraftSiliconNetworkResult.Success -> {

@@ -27,9 +27,9 @@ class HomeRemoteSourceImplementation(
     private val dispatcher: CoroutineDispatcher,
     private val craftSiliconDao: CraftSiliconDao,
 ) : HomeRemoteSource {
-    override suspend fun getCurrentWeather(city: String) {
+    override suspend fun getCurrentWeather(cityName: String) {
         withContext(context = dispatcher) {
-            val response = openWeatherAPI.getCurrentWeather(city = city)
+            val response = openWeatherAPI.getCurrentWeather(cityName = cityName)
             if (response.isSuccessful) {
                 craftSiliconDao.insertCurrentWeather(
                     currentCityWeatherEntity =
@@ -54,9 +54,9 @@ class HomeRemoteSourceImplementation(
         }
     }
 
-    override suspend fun getForecastWeather(city: String) {
+    override suspend fun getForecastWeather(cityName: String) {
         withContext(context = dispatcher) {
-            val response = openWeatherAPI.getForecastWeather(city = city)
+            val response = openWeatherAPI.getForecastWeather(cityName = cityName)
             if (response.isSuccessful) {
                 craftSiliconDao.insertForecastWeather(
                     forecastCityWeatherEntity =

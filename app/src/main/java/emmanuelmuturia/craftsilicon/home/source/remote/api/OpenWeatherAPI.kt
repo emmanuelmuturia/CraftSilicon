@@ -25,13 +25,13 @@ import retrofit2.http.Query
 interface OpenWeatherAPI {
     @GET("data/2.5/weather")
     suspend fun getCurrentWeather(
-        @Query("q") city: String,
+        @Query("q") cityName: String,
         @Query("APPID") appId: String = BuildConfig.apiKey,
     ): Response<CurrentCityWeatherDTO>
 
     @GET("data/2.5/forecast")
     suspend fun getForecastWeather(
-        @Query("q") city: String,
+        @Query("q") cityName: String,
         @Query("cnt") count: Int = 5,
         @Query("appid") appId: String = BuildConfig.apiKey,
     ): Response<ForecastCityWeatherDTO>

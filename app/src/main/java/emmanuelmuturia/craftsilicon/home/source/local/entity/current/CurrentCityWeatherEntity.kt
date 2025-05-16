@@ -22,6 +22,8 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "CurrentCityWeatherEntity")
 data class CurrentCityWeatherEntity(
+    @PrimaryKey
+    val currentCityWeatherId: Int = 0,
     @ColumnInfo(name = "base")
     val base: String,
     @Embedded(prefix = "clouds_")
@@ -32,7 +34,6 @@ data class CurrentCityWeatherEntity(
     val currentCoordEntity: CurrentCoordEntity,
     @ColumnInfo(name = "dt")
     val dt: Int,
-    @PrimaryKey
     @ColumnInfo(name = "id")
     val id: Int,
     @Embedded(prefix = "main_")

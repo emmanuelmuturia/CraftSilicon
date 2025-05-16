@@ -24,10 +24,14 @@ import kotlinx.serialization.Serializable
 @Serializable
 object HomeScreen
 
-fun NavGraphBuilder.homeScreen(homeScreenViewModel: HomeScreenViewModel) {
+fun NavGraphBuilder.homeScreen(
+    homeScreenViewModel: HomeScreenViewModel,
+    onSearchCity: (String) -> Unit
+) {
     composable<HomeScreen> {
         HomeScreen(
             homeScreenViewModel = homeScreenViewModel,
+            onSearchCity = onSearchCity
         )
     }
 }

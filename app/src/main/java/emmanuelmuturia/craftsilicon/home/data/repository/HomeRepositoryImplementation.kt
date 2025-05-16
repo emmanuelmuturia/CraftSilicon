@@ -35,9 +35,9 @@ class HomeRepositoryImplementation(
     private val homeLocalSource: HomeLocalSource,
     private val dispatcher: CoroutineDispatcher,
 ) : HomeRepository {
-    override suspend fun getCurrentCityWeather(city: String): Flow<CurrentCityWeather?> {
+    override suspend fun getCurrentCityWeather(cityName: String): Flow<CurrentCityWeather?> {
         return withContext(context = dispatcher) {
-            homeLocalSource.getCurrentCityWeather(city = city).map { cityWeatherEntity ->
+            homeLocalSource.getCurrentCityWeather(cityName = cityName).map { cityWeatherEntity ->
                 cityWeatherEntity?.let {
                     CurrentCityWeather(
                         base = it.base,
@@ -60,9 +60,9 @@ class HomeRepositoryImplementation(
         }
     }
 
-    override suspend fun getForecastCityWeather(city: String): Flow<ForecastCityWeather?> {
+    override suspend fun getForecastCityWeather(cityName: String): Flow<ForecastCityWeather?> {
         return withContext(context = dispatcher) {
-            homeLocalSource.getForecastCityWeather(city = city).map { forecastCityWeatherEntity ->
+            homeLocalSource.getForecastCityWeather(cityName = cityName).map { forecastCityWeatherEntity ->
                 forecastCityWeatherEntity?.forecastCityEntity?.let {
                     ForecastCityWeather(
                         forecastCity = it.toForecastCity(),

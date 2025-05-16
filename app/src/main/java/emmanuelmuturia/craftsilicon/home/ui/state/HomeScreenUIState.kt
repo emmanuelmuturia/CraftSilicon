@@ -23,5 +23,5 @@ data class HomeScreenUIState(
     val currentCityWeather: CurrentCityWeather? = null,
     val foreCastCityWeather: ForecastCityWeather? = null,
     val error: String? = null,
-    val cityName: String = "Nairobi",
+    var cityName: String = "Nairobi",
 )
