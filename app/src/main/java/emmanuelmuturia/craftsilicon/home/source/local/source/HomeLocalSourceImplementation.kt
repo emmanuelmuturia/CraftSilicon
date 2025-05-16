@@ -15,7 +15,6 @@
  */
 package emmanuelmuturia.craftsilicon.home.source.local.source
 
-import android.util.Log
 import emmanuelmuturia.craftsilicon.home.source.local.dao.CraftSiliconDao
 import emmanuelmuturia.craftsilicon.home.source.local.entity.current.CurrentCityWeatherEntity
 import emmanuelmuturia.craftsilicon.home.source.local.entity.forecast.ForecastCityWeatherEntity
@@ -37,18 +36,18 @@ class HomeLocalSourceImplementation(
                 cityWeatherEntity?.let {
                     CurrentCityWeatherEntity(
                         base = it.base,
-                        //currentCloudsEntity = cityWeatherEntity.currentCloudsEntity,
+                        currentCloudsEntity = cityWeatherEntity.currentCloudsEntity,
                         cod = cityWeatherEntity.cod,
-                        //currentCoordEntity = cityWeatherEntity.currentCoordEntity,
+                        currentCoordEntity = cityWeatherEntity.currentCoordEntity,
                         dt = cityWeatherEntity.dt,
                         id = cityWeatherEntity.id,
-                        //currentMainEntity = cityWeatherEntity.currentMainEntity,
+                        currentMainEntity = cityWeatherEntity.currentMainEntity,
                         name = cityWeatherEntity.name,
-                        //currentSysEntity = cityWeatherEntity.currentSysEntity,
+                        currentSysEntity = cityWeatherEntity.currentSysEntity,
                         timezone = cityWeatherEntity.timezone,
                         visibility = cityWeatherEntity.visibility,
-                        //currentWeatherEntity = cityWeatherEntity.currentWeatherEntity,
-                        //currentWindEntity = cityWeatherEntity.currentWindEntity,
+                        currentWeatherEntity = cityWeatherEntity.currentWeatherEntity,
+                        currentWindEntity = cityWeatherEntity.currentWindEntity,
                         lastUpdated = cityWeatherEntity.lastUpdated,
                     )
                 }
