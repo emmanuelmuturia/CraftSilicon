@@ -1,3 +1,5 @@
+package viewmodel
+
 import emmanuelmuturia.craftsilicon.home.data.model.current.CurrentCityWeather
 import emmanuelmuturia.craftsilicon.home.data.model.current.CurrentClouds
 import emmanuelmuturia.craftsilicon.home.data.model.current.CurrentCoord

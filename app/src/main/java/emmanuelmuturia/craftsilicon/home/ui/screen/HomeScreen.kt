@@ -112,7 +112,7 @@ fun HomeScreen(
 }
 
 @Composable
-private fun HomeScreenContent(
+fun HomeScreenContent(
     modifier: Modifier = Modifier,
     homeScreenUIState: HomeScreenUIState,
     onSearchCity: (String) -> Unit,
@@ -192,9 +192,12 @@ private fun HomeScreenContent(
                     textAlign = TextAlign.Start,
                     modifier =
                         Modifier
-                            .padding(start = 14.dp, top = 10.dp, bottom = 4.dp),
+                            .padding(start = 14.dp, top = 10.dp, bottom = 4.dp)
+                            .semantics {
+                                contentDescription = "Current City Weather Card Label"
+                            },
                 )
-                HomeScreenWeatherCard(
+                CurrentCityWeatherCard(
                     homeScreenUIState = homeScreenUIState,
                 )
             }
@@ -207,7 +210,10 @@ private fun HomeScreenContent(
                     textAlign = TextAlign.Start,
                     modifier =
                         Modifier
-                            .padding(start = 14.dp, top = 10.dp, bottom = 4.dp),
+                            .padding(start = 14.dp, top = 10.dp, bottom = 4.dp)
+                            .semantics {
+                                contentDescription = "Forecast Weather Section Label"
+                            },
                 )
             }
 
@@ -232,7 +238,7 @@ private fun HomeScreenContent(
 }
 
 @Composable
-private fun HomeScreenWeatherCard(homeScreenUIState: HomeScreenUIState) {
+private fun CurrentCityWeatherCard(homeScreenUIState: HomeScreenUIState) {
     val currentCityWeather = homeScreenUIState.currentCityWeather ?: return
 
     ElevatedCard(
@@ -241,7 +247,7 @@ private fun HomeScreenWeatherCard(homeScreenUIState: HomeScreenUIState) {
                 .padding(all = 14.dp)
                 .fillMaxWidth()
                 .semantics {
-                    contentDescription = "Home Screen Weather Card"
+                    contentDescription = "Current City Weather Card"
                 }
                 .wrapContentHeight(),
     ) {
@@ -365,7 +371,10 @@ fun ForecastWeatherCard(
             modifier
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp, vertical = 6.dp)
-                .wrapContentHeight(),
+                .wrapContentHeight()
+                .semantics {
+                    contentDescription = "Forecast City Weather Card"
+                },
         shape = RoundedCornerShape(21.dp),
         elevation = CardDefaults.elevatedCardElevation(4.dp),
     ) {
