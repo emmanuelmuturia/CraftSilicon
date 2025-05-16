@@ -16,8 +16,8 @@
 package emmanuelmuturia.craftsilicon.home.data.repository
 
 import emmanuelmuturia.craftsilicon.home.data.model.current.CurrentCityWeather
-import emmanuelmuturia.craftsilicon.home.data.model.current.toClouds
 import emmanuelmuturia.craftsilicon.home.data.model.current.toCoord
+import emmanuelmuturia.craftsilicon.home.data.model.current.toCurrentClouds
 import emmanuelmuturia.craftsilicon.home.data.model.current.toMain
 import emmanuelmuturia.craftsilicon.home.data.model.current.toSys
 import emmanuelmuturia.craftsilicon.home.data.model.current.toWeather
@@ -26,7 +26,6 @@ import emmanuelmuturia.craftsilicon.home.data.model.forecast.ForecastCityWeather
 import emmanuelmuturia.craftsilicon.home.data.model.forecast.toForecastCity
 import emmanuelmuturia.craftsilicon.home.data.model.forecast.toForecastWeatherItem
 import emmanuelmuturia.craftsilicon.home.source.local.source.HomeLocalSource
-import emmanuelmuturia.craftsilicon.home.source.remote.source.HomeRemoteSource
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -42,18 +41,18 @@ class HomeRepositoryImplementation(
                 cityWeatherEntity?.let {
                     CurrentCityWeather(
                         base = it.base,
-                        //currentClouds = cityWeatherEntity.currentCloudsEntity.toClouds(),
+                        currentClouds = cityWeatherEntity.currentCloudsEntity.toCurrentClouds(),
                         cod = cityWeatherEntity.cod,
-                        //currentCoord = cityWeatherEntity.currentCoordEntity.toCoord(),
+                        currentCoord = cityWeatherEntity.currentCoordEntity.toCoord(),
                         dt = cityWeatherEntity.dt,
                         id = cityWeatherEntity.id,
-                        //currentMain = cityWeatherEntity.currentMainEntity.toMain(),
+                        currentMain = cityWeatherEntity.currentMainEntity.toMain(),
                         name = cityWeatherEntity.name,
-                        //currentSys = cityWeatherEntity.currentSysEntity.toSys(),
+                        currentSys = cityWeatherEntity.currentSysEntity.toSys(),
                         timezone = cityWeatherEntity.timezone,
                         visibility = cityWeatherEntity.visibility,
-                        //currentWeather = cityWeatherEntity.currentWeatherEntity.map { weatherEntity -> weatherEntity.toWeather() },
-                        //currentWind = cityWeatherEntity.currentWindEntity.toWind(),
+                        currentWeather = cityWeatherEntity.currentWeatherEntity.map { weatherEntity -> weatherEntity.toWeather() },
+                        currentWind = cityWeatherEntity.currentWindEntity.toWind(),
                         lastUpdated = cityWeatherEntity.lastUpdated,
                     )
                 }

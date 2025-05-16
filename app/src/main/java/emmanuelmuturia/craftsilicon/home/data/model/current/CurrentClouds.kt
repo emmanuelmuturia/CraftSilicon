@@ -21,8 +21,8 @@ data class CurrentClouds(
     val all: Int,
 )
 
-fun CurrentCloudsEntity.toClouds(): CurrentCloudsEntity {
-    return CurrentCloudsEntity(
+fun CurrentCloudsEntity.toCurrentClouds(): CurrentClouds {
+    return CurrentClouds(
         all = all,
     )
 }
