@@ -17,10 +17,22 @@ package emmanuelmuturia.craftsilicon.home.source.local.typeConverters.forecast
 
 import androidx.room.TypeConverter
 import emmanuelmuturia.craftsilicon.home.source.local.entity.forecast.ForecastWeatherEntity
+import emmanuelmuturia.craftsilicon.home.source.local.entity.forecast.ForecastWeatherItemEntity
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
 class ForecastWeatherTypeConverters {
+
+    @TypeConverter
+    fun convertForecastWeatherListToString(forecastWeatherItemEntities: List<ForecastWeatherItemEntity>): String {
+        return Json.encodeToString(value = forecastWeatherItemEntities)
+    }
+
+    @TypeConverter
+    fun convertStringToForecastWeatherList(forecastWeatherItems: String): List<ForecastWeatherItemEntity> {
+        return Json.decodeFromString(string = forecastWeatherItems)
+    }
+
     @TypeConverter
     fun convertWeatherListToString(forecastWeatherEntityList: List<ForecastWeatherEntity>): String {
         return Json.encodeToString(value = forecastWeatherEntityList)
