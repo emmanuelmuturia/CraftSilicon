@@ -33,5 +33,6 @@ interface OpenWeatherAPI {
     suspend fun getWeatherForecast(
         @Query("q") city: String,
         @Query("cnt") count: Int = 5,
+        @Query("appid") appId: String = BuildConfig.apiKey,
     ): Response<ForecastCityWeatherDTO>
 }
