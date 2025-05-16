@@ -16,7 +16,8 @@
 package emmanuelmuturia.craftsilicon.home.source.remote.source
 
 import emmanuelmuturia.craftsilicon.home.source.local.dao.CraftSiliconDao
-import emmanuelmuturia.craftsilicon.home.source.local.entity.CityWeatherEntity
+import emmanuelmuturia.craftsilicon.home.source.local.entity.current.CurrentCityWeatherEntity
+import emmanuelmuturia.craftsilicon.home.source.local.entity.forecast.ForecastCityWeatherEntity
 import emmanuelmuturia.craftsilicon.home.source.remote.api.OpenWeatherAPI
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
@@ -26,27 +27,49 @@ class HomeRemoteSourceImplementation(
     private val dispatcher: CoroutineDispatcher,
     private val craftSiliconDao: CraftSiliconDao,
 ) : HomeRemoteSource {
-    override suspend fun getCityWeather(city: String) {
+    override suspend fun getCurrentWeather(cityName: String) {
         withContext(context = dispatcher) {
-            val response = openWeatherAPI.getWeather(city = city)
+            val response = openWeatherAPI.getCurrentWeather(cityName = cityName)
             if (response.isSuccessful) {
-                craftSiliconDao.insertCityWeather(
-                    cityWeatherEntity =
-                        CityWeatherEntity(
+                craftSiliconDao.insertCurrentWeather(
+                    currentCityWeatherEntity =
+                        CurrentCityWeatherEntity(
                             base = response.body()!!.base,
-                            cloudsEntity = response.body()!!.cloudsDTO.toCloudsEntity(),
+                            currentCloudsEntity = response.body()!!.currentCloudsDTO.toCloudsEntity(),
                             cod = response.body()!!.cod,
-                            coordEntity = response.body()!!.coordDTO.toCoordEntity(),
+                            currentCoordEntity = response.body()!!.currentCoordDTO.toCoordEntity(),
                             dt = response.body()!!.dt,
                             id = response.body()!!.id,
-                            mainEntity = response.body()!!.mainDTO.toMainEntity(),
+                            currentMainEntity = response.body()!!.currentMainDTO.toMainEntity(),
                             name = response.body()!!.name,
-                            sysEntity = response.body()!!.sysDTO.toSysEntity(),
+                            currentSysEntity = response.body()!!.currentSysDTO.toSysEntity(),
                             timezone = response.body()!!.timezone,
                             visibility = response.body()!!.visibility,
-                            weatherEntity = response.body()!!.weatherDTO.map { weatherDTO -> weatherDTO.toWeatherEntity() },
-                            windEntity = response.body()!!.windDTO.toWindEntity(),
+                            currentWeatherEntity = response.body()!!.currentWeatherDTO.map { weatherDTO -> weatherDTO.toWeatherEntity() },
+                            currentWindEntity = response.body()!!.currentWindDTO.toWindEntity(),
                             lastUpdated = System.currentTimeMillis(),
+                        ),
+                )
+            }
+        }
+    }
+
+    override suspend fun getForecastWeather(cityName: String) {
+        withContext(context = dispatcher) {
+            val response = openWeatherAPI.getForecastWeather(cityName = cityName)
+            if (response.isSuccessful) {
+                craftSiliconDao.insertForecastWeather(
+                    forecastCityWeatherEntity =
+                        ForecastCityWeatherEntity(
+                            forecastCityEntity = response.body()!!.forecastCityDTO.toForecastCityEntity(),
+                            cnt = response.body()!!.cnt,
+                            cod = response.body()!!.cod,
+                            list =
+                                response.body()!!.list.map {
+                                        forecastWeatherItemDTO ->
+                                    forecastWeatherItemDTO.toForecastWeatherItemEntity()
+                                },
+                            message = response.body()!!.message,
                         ),
                 )
             }

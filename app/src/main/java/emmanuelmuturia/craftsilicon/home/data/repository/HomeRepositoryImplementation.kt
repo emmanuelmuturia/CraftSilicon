@@ -15,13 +15,16 @@
  */
 package emmanuelmuturia.craftsilicon.home.data.repository
 
-import emmanuelmuturia.craftsilicon.home.data.model.CityWeather
-import emmanuelmuturia.craftsilicon.home.data.model.toClouds
-import emmanuelmuturia.craftsilicon.home.data.model.toCoord
-import emmanuelmuturia.craftsilicon.home.data.model.toMain
-import emmanuelmuturia.craftsilicon.home.data.model.toSys
-import emmanuelmuturia.craftsilicon.home.data.model.toWeather
-import emmanuelmuturia.craftsilicon.home.data.model.toWind
+import emmanuelmuturia.craftsilicon.home.data.model.current.CurrentCityWeather
+import emmanuelmuturia.craftsilicon.home.data.model.current.toCoord
+import emmanuelmuturia.craftsilicon.home.data.model.current.toCurrentClouds
+import emmanuelmuturia.craftsilicon.home.data.model.current.toMain
+import emmanuelmuturia.craftsilicon.home.data.model.current.toSys
+import emmanuelmuturia.craftsilicon.home.data.model.current.toWeather
+import emmanuelmuturia.craftsilicon.home.data.model.current.toWind
+import emmanuelmuturia.craftsilicon.home.data.model.forecast.ForecastCityWeather
+import emmanuelmuturia.craftsilicon.home.data.model.forecast.toForecastCity
+import emmanuelmuturia.craftsilicon.home.data.model.forecast.toForecastWeatherItem
 import emmanuelmuturia.craftsilicon.home.source.local.source.HomeLocalSource
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
@@ -32,25 +35,46 @@ class HomeRepositoryImplementation(
     private val homeLocalSource: HomeLocalSource,
     private val dispatcher: CoroutineDispatcher,
 ) : HomeRepository {
-    override suspend fun getCityWeather(city: String): Flow<CityWeather> {
+    override suspend fun getCurrentCityWeather(cityName: String): Flow<CurrentCityWeather?> {
         return withContext(context = dispatcher) {
-            homeLocalSource.getCityWeather(city = city).map { cityWeatherEntity ->
-                CityWeather(
-                    base = cityWeatherEntity.base,
-                    clouds = cityWeatherEntity.cloudsEntity.toClouds(),
-                    cod = cityWeatherEntity.cod,
-                    coord = cityWeatherEntity.coordEntity.toCoord(),
-                    dt = cityWeatherEntity.dt,
-                    id = cityWeatherEntity.id,
-                    main = cityWeatherEntity.mainEntity.toMain(),
-                    name = cityWeatherEntity.name,
-                    sys = cityWeatherEntity.sysEntity.toSys(),
-                    timezone = cityWeatherEntity.timezone,
-                    visibility = cityWeatherEntity.visibility,
-                    weather = cityWeatherEntity.weatherEntity.map { weatherEntity -> weatherEntity.toWeather() },
-                    wind = cityWeatherEntity.windEntity.toWind(),
-                    lastUpdated = cityWeatherEntity.lastUpdated,
-                )
+            homeLocalSource.getCurrentCityWeather(cityName = cityName).map { cityWeatherEntity ->
+                cityWeatherEntity?.let {
+                    CurrentCityWeather(
+                        base = it.base,
+                        currentClouds = cityWeatherEntity.currentCloudsEntity.toCurrentClouds(),
+                        cod = cityWeatherEntity.cod,
+                        currentCoord = cityWeatherEntity.currentCoordEntity.toCoord(),
+                        dt = cityWeatherEntity.dt,
+                        id = cityWeatherEntity.id,
+                        currentMain = cityWeatherEntity.currentMainEntity.toMain(),
+                        name = cityWeatherEntity.name,
+                        currentSys = cityWeatherEntity.currentSysEntity.toSys(),
+                        timezone = cityWeatherEntity.timezone,
+                        visibility = cityWeatherEntity.visibility,
+                        currentWeather = cityWeatherEntity.currentWeatherEntity.map { weatherEntity -> weatherEntity.toWeather() },
+                        currentWind = cityWeatherEntity.currentWindEntity.toWind(),
+                        lastUpdated = cityWeatherEntity.lastUpdated,
+                    )
+                }
+            }
+        }
+    }
+
+    override suspend fun getForecastCityWeather(cityName: String): Flow<ForecastCityWeather?> {
+        return withContext(context = dispatcher) {
+            homeLocalSource.getForecastCityWeather(cityName = cityName).map { forecastCityWeatherEntity ->
+                forecastCityWeatherEntity?.forecastCityEntity?.let {
+                    ForecastCityWeather(
+                        forecastCity = it.toForecastCity(),
+                        cnt = forecastCityWeatherEntity.cnt,
+                        cod = forecastCityWeatherEntity.cod,
+                        list =
+                            forecastCityWeatherEntity.list.map { forecastCityWeatherEntityList ->
+                                forecastCityWeatherEntityList.toForecastWeatherItem()
+                            },
+                        message = forecastCityWeatherEntity.message,
+                    )
+                }
             }
         }
     }

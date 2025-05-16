@@ -27,10 +27,16 @@ import retrofit2.Retrofit
 val homeRemoteDataSourceKoinModule =
     module {
 
+        val json =
+            Json {
+                ignoreUnknownKeys = true
+                isLenient = true
+            }
+
         single<Retrofit> {
             Retrofit.Builder()
-                .addConverterFactory(Json.asConverterFactory(contentType = "application/json".toMediaType()))
-                .baseUrl("https://api.openweathermap.org/data/2.5/")
+                .addConverterFactory(json.asConverterFactory(contentType = "application/json".toMediaType()))
+                .baseUrl("https://api.openweathermap.org/")
                 .build()
         }
 

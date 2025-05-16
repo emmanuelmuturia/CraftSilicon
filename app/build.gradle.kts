@@ -82,6 +82,8 @@ dependencies {
     implementation(dependencyNotation = libs.bundles.koin)
     implementation(dependencyNotation = libs.bundles.networking)
     implementation(dependencyNotation = libs.splashscreen)
+    implementation(dependencyNotation = libs.coil.compose)
+    implementation(dependencyNotation = libs.timber)
     implementation(dependencyNotation = libs.room.runtime)
     implementation(dependencyNotation = libs.room.ktx)
     ksp(dependencyNotation = libs.room.compiler)
