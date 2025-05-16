@@ -16,12 +16,9 @@
 package emmanuelmuturia.craftsilicon.main.application
 
 import android.app.Application
+import emmanuelmuturia.commons.dependencyInjection.commonsKoinModule
 import emmanuelmuturia.craftsilicon.BuildConfig
-import emmanuelmuturia.craftsilicon.commons.dependencyInjection.commonsKoinModule
-import emmanuelmuturia.craftsilicon.home.data.dependencyInjection.homeDataKoinModule
-import emmanuelmuturia.craftsilicon.home.source.local.dependencyInjection.homeLocalSourceKoinModule
-import emmanuelmuturia.craftsilicon.home.source.remote.dependencyInjection.homeRemoteDataSourceKoinModule
-import emmanuelmuturia.craftsilicon.home.ui.dependencyInjection.homeUIKoinModule
+import emmanuelmuturia.home.ui.dependencyInjection.homeUIKoinModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import timber.log.Timber
@@ -43,9 +40,6 @@ class CraftSiliconApplication : Application() {
                     listOf(
                         commonsKoinModule,
                         homeUIKoinModule,
-                        homeDataKoinModule,
-                        homeRemoteDataSourceKoinModule,
-                        homeLocalSourceKoinModule,
                     ),
             )
         }
