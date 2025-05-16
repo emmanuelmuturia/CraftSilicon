@@ -27,10 +27,11 @@ import retrofit2.Retrofit
 val homeRemoteDataSourceKoinModule =
     module {
 
-        val json = Json {
-            ignoreUnknownKeys = true
-            isLenient = true
-        }
+        val json =
+            Json {
+                ignoreUnknownKeys = true
+                isLenient = true
+            }
 
         single<Retrofit> {
             Retrofit.Builder()

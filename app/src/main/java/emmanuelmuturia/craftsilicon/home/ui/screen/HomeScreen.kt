@@ -71,10 +71,10 @@ import emmanuelmuturia.craftsilicon.home.ui.viewmodel.HomeScreenViewModel
 fun HomeScreen(
     modifier: Modifier = Modifier,
     homeScreenViewModel: HomeScreenViewModel,
-    onSearchCity: (String) -> Unit
+    onSearchCity: (String) -> Unit,
 ) {
     val homeScreenUIState: HomeScreenUIState by
-    homeScreenViewModel.homeScreenUIState.collectAsStateWithLifecycle()
+        homeScreenViewModel.homeScreenUIState.collectAsStateWithLifecycle()
 
     Scaffold(
         modifier = modifier.fillMaxSize(),
@@ -106,7 +106,7 @@ fun HomeScreen(
         HomeScreenContent(
             modifier = Modifier.padding(paddingValues = paddingValues),
             homeScreenUIState = homeScreenUIState,
-            onSearchCity = onSearchCity
+            onSearchCity = onSearchCity,
         )
     }
 }
@@ -115,9 +115,8 @@ fun HomeScreen(
 private fun HomeScreenContent(
     modifier: Modifier = Modifier,
     homeScreenUIState: HomeScreenUIState,
-    onSearchCity: (String) -> Unit
+    onSearchCity: (String) -> Unit,
 ) {
-
     var citySearchQuery by rememberSaveable { mutableStateOf(value = "") }
 
     AnimatedVisibility(visible = homeScreenUIState.isLoading) {
@@ -129,14 +128,13 @@ private fun HomeScreenContent(
     }
 
     AnimatedVisibility(
-        visible = homeScreenUIState.currentCityWeather != null
+        visible = homeScreenUIState.currentCityWeather != null,
     ) {
         LazyColumn(
             modifier = modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
         ) {
-
             item {
                 OutlinedTextField(
                     modifier =
@@ -156,9 +154,10 @@ private fun HomeScreenContent(
                     },
                     trailingIcon = {
                         Icon(
-                            modifier = Modifier.clickable {
-                                onSearchCity(citySearchQuery)
-                            },
+                            modifier =
+                                Modifier.clickable {
+                                    onSearchCity(citySearchQuery)
+                                },
                             imageVector = Icons.Rounded.Search,
                             tint = MaterialTheme.colorScheme.primary,
                             contentDescription = "Home Screen Search Icon",
@@ -186,15 +185,17 @@ private fun HomeScreenContent(
 
             item {
                 Text(
-                    text = "Current Weather [${homeScreenUIState.currentCityWeather?.name}, ${homeScreenUIState.currentCityWeather?.currentSys?.country}]",
+                    text = "Current Weather [${homeScreenUIState.currentCityWeather?.name}, " +
+                        "${homeScreenUIState.currentCityWeather?.currentSys?.country}]",
                     fontSize = 16.sp,
                     fontWeight = FontWeight.SemiBold,
                     textAlign = TextAlign.Start,
-                    modifier = Modifier
-                        .padding(start = 14.dp, top = 10.dp, bottom = 4.dp)
+                    modifier =
+                        Modifier
+                            .padding(start = 14.dp, top = 10.dp, bottom = 4.dp),
                 )
                 HomeScreenWeatherCard(
-                    homeScreenUIState = homeScreenUIState
+                    homeScreenUIState = homeScreenUIState,
                 )
             }
 
@@ -204,8 +205,9 @@ private fun HomeScreenContent(
                     fontSize = 25.sp,
                     fontWeight = FontWeight.SemiBold,
                     textAlign = TextAlign.Start,
-                    modifier = Modifier
-                        .padding(start = 14.dp, top = 10.dp, bottom = 4.dp)
+                    modifier =
+                        Modifier
+                            .padding(start = 14.dp, top = 10.dp, bottom = 4.dp),
                 )
             }
 
@@ -216,24 +218,21 @@ private fun HomeScreenContent(
                         fontSize = 16.sp,
                         fontWeight = FontWeight.SemiBold,
                         textAlign = TextAlign.Start,
-                        modifier = Modifier
-                            .padding(start = 14.dp, top = 10.dp, bottom = 4.dp)
+                        modifier =
+                            Modifier
+                                .padding(start = 14.dp, top = 10.dp, bottom = 4.dp),
                     )
                     ForecastWeatherCard(
-                        forecastWeatherItem = forecastWeatherItem
+                        forecastWeatherItem = forecastWeatherItem,
                     )
                 }
             }
         }
     }
-
 }
 
 @Composable
-private fun HomeScreenWeatherCard(
-    homeScreenUIState: HomeScreenUIState
-) {
-
+private fun HomeScreenWeatherCard(homeScreenUIState: HomeScreenUIState) {
     val currentCityWeather = homeScreenUIState.currentCityWeather ?: return
 
     ElevatedCard(
@@ -244,110 +243,114 @@ private fun HomeScreenWeatherCard(
                 .semantics {
                     contentDescription = "Home Screen Weather Card"
                 }
-                .wrapContentHeight()
+                .wrapContentHeight(),
     ) {
         Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(20.dp),
-            verticalArrangement = Arrangement.spacedBy(12.dp)
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .padding(20.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
-
             // Weather Condition + Icon
             Row(
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(10.dp)
+                horizontalArrangement = Arrangement.spacedBy(10.dp),
             ) {
                 Box(
-                    modifier = Modifier.size(size = 77.dp)
+                    modifier = Modifier.size(size = 77.dp),
                 ) {
                     AsyncImage(
-                        model = ImageRequest.Builder(context = LocalContext.current)
-                            .data(data = "https://openweathermap.org/img/wn/${currentCityWeather.currentWeather.first().icon}@2x.png")
-                            .build(),
+                        model =
+                            ImageRequest.Builder(context = LocalContext.current)
+                                .data(data = "https://openweathermap.org/img/wn/${currentCityWeather.currentWeather.first().icon}@2x.png")
+                                .build(),
                         contentDescription = "Weather Icon",
                         // modifier = Modifier.background(Color.Transparent),
-                        contentScale = ContentScale.Crop
+                        contentScale = ContentScale.Crop,
                     )
                 }
                 Column {
                     Text(
                         text = currentCityWeather.currentWeather.first().main,
                         fontSize = 18.sp,
-                        fontWeight = FontWeight.SemiBold
+                        fontWeight = FontWeight.SemiBold,
                     )
                     Text(
                         text = currentCityWeather.currentWeather.first().description.replaceFirstChar { it.uppercase() },
                         fontSize = 14.sp,
-                        color = Color.Gray
+                        color = Color.Gray,
                     )
                 }
             }
 
             CurrentWeatherDetailRow(
                 title = "Temperature",
-                value = "${currentCityWeather.currentMain.temp} K"
+                value = "${currentCityWeather.currentMain.temp} K",
             )
             CurrentWeatherDetailRow(
                 title = "Temperature [Max]",
-                value = "${currentCityWeather.currentMain.temp} K"
+                value = "${currentCityWeather.currentMain.temp} K",
             )
             CurrentWeatherDetailRow(
                 title = "Temperature [Min]",
-                value = "${currentCityWeather.currentMain.temp} K"
+                value = "${currentCityWeather.currentMain.temp} K",
             )
             CurrentWeatherDetailRow(
                 title = "Feels Like",
-                value = "${currentCityWeather.currentMain.feelsLike} K"
+                value = "${currentCityWeather.currentMain.feelsLike} K",
             )
             CurrentWeatherDetailRow(
                 title = "Humidity",
-                value = "${currentCityWeather.currentMain.humidity} %"
+                value = "${currentCityWeather.currentMain.humidity} %",
             )
             CurrentWeatherDetailRow(
                 title = "Pressure",
-                value = "${currentCityWeather.currentMain.pressure} hPa"
+                value = "${currentCityWeather.currentMain.pressure} hPa",
             )
             CurrentWeatherDetailRow(
                 title = "Visibility",
-                value = "${currentCityWeather.visibility / 1000} km"
+                value = "${currentCityWeather.visibility / 1000} km",
             )
             CurrentWeatherDetailRow(
                 title = "Sea Level",
-                value = "${currentCityWeather.currentMain.seaLevel / 1000} km"
+                value = "${currentCityWeather.currentMain.seaLevel / 1000} km",
             )
             CurrentWeatherDetailRow(
                 title = "Ground Level",
-                value = "${currentCityWeather.currentMain.grndLevel / 1000} km"
+                value = "${currentCityWeather.currentMain.grndLevel / 1000} km",
             )
             CurrentWeatherDetailRow(
                 title = "Cloudiness",
-                value = "${currentCityWeather.currentClouds.all} %"
+                value = "${currentCityWeather.currentClouds.all} %",
             )
             CurrentWeatherDetailRow(
                 title = "Wind Speed",
-                value = "${currentCityWeather.currentWind.speed} m/s"
+                value = "${currentCityWeather.currentWind.speed} m/s",
             )
         }
     }
 }
 
 @Composable
-private fun CurrentWeatherDetailRow(title: String, value: String) {
+private fun CurrentWeatherDetailRow(
+    title: String,
+    value: String,
+) {
     Row(
         modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.SpaceBetween
+        horizontalArrangement = Arrangement.SpaceBetween,
     ) {
         Text(
             text = title,
             fontSize = 16.sp,
-            color = MaterialTheme.colorScheme.onSurface
+            color = MaterialTheme.colorScheme.onSurface,
         )
         Text(
             text = value,
             fontSize = 16.sp,
             fontWeight = FontWeight.Medium,
-            color = MaterialTheme.colorScheme.primary
+            color = MaterialTheme.colorScheme.primary,
         )
     }
 }
@@ -355,109 +358,114 @@ private fun CurrentWeatherDetailRow(title: String, value: String) {
 @Composable
 fun ForecastWeatherCard(
     forecastWeatherItem: ForecastWeatherItem,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     ElevatedCard(
-        modifier = modifier
-            .fillMaxWidth()
-            .padding(horizontal = 16.dp, vertical = 6.dp)
-            .wrapContentHeight(),
+        modifier =
+            modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp, vertical = 6.dp)
+                .wrapContentHeight(),
         shape = RoundedCornerShape(21.dp),
-        elevation = CardDefaults.elevatedCardElevation(4.dp)
+        elevation = CardDefaults.elevatedCardElevation(4.dp),
     ) {
         Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(20.dp),
-            verticalArrangement = Arrangement.spacedBy(12.dp)
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .padding(20.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
-
             Row(
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(10.dp)
+                horizontalArrangement = Arrangement.spacedBy(10.dp),
             ) {
                 Box(
-                    modifier = Modifier.size(size = 77.dp)
+                    modifier = Modifier.size(size = 77.dp),
                 ) {
                     AsyncImage(
-                        model = ImageRequest.Builder(context = LocalContext.current)
-                            .data(data = "https://openweathermap.org/img/wn/${forecastWeatherItem.forecastWeather.first().icon}@2x.png")
-                            .build(),
+                        model =
+                            ImageRequest.Builder(context = LocalContext.current)
+                                .data(data = "https://openweathermap.org/img/wn/${forecastWeatherItem.forecastWeather.first().icon}@2x.png")
+                                .build(),
                         contentDescription = "Weather Icon",
                         // modifier = Modifier.background(Color.Transparent),
-                        contentScale = ContentScale.Crop
+                        contentScale = ContentScale.Crop,
                     )
                 }
                 Column {
                     Text(
                         text = forecastWeatherItem.forecastWeather.first().main,
                         fontSize = 18.sp,
-                        fontWeight = FontWeight.SemiBold
+                        fontWeight = FontWeight.SemiBold,
                     )
                     Text(
                         text = forecastWeatherItem.forecastWeather.first().description.replaceFirstChar { it.uppercase() },
                         fontSize = 14.sp,
-                        color = Color.Gray
+                        color = Color.Gray,
                     )
                 }
             }
 
             ForecastWeatherDetailRow(
                 title = "Temperature",
-                value = "${forecastWeatherItem.forecastMain.temp} K"
+                value = "${forecastWeatherItem.forecastMain.temp} K",
             )
             ForecastWeatherDetailRow(
                 title = "Visibility",
-                value = "${forecastWeatherItem.visibility / 1000} Km"
+                value = "${forecastWeatherItem.visibility / 1000} Km",
             )
             ForecastWeatherDetailRow(
                 title = "Feels Like",
-                value = "${forecastWeatherItem.forecastMain.feelsLike} K"
+                value = "${forecastWeatherItem.forecastMain.feelsLike} K",
             )
             ForecastWeatherDetailRow(
                 title = "Ground Level",
-                value = "${forecastWeatherItem.forecastMain.grndLevel} Km"
+                value = "${forecastWeatherItem.forecastMain.grndLevel} Km",
             )
             ForecastWeatherDetailRow(
                 title = "Humidity",
-                value = "${forecastWeatherItem.forecastMain.humidity} %"
+                value = "${forecastWeatherItem.forecastMain.humidity} %",
             )
             ForecastWeatherDetailRow(
                 title = "Pressure",
-                value = "${forecastWeatherItem.forecastMain.pressure} hPa"
+                value = "${forecastWeatherItem.forecastMain.pressure} hPa",
             )
             ForecastWeatherDetailRow(
                 title = "Sea Level",
-                value = "${forecastWeatherItem.forecastMain.seaLevel / 1000} Km"
+                value = "${forecastWeatherItem.forecastMain.seaLevel / 1000} Km",
             )
             ForecastWeatherDetailRow(
                 title = "Temperature [Max]",
-                value = "${forecastWeatherItem.forecastMain.tempMax} K"
+                value = "${forecastWeatherItem.forecastMain.tempMax} K",
             )
             ForecastWeatherDetailRow(
                 title = "Temperature [Min]",
-                value = "${forecastWeatherItem.forecastMain.tempMin} K"
+                value = "${forecastWeatherItem.forecastMain.tempMin} K",
             )
         }
     }
 }
 
 @Composable
-private fun ForecastWeatherDetailRow(title: String, value: String) {
+private fun ForecastWeatherDetailRow(
+    title: String,
+    value: String,
+) {
     Row(
         modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.SpaceBetween
+        horizontalArrangement = Arrangement.SpaceBetween,
     ) {
         Text(
             text = title,
             fontSize = 16.sp,
-            color = MaterialTheme.colorScheme.onSurface
+            color = MaterialTheme.colorScheme.onSurface,
         )
         Text(
             text = value,
             fontSize = 16.sp,
             fontWeight = FontWeight.Medium,
-            color = MaterialTheme.colorScheme.primary
+            color = MaterialTheme.colorScheme.primary,
         )
     }
 }

@@ -20,22 +20,7 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import emmanuelmuturia.craftsilicon.home.source.local.dao.CraftSiliconDao
 import emmanuelmuturia.craftsilicon.home.source.local.entity.current.CurrentCityWeatherEntity
-import emmanuelmuturia.craftsilicon.home.source.local.entity.current.CurrentCloudsEntity
-import emmanuelmuturia.craftsilicon.home.source.local.entity.current.CurrentCoordEntity
-import emmanuelmuturia.craftsilicon.home.source.local.entity.current.CurrentMainEntity
-import emmanuelmuturia.craftsilicon.home.source.local.entity.current.CurrentSysEntity
-import emmanuelmuturia.craftsilicon.home.source.local.entity.current.CurrentWeatherEntity
-import emmanuelmuturia.craftsilicon.home.source.local.entity.current.CurrentWindEntity
-import emmanuelmuturia.craftsilicon.home.source.local.entity.forecast.ForecastCityEntity
 import emmanuelmuturia.craftsilicon.home.source.local.entity.forecast.ForecastCityWeatherEntity
-import emmanuelmuturia.craftsilicon.home.source.local.entity.forecast.ForecastCloudsEntity
-import emmanuelmuturia.craftsilicon.home.source.local.entity.forecast.ForecastCoordEntity
-import emmanuelmuturia.craftsilicon.home.source.local.entity.forecast.ForecastMainEntity
-import emmanuelmuturia.craftsilicon.home.source.local.entity.forecast.ForecastRainEntity
-import emmanuelmuturia.craftsilicon.home.source.local.entity.forecast.ForecastSysEntity
-import emmanuelmuturia.craftsilicon.home.source.local.entity.forecast.ForecastWeatherEntity
-import emmanuelmuturia.craftsilicon.home.source.local.entity.forecast.ForecastWeatherItemEntity
-import emmanuelmuturia.craftsilicon.home.source.local.entity.forecast.ForecastWindEntity
 import emmanuelmuturia.craftsilicon.home.source.local.typeConverters.current.CurrentWeatherTypeConverters
 import emmanuelmuturia.craftsilicon.home.source.local.typeConverters.forecast.ForecastWeatherTypeConverters
 

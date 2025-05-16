@@ -21,13 +21,13 @@ import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
 class CurrentWeatherTypeConverters {
-
-    private val json = Json {
-        ignoreUnknownKeys = true
-        isLenient = true
-        encodeDefaults = true
-        prettyPrint = true
-    }
+    private val json =
+        Json {
+            ignoreUnknownKeys = true
+            isLenient = true
+            encodeDefaults = true
+            prettyPrint = true
+        }
 
     @TypeConverter
     fun convertWeatherEntitiesToString(weatherEntities: List<CurrentWeatherEntity>): String {

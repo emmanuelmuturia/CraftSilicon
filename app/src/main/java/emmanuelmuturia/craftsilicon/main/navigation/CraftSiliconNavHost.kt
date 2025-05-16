@@ -47,7 +47,7 @@ fun CraftSiliconNavHost() {
                     homeScreenViewModel = homeScreenViewModel,
                     onSearchCity = { cityName ->
                         homeScreenViewModel.searchNewCity(cityName = cityName)
-                    }
+                    },
                 )
             }
         }

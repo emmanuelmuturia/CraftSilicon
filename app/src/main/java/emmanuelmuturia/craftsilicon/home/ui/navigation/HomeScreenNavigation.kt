@@ -26,12 +26,12 @@ object HomeScreen
 
 fun NavGraphBuilder.homeScreen(
     homeScreenViewModel: HomeScreenViewModel,
-    onSearchCity: (String) -> Unit
+    onSearchCity: (String) -> Unit,
 ) {
     composable<HomeScreen> {
         HomeScreen(
             homeScreenViewModel = homeScreenViewModel,
-            onSearchCity = onSearchCity
+            onSearchCity = onSearchCity,
         )
     }
 }

@@ -31,12 +31,12 @@ class HomeScreenViewModel(
 ) : ViewModel() {
     val homeScreenUIState = MutableStateFlow(value = HomeScreenUIState())
 
-    //private val citySearchQuery = MutableStateFlow(value = "")
+    // private val citySearchQuery = MutableStateFlow(value = "")
 
     init {
         getCurrentCityWeather(cityName = homeScreenUIState.value.cityName)
         getForecastCityWeather(cityName = homeScreenUIState.value.cityName)
-        //observeCitySearchQuery()
+        // observeCitySearchQuery()
     }
 
     fun searchNewCity(cityName: String) {
