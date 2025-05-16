@@ -86,7 +86,6 @@ dependencies {
     implementation(dependencyNotation = libs.coil.compose)
     implementation(dependencyNotation = libs.timber)
 
-
     testImplementation(dependencyNotation = libs.junit)
     testImplementation(dependencyNotation = libs.bundles.test)
 

@@ -17,7 +17,6 @@ package emmanuelmuturia.home.data.model.current
 
 import emmanuelmuturia.home.source.local.entity.current.CurrentCloudsEntity
 
-
 data class CurrentClouds(
     val all: Int,
 )

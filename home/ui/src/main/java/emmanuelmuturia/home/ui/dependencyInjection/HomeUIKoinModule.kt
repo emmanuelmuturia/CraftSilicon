@@ -29,7 +29,10 @@ val homeUIKoinModule =
             )
         }
 
-        includes(module = listOf(
-            homeDataKoinModule
-        ))
+        includes(
+            module =
+                listOf(
+                    homeDataKoinModule,
+                ),
+        )
     }

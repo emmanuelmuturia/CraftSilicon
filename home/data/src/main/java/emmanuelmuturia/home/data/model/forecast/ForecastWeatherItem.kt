@@ -17,7 +17,6 @@ package emmanuelmuturia.home.data.model.forecast
 
 import emmanuelmuturia.home.source.local.entity.forecast.ForecastWeatherItemEntity
 
-
 data class ForecastWeatherItem(
     val forecastClouds: ForecastClouds,
     val dt: Int,

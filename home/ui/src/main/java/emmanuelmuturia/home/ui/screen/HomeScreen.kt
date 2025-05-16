@@ -185,8 +185,9 @@ fun HomeScreenContent(
 
             item {
                 Text(
-                    text = "Current Weather [${homeScreenUIState.currentCityWeather?.name}, " +
-                        "${homeScreenUIState.currentCityWeather?.currentSys?.country}]",
+                    text =
+                        "Current Weather [${homeScreenUIState.currentCityWeather?.name}, " +
+                            "${homeScreenUIState.currentCityWeather?.currentSys?.country}]",
                     fontSize = 16.sp,
                     fontWeight = FontWeight.SemiBold,
                     textAlign = TextAlign.Start,

@@ -17,7 +17,6 @@ package emmanuelmuturia.home.data.model.current
 
 import emmanuelmuturia.home.source.local.entity.current.CurrentWeatherEntity
 
-
 data class CurrentWeather(
     val description: String,
     val icon: String,

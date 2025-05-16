@@ -30,12 +30,16 @@ class CurrentWeatherTypeConverters {
         }
 
     @TypeConverter
-    fun convertWeatherEntitiesToString(weatherEntities: List<emmanuelmuturia.home.source.local.entity.current.CurrentWeatherEntity>): String {
+    fun convertWeatherEntitiesToString(
+        weatherEntities: List<emmanuelmuturia.home.source.local.entity.current.CurrentWeatherEntity>,
+    ): String {
         return json.encodeToString(value = weatherEntities)
     }
 
     @TypeConverter
-    fun convertStringToWeatherEntities(weatherEntitiesString: String): List<emmanuelmuturia.home.source.local.entity.current.CurrentWeatherEntity> {
+    fun convertStringToWeatherEntities(
+        weatherEntitiesString: String,
+    ): List<emmanuelmuturia.home.source.local.entity.current.CurrentWeatherEntity> {
         return json.decodeFromString(string = weatherEntitiesString)
     }
 }

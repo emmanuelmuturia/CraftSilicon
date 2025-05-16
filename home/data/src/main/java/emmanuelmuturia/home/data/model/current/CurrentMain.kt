@@ -17,7 +17,6 @@ package emmanuelmuturia.home.data.model.current
 
 import emmanuelmuturia.home.source.local.entity.current.CurrentMainEntity
 
-
 data class CurrentMain(
     val feelsLike: Double,
     val grndLevel: Int,

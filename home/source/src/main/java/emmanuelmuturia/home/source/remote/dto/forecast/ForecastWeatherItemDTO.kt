@@ -15,7 +15,6 @@
  */
 package emmanuelmuturia.home.source.remote.dto.forecast
 
-
 import emmanuelmuturia.home.source.local.entity.forecast.ForecastCloudsEntity
 import emmanuelmuturia.home.source.local.entity.forecast.ForecastMainEntity
 import emmanuelmuturia.home.source.local.entity.forecast.ForecastRainEntity

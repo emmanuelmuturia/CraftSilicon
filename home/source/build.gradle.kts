@@ -15,9 +15,10 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles(
-            proguardFiles = arrayOf(
-                "consumer-rules.pro"
-            )
+            proguardFiles =
+                arrayOf(
+                    "consumer-rules.pro",
+                ),
         )
     }
 
@@ -25,10 +26,11 @@ android {
         release {
             isMinifyEnabled = false
             proguardFiles(
-                files = arrayOf(
-                    getDefaultProguardFile(name = "proguard-android-optimize.txt"),
-                    "proguard-rules.pro"
-                )
+                files =
+                    arrayOf(
+                        getDefaultProguardFile(name = "proguard-android-optimize.txt"),
+                        "proguard-rules.pro",
+                    ),
             )
         }
 

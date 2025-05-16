@@ -17,7 +17,6 @@ package emmanuelmuturia.home.data.model.current
 
 import emmanuelmuturia.home.source.local.entity.current.CurrentSysEntity
 
-
 data class CurrentSys(
     val country: String,
     val sunrise: Int,

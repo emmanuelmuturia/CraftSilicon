@@ -27,131 +27,146 @@ import org.junit.Rule
 import org.junit.Test
 
 class HomeScreenUITest {
-
     @get:Rule
     val composeTestRule = createComposeRule()
 
-    private val currentCityWeather = CurrentCityWeather(
-        base = "",
-        cod = 0,
-        currentWeather = listOf(
-            CurrentWeather(
-                description = "",
-                icon = "",
-                id = 0,
-                main = ""
-            )
-        ),
-        currentClouds = CurrentClouds(
-            all = 0
-        ),
-        currentCoord = CurrentCoord(
-            lat = 0.0,
-            lon = 0.0
-        ),
-        currentSys = CurrentSys(
-            country = "",
-            sunrise = 0,
-            sunset = 0,
-        ),
-        currentMain = CurrentMain(
-            feelsLike = 0.0,
-            humidity = 0,
-            pressure = 0,
-            temp = 0.0,
-            tempMax = 0.0,
-            grndLevel = 0,
-            seaLevel = 0,
-            tempMin = 0.0
-        ),
-        currentWind = CurrentWind(
-            deg = 0,
-            speed = 0.0,
-            gust = 0.0
-        ),
-        id = 0,
-        name = "",
-        visibility = 0,
-        timezone = 0,
-        dt = 0,
-        lastUpdated = 1L
-    )
-
-    private val foreCastCityWeather = ForecastCityWeather(
-        forecastCity = ForecastCity(
-            forecastCoord = ForecastCoord(
-                lat = 0.0,
-                lon = 0.0
-            ),
-            country = "",
-            id = 0,
-            name = "",
-            population = 0,
-            sunrise = 0,
-            sunset = 0,
-            timezone = 0,
-        ),
-        cnt = 1,
-        cod = "",
-        list = listOf(
-            ForecastWeatherItem(
-                forecastWeather = listOf(
-                    ForecastWeather(
+    private val currentCityWeather =
+        CurrentCityWeather(
+            base = "",
+            cod = 0,
+            currentWeather =
+                listOf(
+                    CurrentWeather(
                         description = "",
                         icon = "",
                         id = 0,
                         main = "",
-                    )
+                    ),
                 ),
-                forecastMain = ForecastMain(
+            currentClouds =
+                CurrentClouds(
+                    all = 0,
+                ),
+            currentCoord =
+                CurrentCoord(
+                    lat = 0.0,
+                    lon = 0.0,
+                ),
+            currentSys =
+                CurrentSys(
+                    country = "",
+                    sunrise = 0,
+                    sunset = 0,
+                ),
+            currentMain =
+                CurrentMain(
                     feelsLike = 0.0,
-                    grndLevel = 0,
                     humidity = 0,
                     pressure = 0,
-                    seaLevel = 0,
                     temp = 0.0,
-                    tempKf = 0.0,
                     tempMax = 0.0,
+                    grndLevel = 0,
+                    seaLevel = 0,
                     tempMin = 0.0,
                 ),
-                forecastRain = ForecastRain(
-                    h = 0.0
-                ),
-                forecastWind = ForecastWind(
+            currentWind =
+                CurrentWind(
                     deg = 0,
-                    gust = 0.0,
                     speed = 0.0,
+                    gust = 0.0,
                 ),
-                forecastSys = ForecastSys(
-                    pod = "",
+            id = 0,
+            name = "",
+            visibility = 0,
+            timezone = 0,
+            dt = 0,
+            lastUpdated = 1L,
+        )
+
+    private val foreCastCityWeather =
+        ForecastCityWeather(
+            forecastCity =
+                ForecastCity(
+                    forecastCoord =
+                        ForecastCoord(
+                            lat = 0.0,
+                            lon = 0.0,
+                        ),
+                    country = "",
+                    id = 0,
+                    name = "",
+                    population = 0,
+                    sunrise = 0,
+                    sunset = 0,
+                    timezone = 0,
                 ),
-                forecastClouds = ForecastClouds(
-                    all = 1,
+            cnt = 1,
+            cod = "",
+            list =
+                listOf(
+                    ForecastWeatherItem(
+                        forecastWeather =
+                            listOf(
+                                ForecastWeather(
+                                    description = "",
+                                    icon = "",
+                                    id = 0,
+                                    main = "",
+                                ),
+                            ),
+                        forecastMain =
+                            ForecastMain(
+                                feelsLike = 0.0,
+                                grndLevel = 0,
+                                humidity = 0,
+                                pressure = 0,
+                                seaLevel = 0,
+                                temp = 0.0,
+                                tempKf = 0.0,
+                                tempMax = 0.0,
+                                tempMin = 0.0,
+                            ),
+                        forecastRain =
+                            ForecastRain(
+                                h = 0.0,
+                            ),
+                        forecastWind =
+                            ForecastWind(
+                                deg = 0,
+                                gust = 0.0,
+                                speed = 0.0,
+                            ),
+                        forecastSys =
+                            ForecastSys(
+                                pod = "",
+                            ),
+                        forecastClouds =
+                            ForecastClouds(
+                                all = 1,
+                            ),
+                        dt = 1,
+                        dtTxt = "",
+                        pop = 0.0,
+                        visibility = 1,
+                    ),
                 ),
-                dt = 1,
-                dtTxt = "",
-                pop = 0.0,
-                visibility = 1
-            )
-        ),
-        message = 0,
-    )
+            message = 0,
+        )
 
     @Test
     fun testHomeScreenContent() {
-
         with(receiver = composeTestRule) {
             setContent {
                 HomeScreenContent(
-                    homeScreenUIState = HomeScreenUIState(
-                        currentCityWeather = currentCityWeather,
-                        foreCastCityWeather = foreCastCityWeather,
-                        isLoading = false,
-                        error = null,
-                    ),
+                    homeScreenUIState =
+                        HomeScreenUIState(
+                            currentCityWeather = currentCityWeather,
+                            foreCastCityWeather = foreCastCityWeather,
+                            isLoading = false,
+                            error = null,
+                        ),
                     onSearchCity = {},
                 )
-
             }
 
             onNodeWithContentDescription(label = "City Search Bar").assertIsDisplayed()
@@ -161,5 +176,4 @@ class HomeScreenUITest {
             onAllNodesWithContentDescription(label = "Forecast City Weather Card").assertCountEquals(expectedSize = 1)
         }
     }
-
 }

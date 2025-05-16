@@ -17,7 +17,6 @@ package emmanuelmuturia.home.data.model.forecast
 
 import emmanuelmuturia.home.source.local.entity.forecast.ForecastCityEntity
 
-
 data class ForecastCity(
     val forecastCoord: ForecastCoord,
     val country: String,

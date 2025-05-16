@@ -31,8 +31,11 @@ val homeDataKoinModule =
             )
         }
 
-        includes(module = listOf(
-            homeLocalSourceKoinModule,
-            homeRemoteDataSourceKoinModule,
-        ))
+        includes(
+            module =
+                listOf(
+                    homeLocalSourceKoinModule,
+                    homeRemoteDataSourceKoinModule,
+                ),
+        )
     }

@@ -17,7 +17,6 @@ package emmanuelmuturia.home.data.model.current
 
 import emmanuelmuturia.home.source.local.entity.current.CurrentWindEntity
 
-
 data class CurrentWind(
     val deg: Int,
     val gust: Double,
