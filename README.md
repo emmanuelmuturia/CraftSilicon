@@ -64,13 +64,13 @@ This is my solution for the Technical Assessment by Craft Silicon...
   </tr>
   <tr>
     <td>
-      <img src="assets/screenshots/demo/splash_screen.png" alt="The Splash Screen" style="max-width:490px; height:490px;">
+      <img src="assets/images/screenshots/screens/splash_screen.png" alt="The Splash Screen" style="max-width:490px; height:490px;">
     </td>
     <td>
-      <img src="assets/screenshots/demo/login_screen.png" alt="The Login Screen" style="max-width:490px; height:490px;">
+      <img src="assets/images/screenshots/screens/home_screen_current_weather.png" alt="The Home Screen [Current Weather]" style="max-width:490px; height:490px;">
     </td>
     <td>
-      <img src="assets/screenshots/demo/home_screen.png" alt="The Home Screen" style="max-width:490px; height:490px;">
+      <img src="assets/images/screenshots/screens/home_screen_forecast_weather.png" alt="The Home Screen [Forecast Weather]" style="max-width:490px; height:490px;">
     </td>
   </tr>
 </table>
@@ -79,11 +79,11 @@ This is my solution for the Technical Assessment by Craft Silicon...
 
 ## 4] Testing
 
-| Test                                                                                                       | Description                               |
-|------------------------------------------------------------------------------------------------------------|-------------------------------------------|
-| ![The Home Screen ViewModel Test](assets/images/test_screenshots/viewmodel/home_screen_viewmodel_test.png) | This is The Home Screen ViewModel Test... |
-| ![The Home Screen UI Test](assets/images/test_screenshots/ui/home_screen_ui_test.png)                      | This is The Home Screen UI Test...        |
-| ![The Craft Silicon DAO Test](assets/images/test_screenshots/dao/craft_silicon_dao_test.png)               | This is The Craft Silicon DAO Test...     |
+| Test                                                                                                        | Description                               |
+|-------------------------------------------------------------------------------------------------------------|-------------------------------------------|
+| ![The Home Screen ViewModel Test](assets/images/screenshots/tests/viewmodel/home_screen_viewmodel_test.png) | This is The Home Screen ViewModel Test... |
+| ![The Home Screen UI Test](assets/images/screenshots/tests/ui/home_screen_ui_test.png)                      | This is The Home Screen UI Test...        |
+| ![The Craft Silicon DAO Test](assets/images/screenshots/tests/dao/craft_silicon_dao_test.png)               | This is The Craft Silicon DAO Test...     |
 
 ## 5] Challenges and Solutions
 

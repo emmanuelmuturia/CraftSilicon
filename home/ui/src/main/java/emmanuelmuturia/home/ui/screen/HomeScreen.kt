@@ -62,6 +62,8 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil3.compose.AsyncImage
 import coil3.request.ImageRequest
+import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
+import com.bumptech.glide.integration.compose.GlideImage
 import emmanuelmuturia.home.data.model.forecast.ForecastWeatherItem
 import emmanuelmuturia.home.ui.state.HomeScreenUIState
 import emmanuelmuturia.home.ui.viewmodel.HomeScreenViewModel
@@ -145,13 +147,6 @@ fun HomeScreenContent(
                     onValueChange = { citySearch ->
                         citySearchQuery = citySearch
                     },
-                    leadingIcon = {
-                        Icon(
-                            imageVector = Icons.Rounded.Search,
-                            tint = MaterialTheme.colorScheme.primary,
-                            contentDescription = "Home Screen Search Bar",
-                        )
-                    },
                     trailingIcon = {
                         Icon(
                             modifier =
@@ -169,7 +164,7 @@ fun HomeScreenContent(
                                 Modifier.semantics {
                                     contentDescription = "Home Screen Search Bar Label"
                                 },
-                            text = "Enter City Name",
+                            text = "Enter City Name...",
                             color = MaterialTheme.colorScheme.primary,
                             fontSize = 14.sp,
                         )
@@ -238,6 +233,7 @@ fun HomeScreenContent(
     }
 }
 
+@OptIn(ExperimentalGlideComposeApi::class)
 @Composable
 private fun CurrentCityWeatherCard(homeScreenUIState: HomeScreenUIState) {
     val currentCityWeather = homeScreenUIState.currentCityWeather ?: return
@@ -267,13 +263,11 @@ private fun CurrentCityWeatherCard(homeScreenUIState: HomeScreenUIState) {
                 Box(
                     modifier = Modifier.size(size = 77.dp),
                 ) {
-                    AsyncImage(
+                    GlideImage(
                         model =
-                            ImageRequest.Builder(context = LocalContext.current)
-                                .data(data = "https://openweathermap.org/img/wn/${currentCityWeather.currentWeather.first().icon}@2x.png")
-                                .build(),
+                            "https://openweathermap.org/img/wn/${currentCityWeather.
+                            currentWeather.first().icon}@2x.png",
                         contentDescription = "Weather Icon",
-                        // modifier = Modifier.background(Color.Transparent),
                         contentScale = ContentScale.Crop,
                     )
                 }
@@ -362,6 +356,7 @@ private fun CurrentWeatherDetailRow(
     }
 }
 
+@OptIn(ExperimentalGlideComposeApi::class)
 @Composable
 fun ForecastWeatherCard(
     forecastWeatherItem: ForecastWeatherItem,
@@ -393,13 +388,12 @@ fun ForecastWeatherCard(
                 Box(
                     modifier = Modifier.size(size = 77.dp),
                 ) {
-                    AsyncImage(
+
+                    GlideImage(
                         model =
-                            ImageRequest.Builder(context = LocalContext.current)
-                                .data(data = "https://openweathermap.org/img/wn/${forecastWeatherItem.forecastWeather.first().icon}@2x.png")
-                                .build(),
+                            "https://openweathermap.org/img/wn/${forecastWeatherItem.
+                                forecastWeather.first().icon}@2x.png",
                         contentDescription = "Weather Icon",
-                        // modifier = Modifier.background(Color.Transparent),
                         contentScale = ContentScale.Crop,
                     )
                 }
