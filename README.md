@@ -1,10 +1,10 @@
 # Craft Silicon
 
-<center>
+<div style="text-align: center;">
 
 ![The Craft Silicon Logo](/assets/images/logo/logo.png)
 
-</center>
+</div>
 
 ## Overview
 
