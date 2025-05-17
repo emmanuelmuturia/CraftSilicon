@@ -24,6 +24,10 @@ import okhttp3.MediaType.Companion.toMediaType
 import org.koin.dsl.module
 import retrofit2.Retrofit
 
+/**
+ * This is the Koin Module for the Remote Data Source of the :home module...
+ */
+
 val homeRemoteDataSourceKoinModule =
     module {
 

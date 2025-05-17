@@ -15,6 +15,10 @@
  */
 package emmanuelmuturia.home.source.remote.source
 
+/**
+ * This is the Remote Data Source for the :home module...
+ */
+
 interface HomeRemoteSource {
     suspend fun getCurrentWeather(cityName: String)
 

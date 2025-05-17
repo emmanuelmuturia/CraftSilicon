@@ -19,6 +19,10 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import org.koin.dsl.module
 
+/**
+ * This is the Koin Module for :commons...
+ */
+
 val commonsKoinModule =
     module {
 

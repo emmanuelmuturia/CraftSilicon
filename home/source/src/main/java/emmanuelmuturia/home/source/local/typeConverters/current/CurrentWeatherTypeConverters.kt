@@ -20,6 +20,10 @@ import emmanuelmuturia.home.source.local.entity.current.CurrentWeatherEntity
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
+/**
+ * This is the [TypeConverter] for the Current Weather...
+ */
+
 class CurrentWeatherTypeConverters {
     private val json =
         Json {

@@ -25,6 +25,10 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
+/**
+ * This is the Home Screen's [ViewModel]...
+ */
+
 class HomeScreenViewModel(
     private val homeRepository: HomeRepository,
 ) : ViewModel() {

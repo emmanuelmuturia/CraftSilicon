@@ -61,11 +61,13 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
-import com.bumptech.glide.integration.compose.GlideImage
 import emmanuelmuturia.home.data.model.forecast.ForecastWeatherItem
 import emmanuelmuturia.home.ui.state.HomeScreenUIState
 import emmanuelmuturia.home.ui.viewmodel.HomeScreenViewModel
+
+/**
+ * This is the Home Screen...
+ */
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

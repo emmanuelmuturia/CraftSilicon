@@ -25,6 +25,10 @@ import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 
+/**
+ * This is the [MaterialTheme] Palette for the app...
+ */
+
 private val lightScheme =
     lightColorScheme(
         primary = primaryLight,

@@ -23,6 +23,10 @@ import emmanuelmuturia.home.source.local.entity.current.CurrentCityWeatherEntity
 import emmanuelmuturia.home.source.local.entity.forecast.ForecastCityWeatherEntity
 import kotlinx.coroutines.flow.Flow
 
+/**
+ * This is the [Dao] for the :home module...
+ */
+
 @Dao
 interface CraftSiliconDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)

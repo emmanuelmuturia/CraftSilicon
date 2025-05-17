@@ -18,6 +18,10 @@ package emmanuelmuturia.home.ui.state
 import emmanuelmuturia.home.data.model.current.CurrentCityWeather
 import emmanuelmuturia.home.data.model.forecast.ForecastCityWeather
 
+/**
+ * This is the Home Screen UI State...
+ */
+
 data class HomeScreenUIState(
     val isLoading: Boolean = false,
     val currentCityWeather: CurrentCityWeather? = null,

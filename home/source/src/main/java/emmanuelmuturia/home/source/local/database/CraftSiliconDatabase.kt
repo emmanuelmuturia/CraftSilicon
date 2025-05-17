@@ -24,6 +24,10 @@ import emmanuelmuturia.home.source.local.entity.forecast.ForecastCityWeatherEnti
 import emmanuelmuturia.home.source.local.typeConverters.current.CurrentWeatherTypeConverters
 import emmanuelmuturia.home.source.local.typeConverters.forecast.ForecastWeatherTypeConverters
 
+/**
+ * This is the [RoomDatabase] for the :home module...
+ */
+
 @Database(
     entities = [
         CurrentCityWeatherEntity::class,

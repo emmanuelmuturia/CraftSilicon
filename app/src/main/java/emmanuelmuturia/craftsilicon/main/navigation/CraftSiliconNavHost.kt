@@ -29,6 +29,10 @@ import emmanuelmuturia.home.ui.navigation.homeScreen
 import emmanuelmuturia.home.ui.viewmodel.HomeScreenViewModel
 import org.koin.androidx.compose.koinViewModel
 
+/**
+ * This is The [NavHost] of the app...
+ */
+
 @Composable
 fun CraftSiliconNavHost() {
     val navController = rememberNavController()

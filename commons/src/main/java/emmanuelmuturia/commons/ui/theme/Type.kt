@@ -21,6 +21,10 @@ import androidx.compose.ui.text.googlefonts.Font
 import androidx.compose.ui.text.googlefonts.GoogleFont
 import emmanuelmuturia.commons.R
 
+/**
+ * This is the [Typography] Palette for the app...
+ */
+
 val provider =
     GoogleFont.Provider(
         providerAuthority = "com.google.android.gms.fonts",

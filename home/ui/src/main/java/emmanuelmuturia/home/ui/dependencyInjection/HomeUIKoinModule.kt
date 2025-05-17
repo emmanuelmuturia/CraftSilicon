@@ -20,6 +20,10 @@ import emmanuelmuturia.home.ui.viewmodel.HomeScreenViewModel
 import org.koin.core.module.dsl.viewModel
 import org.koin.dsl.module
 
+/**
+ * This is the Koin Module for the UI Layer of the :home module...
+ */
+
 val homeUIKoinModule =
     module {
 

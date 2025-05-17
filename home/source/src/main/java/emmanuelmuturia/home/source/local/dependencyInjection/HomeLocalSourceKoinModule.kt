@@ -22,6 +22,10 @@ import emmanuelmuturia.home.source.local.source.HomeLocalSourceImplementation
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 
+/**
+ * This is the Koin Module for the :home:source module...
+ */
+
 val homeLocalSourceKoinModule =
     module {
 

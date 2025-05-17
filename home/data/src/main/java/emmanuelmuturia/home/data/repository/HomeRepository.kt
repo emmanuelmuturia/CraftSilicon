@@ -19,6 +19,10 @@ import emmanuelmuturia.home.data.model.current.CurrentCityWeather
 import emmanuelmuturia.home.data.model.forecast.ForecastCityWeather
 import kotlinx.coroutines.flow.Flow
 
+/**
+ * This is the Repository of the :home module...
+ */
+
 interface HomeRepository {
     suspend fun getCurrentCityWeather(cityName: String): Flow<CurrentCityWeather?>
 

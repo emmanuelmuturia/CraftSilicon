@@ -17,6 +17,10 @@ package emmanuelmuturia.commons.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
+/**
+ * This is the [Color] Palette for the app...
+ */
+
 val primaryLight = Color(color = 0xFF4A6365)
 val onPrimaryLight = Color(color = 0xFFFFFFFF)
 val primaryContainerLight = Color(color = 0xFFE1FCFF)

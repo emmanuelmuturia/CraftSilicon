@@ -22,6 +22,10 @@ import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 
+/**
+ * This is the REST API Configuration for the :home:source module...
+ */
+
 interface OpenWeatherAPI {
     @GET("data/2.5/weather")
     suspend fun getCurrentWeather(

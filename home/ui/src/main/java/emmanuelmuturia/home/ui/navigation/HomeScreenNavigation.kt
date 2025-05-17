@@ -21,6 +21,10 @@ import emmanuelmuturia.home.ui.screen.HomeScreen
 import emmanuelmuturia.home.ui.viewmodel.HomeScreenViewModel
 import kotlinx.serialization.Serializable
 
+/**
+ * This is the Navigation Configuration of the HomeScreen...
+ */
+
 @Serializable
 object HomeScreen
 

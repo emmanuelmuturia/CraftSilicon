@@ -24,17 +24,12 @@ import emmanuelmuturia.craftsilicon.main.navigation.CraftSiliconNavHost
 import emmanuelmuturia.home.ui.viewmodel.HomeScreenViewModel
 import org.koin.android.ext.android.inject
 
+/**
+ * This is The main Activity for the project...
+ */
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val homeScreenViewModel: HomeScreenViewModel by inject<HomeScreenViewModel>()
-        /*installSplashScreen().apply {
-            setKeepOnScreenCondition(
-                condition = {
-                    homeScreenViewModel.homeScreenUIState.value.isLoading
-                }
-            )
-        }*/
         installSplashScreen()
         enableEdgeToEdge()
         setContent {

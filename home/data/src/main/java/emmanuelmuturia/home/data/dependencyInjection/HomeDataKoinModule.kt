@@ -21,6 +21,10 @@ import emmanuelmuturia.home.source.local.dependencyInjection.homeLocalSourceKoin
 import emmanuelmuturia.home.source.remote.dependencyInjection.homeRemoteDataSourceKoinModule
 import org.koin.dsl.module
 
+/**
+ * This is the Koin Module for the Data Layer of the :home module...
+ */
+
 val homeDataKoinModule =
     module {
 

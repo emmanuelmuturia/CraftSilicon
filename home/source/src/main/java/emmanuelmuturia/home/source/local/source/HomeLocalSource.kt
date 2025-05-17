@@ -19,6 +19,10 @@ import emmanuelmuturia.home.source.local.entity.current.CurrentCityWeatherEntity
 import emmanuelmuturia.home.source.local.entity.forecast.ForecastCityWeatherEntity
 import kotlinx.coroutines.flow.Flow
 
+/**
+ * This is the Local Data Source for the :home module...
+ */
+
 interface HomeLocalSource {
     suspend fun getCurrentCityWeather(cityName: String): Flow<CurrentCityWeatherEntity?>
 
