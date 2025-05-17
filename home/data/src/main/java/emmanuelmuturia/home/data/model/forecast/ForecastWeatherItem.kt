@@ -76,6 +76,6 @@ fun ForecastWeatherItemEntity.toForecastWeatherItem(): ForecastWeatherItem {
                 gust = forecastWindEntity.gust,
                 speed = forecastWindEntity.speed,
             ),
-        lastUpdated = lastUpdated
+        lastUpdated = lastUpdated,
     )
 }

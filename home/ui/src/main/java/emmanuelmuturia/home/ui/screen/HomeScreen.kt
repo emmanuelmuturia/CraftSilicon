@@ -61,6 +61,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
+import com.bumptech.glide.integration.compose.GlideImage
 import emmanuelmuturia.home.data.model.forecast.ForecastWeatherItem
 import emmanuelmuturia.home.ui.state.HomeScreenUIState
 import emmanuelmuturia.home.ui.viewmodel.HomeScreenViewModel
@@ -77,7 +79,7 @@ fun HomeScreen(
     onSearchCity: (String) -> Unit,
 ) {
     val homeScreenUIState: HomeScreenUIState by
-    homeScreenViewModel.homeScreenUIState.collectAsStateWithLifecycle()
+        homeScreenViewModel.homeScreenUIState.collectAsStateWithLifecycle()
 
     Scaffold(
         modifier = modifier.fillMaxSize(),
@@ -121,14 +123,15 @@ fun HomeScreenContent(
 
     AnimatedVisibility(visible = homeScreenUIState.isLoading) {
         Box(
-            modifier = Modifier
-                .fillMaxSize(),
-            contentAlignment = Alignment.Center
+            modifier =
+                Modifier
+                    .fillMaxSize(),
+            contentAlignment = Alignment.Center,
         ) {
             CircularProgressIndicator(
                 color = MaterialTheme.colorScheme.onBackground,
                 strokeWidth = 3.dp,
-                trackColor = MaterialTheme.colorScheme.background
+                trackColor = MaterialTheme.colorScheme.background,
             )
         }
     }
@@ -402,7 +405,6 @@ fun ForecastWeatherCard(
                 Box(
                     modifier = Modifier.size(size = 77.dp),
                 ) {
-
                     GlideImage(
                         model =
                             "https://openweathermap.org/img/wn/${

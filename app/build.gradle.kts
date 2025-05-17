@@ -83,7 +83,6 @@ dependencies {
     implementation(dependencyNotation = libs.bundles.compose)
     implementation(dependencyNotation = libs.bundles.koin)
     implementation(dependencyNotation = libs.splashscreen)
-    implementation(dependencyNotation = libs.coil.compose)
     implementation(dependencyNotation = libs.timber)
 
     testImplementation(dependencyNotation = libs.junit)

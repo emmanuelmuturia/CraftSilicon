@@ -77,7 +77,7 @@ class HomeRepositoryImplementation(
                                 forecastCityWeatherEntityList.toForecastWeatherItem()
                             },
                         message = forecastCityWeatherEntity.message,
-                        lastUpdated = forecastCityWeatherEntity.list.first().lastUpdated
+                        lastUpdated = forecastCityWeatherEntity.list.first().lastUpdated,
                     )
                 }
             }

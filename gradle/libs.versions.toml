@@ -31,7 +31,6 @@ truth = "1.4.2"
 mockK = "1.13.3"
 googleFonts = "1.8.1"
 secretsGradle = "2.0.1"
-coil = "3.2.0"
 timber = "5.0.1"
 appcompat = "1.6.1"
 material = "1.10.0"
@@ -78,7 +77,6 @@ chucker-no-op = { group = "com.github.chuckerteam.chucker", name = "library-no-o
 
 splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "splash" }
 
-coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" }
 glide = { module = "com.github.bumptech.glide:compose", version.ref = "glide" }
 
 timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }

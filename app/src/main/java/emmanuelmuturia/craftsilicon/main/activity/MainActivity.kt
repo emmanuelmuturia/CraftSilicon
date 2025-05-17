@@ -21,8 +21,6 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import emmanuelmuturia.craftsilicon.main.navigation.CraftSiliconNavHost
-import emmanuelmuturia.home.ui.viewmodel.HomeScreenViewModel
-import org.koin.android.ext.android.inject
 
 /**
  * This is The main Activity for the project...
