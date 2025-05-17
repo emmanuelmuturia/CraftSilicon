@@ -20,35 +20,35 @@ This is my solution for the Technical Assessment by Craft Silicon...
 6. [Credits](#6-Credits)
 7. [How To Build](#7-How-To-Build)
 
-## 1) Background
+## 1] Background
 
 - This project is an implementation of the Mobile Interview Test offered by Craft Silicon...
 - It utilises [The OpenWeatherMap API](https://openweathermap.org/api), specifically the following endpoints:
 
-### a) The Current Weather Endpoint [/data/2.5/weather]
+### a] The Current Weather Endpoint [/data/2.5/weather]
 
 - This endpoint is used to retrieve the current weather details of a given area...
 
-### b) The Forecast Weather Endpoint [/data/2.5/forecast]
+### b] The Forecast Weather Endpoint [/data/2.5/forecast]
 
 - This endpoint is used to retrieve the forecast weather details of a given area...
 
-## 2) Architecture
+## 2] Architecture
 
 - Craft Silicon is a multi-module Android app implemented using the Model-View-ViewModel (MVVM) Architectural Pattern...
 - It is divided into the following modules:
 
-### a) :app
+### a] :app
 
 - This is the main module that houses the Main Activity, Application Class, and NavHost...
 - MainActivity acts as the entry-point of the app following the Dependency Injection implementation, while CraftSiliconApplication initialises the app, and the NavHost defines the app's Navigation Hierarchy...
 
-### b) :home
+### b] :home
 
 - This module contains the HomeScreen and its ViewModel...
 - It is used to display both the Current Weather and Forecast Weather [5 Days] of a given city...
 
-## 3) Screenshots
+## 3] Screenshots
 
 <div style="text-align: center;">
 
@@ -73,7 +73,7 @@ This is my solution for the Technical Assessment by Craft Silicon...
 
 </div>
 
-## 4) Testing
+## 4] Testing
 
 | Test                                                                                                       | Description                               |
 |------------------------------------------------------------------------------------------------------------|-------------------------------------------|
@@ -81,12 +81,12 @@ This is my solution for the Technical Assessment by Craft Silicon...
 | ![The Home Screen UI Test](assets/images/test_screenshots/ui/home_screen_ui_test.png)                      | This is The Home Screen UI Test...        |
 | ![The Craft Silicon DAO Test](assets/images/test_screenshots/dao/craft_silicon_dao_test.png)               | This is The Craft Silicon DAO Test...     |
 
-## 5) Challenges and Solutions
+## 5] Challenges and Solutions
 
 - One of the most significant challenges was mapping the Weather data across the multiple layers of the project. To solve this, Custom Mappers [Extension Functions] were used while also nullifying the values that were inconsistent across multiple entries to avoid crashes...
 - Another challenge I encountered was storing the nested data locally using Room. The workaround that was used to effectively handle this was using Room's "@Embedded" annotations, which allowed for the nested data to be flattened and used within a single table...
 
-## 6) Credits
+## 6] Credits
 
 - Craft Silicon has been built using the following Tools, Technologies, and Libraries:
 
@@ -127,7 +127,7 @@ i] [MockK](https://mockk.io/) and [Kotlin Coroutines Test](https://kotlinlang.or
 - During testing MockK has been used to mimic the dependencies to be tested resulting in a close-to-real test case scenario...
 - The Unit Tests used the Kotlin Coroutines Test library to provide the Coroutine Scopes for the suspending functions that were being tested...
 
-## 7) How To Build
+## 7] How To Build
 
 1] To build the project, ensure you have the following requirements:
 
