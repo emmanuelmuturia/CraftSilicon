@@ -1,6 +1,10 @@
 # Craft Silicon
 
+<center>
+
 ![The Craft Silicon Logo](/assets/images/logo/logo.png)
+
+</center>
 
 ## Overview
 
@@ -12,7 +16,7 @@ This is my solution for the Technical Assessment by Craft Silicon...
 2. [Architecture](#2-Architecture)
 3. [Screenshots](#3-Screenshots)
 4. [Testing](#4-Testing)
-5. [Trivia](#5-Trivia)
+5. [Challenges & Solutions](#5-Challenges-and-Solutions)
 6. [Credits](#6-Credits)
 7. [How To Build](#7-How-To-Build)
 
@@ -51,8 +55,8 @@ This is my solution for the Technical Assessment by Craft Silicon...
 <table>
   <tr>
     <th>The Splash Screen</th>
-    <th>The Login Screen</th>
-    <th>The Home Screen</th>
+    <th>The Home Screen [Current Weather]</th>
+    <th>The Home Screen [Forecast Weather]</th>
   </tr>
   <tr>
     <td>
@@ -77,7 +81,7 @@ This is my solution for the Technical Assessment by Craft Silicon...
 | ![The Home Screen UI Test](assets/images/test_screenshots/ui/home_screen_ui_test.png)                      | This is The Home Screen UI Test...        |
 | ![The Craft Silicon DAO Test](assets/images/test_screenshots/dao/craft_silicon_dao_test.png)               | This is The Craft Silicon DAO Test...     |
 
-## 5) Challenges & Solutions
+## 5) Challenges and Solutions
 
 - One of the most significant challenges was mapping the Weather data across the multiple layers of the project. To solve this, Custom Mappers [Extension Functions] were used while also nullifying the values that were inconsistent across multiple entries to avoid crashes...
 - Another challenge I encountered was storing the nested data locally using Room. The workaround that was used to effectively handle this was using Room's "@Embedded" annotations, which allowed for the nested data to be flattened and used within a single table...
@@ -86,42 +90,42 @@ This is my solution for the Technical Assessment by Craft Silicon...
 
 - Craft Silicon has been built using the following Tools, Technologies, and Libraries:
 
-a] Jetpack Compose
+a] [Jetpack Compose](https://developer.android.com/jetpack/compose)
 
-- The app has utilised Google's modern UI toolkit ([Jetpack Compose](https://developer.android.com/jetpack/compose)) for its User Interface that prioritises the Kotlin-first approach of Android App Development (AAD)...
+- The app has utilised Google's modern UI toolkit [Jetpack Compose] for its User Interface that prioritises the Kotlin-first approach of Android App Development (AAD)...
 
-b] Koin
+b] [Koin](https://insert-koin.io/)
 
-- For Dependency Injection using Kotlin, [Koin](https://insert-koin.io/) has been used in conjunction with:
+- For Dependency Injection using Kotlin, Koin has been used in conjunction with:
 
-c] Kotlin Symbol Processing (KSP)
+c] [KSP](https://kotlinlang.org/docs/ksp-overview.html)
 
-- For faster builds regarding Annotations, [KSP](https://kotlinlang.org/docs/ksp-overview.html) has been implemented as a plugin...
+- For faster builds regarding Annotations, Kotlin Symbol Processing [KSP] has been implemented as a plugin...
 
-d] Retrofit2
+d] [Retrofit2](https://square.github.io/retrofit/)
 
-- As a core library, [Retrofit2](https://square.github.io/retrofit/) has been utilised for performing remote calls to the REST API through a level of abstraction...
+- As a core library, Retrofit2 has been utilised for performing remote calls to the REST API through a level of abstraction...
 
-e] OkHTTP3
+e] [OkHTTP3](https://square.github.io/okhttp/)
 
-- In addition to Retrofit2, [OkHTTP3](https://square.github.io/okhttp/) has also been implemented to aid in configuring the remote calls by providing an Interceptor and specifying the expected data type as JSON...
+- In addition to Retrofit2, OkHTTP3 has also been implemented to aid in configuring the remote calls by providing an Interceptor and specifying the expected data type as JSON...
 
-f] Kotlin Serialization
+f] [Kotlin Serialization Plugin](https://kotlinlang.org/docs/serialization.html)
 
-- During the remote calls, the returned data has been serialized and deserialized using the [Kotlin Serialization Plugin](https://kotlinlang.org/docs/serialization.html)...
+- During the remote calls, the returned data has been serialized and deserialized using the Kotlin Serialization plugin...
 
-g] Splash Screen
+g] [Splash Screen API](https://developer.android.com/develop/ui/views/launch/splash-screen)
 
-- The app has implemented its Splash Screen using Google's [Splash Screen API](https://developer.android.com/develop/ui/views/launch/splash-screen) which uses its custom theme alongside the app's theme...
+- The app has implemented its Splash Screen using Google's Splash Screen API which uses its custom theme alongside the app's theme...
 
-h] LeakCanary
+h] [LeakCanary](https://square.github.io/leakcanary/)
 
-- To detect and fix memory leaks, [LeakCanary](https://square.github.io/leakcanary/) has been implemented...
+- To detect and fix memory leaks, LeakCanary has been implemented...
 
-i] MockK and Kotlin Coroutines Test
+i] [MockK](https://mockk.io/) and [Kotlin Coroutines Test](https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-test/)
 
-- During testing [MockK](https://mockk.io/) has been used to mimic the dependencies to be tested resulting in a close-to-real test case scenario...
-- The Unit Tests used the [Kotlin Coroutines Test](https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-test/) library to provide the Coroutine Scopes for the suspending functions that were being tested...
+- During testing MockK has been used to mimic the dependencies to be tested resulting in a close-to-real test case scenario...
+- The Unit Tests used the Kotlin Coroutines Test library to provide the Coroutine Scopes for the suspending functions that were being tested...
 
 ## 7) How To Build
 
