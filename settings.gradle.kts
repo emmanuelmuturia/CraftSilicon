@@ -21,3 +21,7 @@ dependencyResolutionManagement {
 
 rootProject.name = "Craft Silicon"
 include(":app")
+include(":commons")
+include(":home:source")
+include(":home:data")
+include(":home:ui")

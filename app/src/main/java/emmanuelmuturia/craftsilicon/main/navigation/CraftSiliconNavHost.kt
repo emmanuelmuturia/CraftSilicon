@@ -23,11 +23,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
-import emmanuelmuturia.craftsilicon.commons.ui.theme.CraftSiliconTheme
-import emmanuelmuturia.craftsilicon.home.ui.navigation.HomeScreen
-import emmanuelmuturia.craftsilicon.home.ui.navigation.homeScreen
-import emmanuelmuturia.craftsilicon.home.ui.viewmodel.HomeScreenViewModel
+import emmanuelmuturia.commons.ui.theme.CraftSiliconTheme
+import emmanuelmuturia.home.ui.navigation.HomeScreen
+import emmanuelmuturia.home.ui.navigation.homeScreen
+import emmanuelmuturia.home.ui.viewmodel.HomeScreenViewModel
 import org.koin.androidx.compose.koinViewModel
+
+/**
+ * This is The [NavHost] of the app...
+ */
 
 @Composable
 fun CraftSiliconNavHost() {

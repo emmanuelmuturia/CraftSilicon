@@ -18,8 +18,8 @@ plugins {
     alias(notation = libs.plugins.kotlin.android)
     alias(notation = libs.plugins.kotlin.compose)
     alias(notation = libs.plugins.ksp)
-    alias(notation = libs.plugins.kotlin.serialization)
     alias(notation = libs.plugins.secrets.gradle)
+    alias(notation = libs.plugins.kotlin.serialization)
 }
 
 android {
@@ -69,6 +69,9 @@ android {
 
 dependencies {
 
+    implementation(dependencyNotation = project(path = ":commons"))
+    implementation(dependencyNotation = project(path = ":home:ui"))
+
     implementation(dependencyNotation = libs.androidx.core.ktx)
     implementation(dependencyNotation = libs.androidx.lifecycle.runtime.ktx)
     implementation(dependencyNotation = libs.androidx.activity.compose)
@@ -77,16 +80,10 @@ dependencies {
     implementation(dependencyNotation = libs.androidx.ui.graphics)
     implementation(dependencyNotation = libs.androidx.ui.tooling.preview)
     implementation(dependencyNotation = libs.androidx.material3)
-    implementation(dependencyNotation = libs.google.fonts)
     implementation(dependencyNotation = libs.bundles.compose)
     implementation(dependencyNotation = libs.bundles.koin)
-    implementation(dependencyNotation = libs.bundles.networking)
     implementation(dependencyNotation = libs.splashscreen)
-    implementation(dependencyNotation = libs.coil.compose)
     implementation(dependencyNotation = libs.timber)
-    implementation(dependencyNotation = libs.room.runtime)
-    implementation(dependencyNotation = libs.room.ktx)
-    ksp(dependencyNotation = libs.room.compiler)
 
     testImplementation(dependencyNotation = libs.junit)
     testImplementation(dependencyNotation = libs.bundles.test)
