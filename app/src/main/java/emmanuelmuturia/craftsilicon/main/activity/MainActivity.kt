@@ -28,13 +28,14 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val homeScreenViewModel: HomeScreenViewModel by inject<HomeScreenViewModel>()
-        installSplashScreen().apply {
+        /*installSplashScreen().apply {
             setKeepOnScreenCondition(
                 condition = {
                     homeScreenViewModel.homeScreenUIState.value.isLoading
                 }
             )
-        }
+        }*/
+        installSplashScreen()
         enableEdgeToEdge()
         setContent {
             CraftSiliconNavHost()

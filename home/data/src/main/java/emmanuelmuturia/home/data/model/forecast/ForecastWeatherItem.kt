@@ -28,6 +28,7 @@ data class ForecastWeatherItem(
     val visibility: Int,
     val forecastWeather: List<ForecastWeather>,
     val forecastWind: ForecastWind,
+    val lastUpdated: String,
 )
 
 fun ForecastWeatherItemEntity.toForecastWeatherItem(): ForecastWeatherItem {
@@ -75,5 +76,6 @@ fun ForecastWeatherItemEntity.toForecastWeatherItem(): ForecastWeatherItem {
                 gust = forecastWindEntity.gust,
                 speed = forecastWindEntity.speed,
             ),
+        lastUpdated = lastUpdated
     )
 }

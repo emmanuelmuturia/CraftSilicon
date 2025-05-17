@@ -50,5 +50,5 @@ data class CurrentCityWeatherEntity(
     @Embedded(prefix = "wind_")
     val currentWindEntity: CurrentWindEntity,
     @ColumnInfo(name = "lastUpdated")
-    val lastUpdated: Long,
+    val lastUpdated: String,
 )

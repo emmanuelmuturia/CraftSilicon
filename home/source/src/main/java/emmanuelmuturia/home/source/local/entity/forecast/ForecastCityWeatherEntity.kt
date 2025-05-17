@@ -25,12 +25,12 @@ data class ForecastCityWeatherEntity(
     @PrimaryKey
     val forecastCityWeatherId: Int = 0,
     @Embedded(prefix = "city_")
-    val forecastCityEntity: emmanuelmuturia.home.source.local.entity.forecast.ForecastCityEntity,
+    val forecastCityEntity: ForecastCityEntity,
     @ColumnInfo(name = "cnt")
     val cnt: Int,
     @ColumnInfo(name = "cod")
     val cod: String,
-    val list: List<emmanuelmuturia.home.source.local.entity.forecast.ForecastWeatherItemEntity>,
+    val list: List<ForecastWeatherItemEntity>,
     @ColumnInfo(name = "message")
     val message: Int,
 )

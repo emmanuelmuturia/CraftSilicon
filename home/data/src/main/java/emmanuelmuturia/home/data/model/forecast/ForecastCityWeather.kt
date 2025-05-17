@@ -21,4 +21,5 @@ data class ForecastCityWeather(
     val cod: String,
     val list: List<ForecastWeatherItem>,
     val message: Int,
+    val lastUpdated: String
 )

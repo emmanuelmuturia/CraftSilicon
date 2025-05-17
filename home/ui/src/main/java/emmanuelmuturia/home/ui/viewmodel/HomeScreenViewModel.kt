@@ -30,45 +30,18 @@ class HomeScreenViewModel(
 ) : ViewModel() {
     val homeScreenUIState = MutableStateFlow(value = HomeScreenUIState())
 
-    // private val citySearchQuery = MutableStateFlow(value = "")
-
     init {
         getCurrentCityWeather(cityName = homeScreenUIState.value.cityName)
         getForecastCityWeather(cityName = homeScreenUIState.value.cityName)
-        // observeCitySearchQuery()
     }
 
     fun searchNewCity(cityName: String) {
         homeScreenUIState.value.cityName = cityName
-        getCurrentCityWeather(cityName = cityName)
-        getForecastCityWeather(cityName = cityName)
+        getWeatherByCityName(cityName = cityName)
     }
 
-    /*fun onCityNameChanged(cityName: String) {
-        citySearchQuery.value = cityName
-        homeScreenUIState.update {
-            it.copy(
-                cityName = cityName
-            )
-        }
-        Timber.tag("City Name").d(homeScreenUIState.value.cityName)
-    }*/
-
-    /*@OptIn(FlowPreview::class)
-    private fun observeCitySearchQuery() {
-        viewModelScope.launch {
-            citySearchQuery.debounce(
-                timeoutMillis = 700
-            ).distinctUntilChanged()
-                .collectLatest { cityName ->
-                    getCurrentCityWeather(city = cityName)
-                    getForecastCityWeather(city = cityName)
-                }
-        }
-    }*/
-
     fun getCurrentCityWeather(cityName: String) {
-        homeScreenUIState.value = HomeScreenUIState(isLoading = true)
+        homeScreenUIState.update { it.copy(isLoading = true) }
         viewModelScope.launch {
             homeRepository.getCurrentCityWeather(cityName = cityName).asResult().collect { result ->
 
@@ -96,7 +69,7 @@ class HomeScreenViewModel(
     }
 
     fun getForecastCityWeather(cityName: String) {
-        homeScreenUIState.value = HomeScreenUIState(isLoading = true)
+        homeScreenUIState.update { it.copy(isLoading = true) }
         viewModelScope.launch {
             homeRepository.getForecastCityWeather(cityName = cityName).asResult().collect { result ->
 
@@ -120,6 +93,14 @@ class HomeScreenViewModel(
                     }
                 }
             }
+        }
+    }
+
+    private fun getWeatherByCityName(cityName: String) {
+        viewModelScope.launch {
+            homeScreenUIState.update { it.copy(isLoading = true) }
+            homeRepository.getWeatherByCityName(cityName = cityName)
+            homeScreenUIState.update { it.copy(isLoading = false) }
         }
     }
 }

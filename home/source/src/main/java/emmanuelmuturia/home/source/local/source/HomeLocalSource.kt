@@ -23,4 +23,6 @@ interface HomeLocalSource {
     suspend fun getCurrentCityWeather(cityName: String): Flow<CurrentCityWeatherEntity?>
 
     suspend fun getForecastCityWeather(cityName: String): Flow<ForecastCityWeatherEntity?>
+
+    suspend fun getWeatherByCityName(cityName: String)
 }

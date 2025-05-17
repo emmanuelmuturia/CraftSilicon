@@ -15,6 +15,7 @@
  */
 package emmanuelmuturia.home.ui.screen
 
+import android.widget.Toast
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -60,8 +61,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import coil3.compose.AsyncImage
-import coil3.request.ImageRequest
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import emmanuelmuturia.home.data.model.forecast.ForecastWeatherItem
@@ -76,7 +75,7 @@ fun HomeScreen(
     onSearchCity: (String) -> Unit,
 ) {
     val homeScreenUIState: HomeScreenUIState by
-        homeScreenViewModel.homeScreenUIState.collectAsStateWithLifecycle()
+    homeScreenViewModel.homeScreenUIState.collectAsStateWithLifecycle()
 
     Scaffold(
         modifier = modifier.fillMaxSize(),
@@ -101,9 +100,6 @@ fun HomeScreen(
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = MaterialTheme.colorScheme.background),
             )
         },
-        bottomBar = {
-            // KebuBottomNavigationBar()
-        },
     ) { paddingValues ->
         HomeScreenContent(
             modifier = Modifier.padding(paddingValues = paddingValues),
@@ -122,15 +118,26 @@ fun HomeScreenContent(
     var citySearchQuery by rememberSaveable { mutableStateOf(value = "") }
 
     AnimatedVisibility(visible = homeScreenUIState.isLoading) {
-        CircularProgressIndicator()
+        Box(
+            modifier = Modifier
+                .fillMaxSize(),
+            contentAlignment = Alignment.Center
+        ) {
+            CircularProgressIndicator(
+                color = MaterialTheme.colorScheme.onBackground,
+                strokeWidth = 3.dp,
+                trackColor = MaterialTheme.colorScheme.background
+            )
+        }
     }
 
     AnimatedVisibility(visible = homeScreenUIState.error != null) {
-        Text(text = homeScreenUIState.error ?: "")
+        val context = LocalContext.current
+        Toast.makeText(context, "${homeScreenUIState.error}", Toast.LENGTH_LONG).show()
     }
 
     AnimatedVisibility(
-        visible = homeScreenUIState.currentCityWeather != null,
+        visible = !homeScreenUIState.isLoading,
     ) {
         LazyColumn(
             modifier = modifier.fillMaxSize(),
@@ -265,8 +272,9 @@ private fun CurrentCityWeatherCard(homeScreenUIState: HomeScreenUIState) {
                 ) {
                     GlideImage(
                         model =
-                            "https://openweathermap.org/img/wn/${currentCityWeather.
-                            currentWeather.first().icon}@2x.png",
+                            "https://openweathermap.org/img/wn/${
+                                currentCityWeather.currentWeather.first().icon
+                            }@2x.png",
                         contentDescription = "Weather Icon",
                         contentScale = ContentScale.Crop,
                     )
@@ -285,6 +293,10 @@ private fun CurrentCityWeatherCard(homeScreenUIState: HomeScreenUIState) {
                 }
             }
 
+            CurrentWeatherDetailRow(
+                title = "Last Updated",
+                value = currentCityWeather.lastUpdated,
+            )
             CurrentWeatherDetailRow(
                 title = "Temperature",
                 value = "${currentCityWeather.currentMain.temp} K",
@@ -391,8 +403,9 @@ fun ForecastWeatherCard(
 
                     GlideImage(
                         model =
-                            "https://openweathermap.org/img/wn/${forecastWeatherItem.
-                                forecastWeather.first().icon}@2x.png",
+                            "https://openweathermap.org/img/wn/${
+                                forecastWeatherItem.forecastWeather.first().icon
+                            }@2x.png",
                         contentDescription = "Weather Icon",
                         contentScale = ContentScale.Crop,
                     )
@@ -411,6 +424,14 @@ fun ForecastWeatherCard(
                 }
             }
 
+            ForecastWeatherDetailRow(
+                title = "Last Updated",
+                value = forecastWeatherItem.lastUpdated,
+            )
+            ForecastWeatherDetailRow(
+                title = "Temperature",
+                value = "${forecastWeatherItem.forecastMain.temp} K",
+            )
             ForecastWeatherDetailRow(
                 title = "Temperature",
                 value = "${forecastWeatherItem.forecastMain.temp} K",

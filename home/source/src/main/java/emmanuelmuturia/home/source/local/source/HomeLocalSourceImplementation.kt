@@ -32,9 +32,6 @@ class HomeLocalSourceImplementation(
 ) : HomeLocalSource {
     override suspend fun getCurrentCityWeather(cityName: String): Flow<CurrentCityWeatherEntity?> {
         return withContext(dispatcher) {
-            async {
-                homeRemoteSource.getCurrentWeather(cityName = cityName)
-            }.await()
             craftSiliconDao.getCurrentWeather()
         }.onEach { cachedWeather ->
             if (cachedWeather == null) {
@@ -45,14 +42,22 @@ class HomeLocalSourceImplementation(
 
     override suspend fun getForecastCityWeather(cityName: String): Flow<ForecastCityWeatherEntity?> {
         return withContext(dispatcher) {
-            async {
-                homeRemoteSource.getForecastWeather(cityName = cityName)
-            }.await()
             craftSiliconDao.getForecastWeather()
         }.onEach { cachedForecast ->
             if (cachedForecast == null) {
                 homeRemoteSource.getForecastWeather(cityName = cityName)
             }
+        }
+    }
+
+    override suspend fun getWeatherByCityName(cityName: String) {
+        withContext(context = dispatcher) {
+            async {
+                homeRemoteSource.getCurrentWeather(cityName = cityName)
+                homeRemoteSource.getForecastWeather(cityName = cityName)
+            }.await()
+            craftSiliconDao.getCurrentWeather()
+            craftSiliconDao.getForecastWeather()
         }
     }
 }

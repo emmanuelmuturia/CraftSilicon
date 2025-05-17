@@ -73,9 +73,16 @@ class HomeRepositoryImplementation(
                                 forecastCityWeatherEntityList.toForecastWeatherItem()
                             },
                         message = forecastCityWeatherEntity.message,
+                        lastUpdated = forecastCityWeatherEntity.list.first().lastUpdated
                     )
                 }
             }
+        }
+    }
+
+    override suspend fun getWeatherByCityName(cityName: String) {
+        withContext(context = dispatcher) {
+            homeLocalSource.getWeatherByCityName(cityName = cityName)
         }
     }
 }

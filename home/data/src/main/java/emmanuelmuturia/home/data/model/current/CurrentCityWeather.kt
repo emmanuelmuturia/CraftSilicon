@@ -29,5 +29,5 @@ data class CurrentCityWeather(
     val visibility: Int,
     val currentWeather: List<CurrentWeather>,
     val currentWind: CurrentWind,
-    val lastUpdated: Long,
+    val lastUpdated: String,
 )

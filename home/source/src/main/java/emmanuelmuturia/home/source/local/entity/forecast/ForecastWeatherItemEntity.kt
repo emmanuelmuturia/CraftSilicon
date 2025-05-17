@@ -15,24 +15,36 @@
  */
 package emmanuelmuturia.home.source.local.entity.forecast
 
+import androidx.room.ColumnInfo
 import androidx.room.Embedded
 import kotlinx.serialization.Serializable
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 @Serializable
 data class ForecastWeatherItemEntity(
     @Embedded(prefix = "forecast_clouds_")
-    val forecastCloudsEntity: emmanuelmuturia.home.source.local.entity.forecast.ForecastCloudsEntity,
+    val forecastCloudsEntity: ForecastCloudsEntity,
     val dt: Int,
     val dtTxt: String,
     @Embedded(prefix = "forecast_main_")
-    val forecastMainEntity: emmanuelmuturia.home.source.local.entity.forecast.ForecastMainEntity,
+    val forecastMainEntity: ForecastMainEntity,
     val pop: Double,
     @Embedded(prefix = "forecast_rain_")
-    val forecastRainEntity: emmanuelmuturia.home.source.local.entity.forecast.ForecastRainEntity,
+    val forecastRainEntity: ForecastRainEntity,
     @Embedded(prefix = "forecast_sys_")
-    val forecastSysEntity: emmanuelmuturia.home.source.local.entity.forecast.ForecastSysEntity,
+    val forecastSysEntity: ForecastSysEntity,
     val visibility: Int,
-    val forecastWeatherEntity: List<emmanuelmuturia.home.source.local.entity.forecast.ForecastWeatherEntity>,
+    val forecastWeatherEntity: List<ForecastWeatherEntity>,
     @Embedded(prefix = "forecast_wind_")
-    val forecastWindEntity: emmanuelmuturia.home.source.local.entity.forecast.ForecastWindEntity,
+    val forecastWindEntity: ForecastWindEntity,
+    @ColumnInfo(name = "last_updated")
+    val lastUpdated: String = formatLastUpdatedTime(lastUpdatedTime = System.currentTimeMillis()),
 )
+
+private fun formatLastUpdatedTime(lastUpdatedTime: Long): String {
+    val date = Date(lastUpdatedTime)
+    val formatter = SimpleDateFormat("HH:mm", Locale.getDefault())
+    return formatter.format(date)
+}

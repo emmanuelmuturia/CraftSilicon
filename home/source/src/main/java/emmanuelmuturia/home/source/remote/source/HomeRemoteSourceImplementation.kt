@@ -21,6 +21,9 @@ import emmanuelmuturia.home.source.local.entity.forecast.ForecastCityWeatherEnti
 import emmanuelmuturia.home.source.remote.api.OpenWeatherAPI
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class HomeRemoteSourceImplementation(
     private val openWeatherAPI: OpenWeatherAPI,
@@ -47,7 +50,7 @@ class HomeRemoteSourceImplementation(
                             visibility = response.body()!!.visibility,
                             currentWeatherEntity = response.body()!!.currentWeatherDTO.map { weatherDTO -> weatherDTO.toWeatherEntity() },
                             currentWindEntity = response.body()!!.currentWindDTO.toWindEntity(),
-                            lastUpdated = System.currentTimeMillis(),
+                            lastUpdated = formatLastUpdatedTime(lastUpdatedTime = System.currentTimeMillis()),
                         ),
                 )
             }
@@ -74,4 +77,10 @@ class HomeRemoteSourceImplementation(
             }
         }
     }
+}
+
+private fun formatLastUpdatedTime(lastUpdatedTime: Long): String {
+    val date = Date(lastUpdatedTime)
+    val formatter = SimpleDateFormat("HH:mm", Locale.getDefault())
+    return formatter.format(date)
 }

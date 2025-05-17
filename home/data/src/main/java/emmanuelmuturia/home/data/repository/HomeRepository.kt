@@ -23,4 +23,6 @@ interface HomeRepository {
     suspend fun getCurrentCityWeather(cityName: String): Flow<CurrentCityWeather?>
 
     suspend fun getForecastCityWeather(cityName: String): Flow<ForecastCityWeather?>
+
+    suspend fun getWeatherByCityName(cityName: String)
 }
