@@ -21,8 +21,15 @@ jobs:
           java-version: '17'
           cache: gradle
 
+      - name: Create local.properties...
+        run: |
+          echo "apiKey=${{ secrets.API_KEY }}" > local.properties
+
       - name: Grant the Execute permission to the Gradle Wrapper...
         run: chmod +x gradlew
 
       - name: Build the project...
         run: ./gradlew build
+
+      - name: Run the Unit Tests...
+        run: ./gradlew test
